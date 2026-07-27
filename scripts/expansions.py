@@ -503,9 +503,12 @@ EXPANSIONS = {
 CSS_FIXES = """
 .cover { min-height: auto; height: 220mm; page-break-after: always; }
 .cover-inner { min-height: auto; height: 100%; }
-.part-opener { min-height: auto; padding: 3em 0 2em; justify-content: flex-start; }
+.part-opener { min-height: auto !important; padding: 0.35em 0 0.7em !important; justify-content: flex-start; }
 @media print {
-  .part-opener, .chapter, .front-matter, .toc-page { break-after: auto; page-break-after: auto; }
-  .callout, .prompt, .workflow, .takeaway, .action-steps, .exercise, table { break-inside: avoid; page-break-inside: avoid; }
+  .part-opener { break-after: avoid; page-break-after: avoid; }
+  .callout, .prompt, .workflow, .takeaway, .action-steps, .exercise { break-inside: avoid; page-break-inside: avoid; }
+  table { break-inside: auto; page-break-inside: auto; }
+  ol.small li, ul.small li { margin-bottom: 0.12em; }
+  ol.small, ul.small { font-size: 0.84rem; line-height: 1.32; }
 }
 """

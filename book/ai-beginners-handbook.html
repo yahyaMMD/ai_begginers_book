@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="author" content="AI Handbook Editorial"/>
+<meta name="description" content="The Complete Beginner's Guide to Artificial Intelligence — a practical print-ready handbook for 2026."/>
+<title>The Complete Beginner's Guide to Artificial Intelligence</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink: #1a2332;
+  --muted: #4a5568;
+  --rule: #d0d7e2;
+  --accent: #0d7377;
+  --accent-dark: #095456;
+  --accent-soft: #e6f4f4;
+  --warm: #c45c26;
+  --warm-soft: #fdf0e9;
+  --warn: #9a3412;
+  --warn-soft: #fff7ed;
+  --tip: #0f766e;
+  --tip-soft: #ecfdf5;
+  --ex: #1e3a5f;
+  --ex-soft: #eef4fb;
+  --paper: #ffffff;
+  --cover-bg: #0b2c2f;
+  --cover-accent: #14b8a6;
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 10.5pt; }
+
+body {
+  font-family: var(--font-serif);
+  color: var(--ink);
+  background: #e8ecf1;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Screen preview */
+@media screen {
+  body { padding: 24px 0 60px; }
+  .page-sheet {
+    width: 160mm;
+    min-height: 220mm;
+    margin: 0 auto 18px;
+    background: var(--paper);
+    box-shadow: 0 8px 28px rgba(26, 35, 50, 0.12);
+  }
+  .book { width: 160mm; margin: 0 auto; background: var(--paper); box-shadow: 0 8px 28px rgba(26,35,50,.12); }
+}
+
+@page {
+  size: 160mm 220mm;
+  margin: 14mm 16mm 16mm 16mm;
+  @bottom-center {
+    content: counter(page);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 8.5pt;
+    color: #64748b;
+  }
+}
+
+@page :first {
+  margin: 0;
+  @bottom-center { content: none; }
+}
+
+@media print {
+  html, body { background: white; padding: 0; margin: 0; }
+  .book { width: auto; box-shadow: none; margin: 0; }
+  .no-print { display: none !important; }
+  a { color: inherit; text-decoration: none; }
+  /* Compact handbook: break on major sections, not every short chapter */
+  .page-break, .part-opener, .cover, .toc-page, .front-matter { page-break-before: always; break-before: page; }
+  .chapter { page-break-before: auto; break-before: auto; }
+  .chapter { margin-top: 1.4em; padding-top: 0.6em; border-top: 1px solid var(--rule); }
+  #ch-1, #ch-3, #ch-4, #ch-10, #ch-13, #ch-15, #ch-18, #ch-20, #ch-22, #ch-26, #ch-28, #ch-29 {
+    page-break-before: always; break-before: page; border-top: none; margin-top: 0; padding-top: 0;
+  }
+  .cover { page-break-before: avoid; break-before: avoid; }
+  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+  table, .callout, .box, .prompt, .workflow, figure { page-break-inside: avoid; break-inside: avoid; }
+  tr { page-break-inside: avoid; }
+}
+
+/* Typography */
+h1, h2, h3, h4, .part-label, .toc, .sans, .cover, nav, .callout-label, th, .badge, .kicker {
+  font-family: var(--font-sans);
+}
+
+p { margin: 0 0 0.5em; orphans: 3; widows: 3; }
+
+.lead { font-size: 1.02rem; color: var(--muted); margin-bottom: 0.75em; }
+
+h1.chapter-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 0.3em;
+  padding-bottom: 0.28em;
+  border-bottom: 2.5px solid var(--accent);
+}
+
+h2 {
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--accent-dark);
+  margin: 0.9em 0 0.3em;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0.95em 0 0.3em;
+}
+
+h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0.8em 0 0.25em;
+}
+
+ul, ol { margin: 0 0 0.75em 1.15em; }
+li { margin-bottom: 0.25em; }
+li::marker { color: var(--accent); }
+
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+a { color: var(--accent-dark); }
+
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: #f1f5f9;
+  padding: 0.08em 0.28em;
+  border-radius: 2px;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 0.75em 0.9em;
+  border-radius: 4px;
+  margin: 0.6em 0 0.9em;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.prompt {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.35;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 0.55em 0.7em;
+  border-radius: 4px;
+  margin: 0.35em 0 0.55em;
+  border-left: 3px solid var(--cover-accent);
+  white-space: pre-wrap;
+}
+
+/* Cover */
+.cover {
+  background: linear-gradient(165deg, #062426 0%, #0b2c2f 42%, #134e4a 100%);
+  color: #f8fafc;
+  min-height: 220mm;
+  padding: 18mm 14mm 14mm;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 100% 0%, rgba(20,184,166,0.25), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(196,92,38,0.18), transparent 50%);
+  pointer-events: none;
+}
+
+.cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; min-height: 192mm; }
+
+.cover-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cover-accent);
+  font-weight: 600;
+  margin-bottom: 1.8em;
+}
+
+.cover h1 {
+  font-size: 2.05rem;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.55em;
+  max-width: 14ch;
+}
+
+.cover .subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #cbd5e1;
+  max-width: 28ch;
+  margin-bottom: 2.2em;
+}
+
+.cover-meta {
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  padding-top: 1.1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1em;
+}
+
+.cover-meta .edition {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.cover-meta .year {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--cover-accent);
+}
+
+.cover-band {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 8mm;
+  background: var(--cover-accent);
+}
+
+/* Front matter */
+.front-matter, .toc-page, .chapter, .part-opener {
+  padding: 0;
+}
+
+.chapter-num {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.35em;
+}
+
+.part-opener {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+  padding: 0.4em 0 0.8em;
+  page-break-after: avoid;
+}
+
+.part-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.8em;
+}
+
+.part-opener h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6em;
+  line-height: 1.15;
+}
+
+.part-opener p {
+  color: var(--muted);
+  max-width: 36ch;
+  font-size: 1rem;
+}
+
+/* TOC */
+.toc-page h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+  border-bottom: 2.5px solid var(--accent);
+  padding-bottom: 0.35em;
+}
+
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  margin-bottom: 0.35em;
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+.toc .toc-part {
+  margin-top: 0.85em;
+  margin-bottom: 0.35em;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  border-bottom: none;
+}
+.toc .dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--rule);
+  margin: 0 0.2em 0.2em;
+  min-width: 1em;
+}
+.toc .pg { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Boxes */
+.callout, .box {
+  border-radius: 4px;
+  padding: 0.5em 0.7em;
+  margin: 0.5em 0 0.65em;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.callout-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.25em;
+}
+
+.tip { background: var(--tip-soft); border-left: 3px solid var(--tip); }
+.tip .callout-label { color: var(--tip); }
+
+.note { background: var(--accent-soft); border-left: 3px solid var(--accent); }
+.note .callout-label { color: var(--accent-dark); }
+
+.warn { background: var(--warn-soft); border-left: 3px solid var(--warm); }
+.warn .callout-label { color: var(--warn); }
+
+.example { background: var(--ex-soft); border-left: 3px solid var(--ex); }
+.example .callout-label { color: var(--ex); }
+
+.mistake { background: #fef2f2; border-left: 3px solid #b91c1c; }
+.mistake .callout-label { color: #b91c1c; }
+
+.takeaway {
+  background: linear-gradient(90deg, var(--accent-soft), #fff);
+  border: 1px solid #b6e0e0;
+  border-radius: 4px;
+  padding: 0.7em 0.85em;
+  margin: 1em 0;
+}
+
+.takeaway h3 { margin-top: 0; color: var(--accent-dark); font-size: 0.9rem; }
+
+.action-steps {
+  background: #f8fafc;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.7em 0.85em 0.55em;
+  margin: 0.8em 0 1em;
+}
+.action-steps h3 { margin-top: 0; font-size: 0.9rem; color: var(--ink); }
+.action-steps ol { margin-bottom: 0.2em; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6em 0 1em;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.4em 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #0f3d40;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+tr:nth-child(even) td { background: #f7fafb; }
+
+.small { font-size: 0.88rem; }
+.muted { color: var(--muted); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75em;
+  margin: 0.6em 0 0.9em;
+}
+
+.card-lite {
+  border-top: 2px solid var(--accent);
+  padding-top: 0.4em;
+}
+.card-lite h4 { margin-top: 0; color: var(--accent-dark); }
+
+.workflow {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  background: #f8fafc;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.65em 0.75em;
+  margin: 0.55em 0 0.85em;
+}
+.workflow .flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25em;
+  margin-top: 0.35em;
+}
+.workflow .step {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  padding: 0.2em 0.45em;
+  border-radius: 3px;
+  font-weight: 500;
+}
+.workflow .arrow { color: var(--muted); }
+
+.placeholder {
+  border: 1.5px dashed #94a3b8;
+  background: repeating-linear-gradient(-45deg, #f8fafc, #f8fafc 8px, #eef2f7 8px, #eef2f7 16px);
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  text-align: center;
+  padding: 1.4em 0.8em;
+  margin: 0.6em 0 0.9em;
+  border-radius: 4px;
+}
+
+.project {
+  border-left: 3px solid var(--accent);
+  padding: 0.15em 0 0.15em 0.75em;
+  margin: 0.7em 0 1em;
+}
+.project h3 { margin-top: 0; }
+.project .meta {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.35em;
+}
+
+.exercise {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.65em 0.8em;
+  margin: 0.7em 0 1em;
+  background: #fff;
+}
+.exercise h4 {
+  margin-top: 0;
+  color: var(--warm);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hr { border: none; border-top: 1px solid var(--rule); margin: 1em 0; }
+
+.colophon {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 2em;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  padding: 0.15em 0.45em;
+  border-radius: 2px;
+  font-weight: 600;
+  margin-right: 0.25em;
+}
+
+.screen-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #0b2c2f;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 10px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.screen-toolbar button, .screen-toolbar a {
+  background: var(--cover-accent);
+  color: #042f2e;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.cover { min-height: auto; height: 220mm; page-break-after: always; }
+.cover-inner { min-height: auto; height: 100%; }
+.part-opener { min-height: auto; padding: 3em 0 2em; justify-content: flex-start; }
+@media print {
+  .part-opener, .chapter, .front-matter, .toc-page { break-after: auto; page-break-after: auto; }
+  .callout, .prompt, .workflow, .takeaway, .action-steps, .exercise, table { break-inside: avoid; page-break-inside: avoid; }
+}
+
+.cover { overflow: hidden; }
+.cover-inner { justify-content: space-between; padding-bottom: 10mm; }
+.cover .subtitle { max-width: 32ch; }
+@media print {
+  .cover { height: 220mm; max-height: 220mm; padding: 16mm 14mm 12mm; }
+  .cover-band { height: 6mm; }
+  .part-opener { min-height: 0 !important; height: auto; padding: 2.2em 0 1.2em; }
+}
+
+</style>
+</head>
+<body>
+<div class="screen-toolbar no-print">
+  <span><strong>AI Beginner's Handbook</strong> · Print preview (160×220 mm)</span>
+  <span><button onclick="window.print()">Print / Save as PDF</button></span>
+</div>
+<article class="book">
+
+<section class="cover" id="cover">
+  <div class="cover-inner">
+    <div class="cover-kicker">Practical Handbook · 2026 Edition</div>
+    <h1>The Complete Beginner's Guide to Artificial Intelligence</h1>
+    <p class="subtitle">Learn AI Tools, ChatGPT, Prompt Engineering, Image Generation, Video Generation, AI Automation, AI Agents, and Productivity Workflows</p>
+    <div class="cover-meta">
+      <div class="edition">From zero to practical mastery<br/>No coding required</div>
+      <div class="year">2026</div>
+    </div>
+  </div>
+  <div class="cover-band"></div>
+</section>
+
+<section class="front-matter" id="how-to-use">
+  <div class="chapter-num">Front Matter</div>
+  <h1 class="chapter-title">How to Use This Book</h1>
+  <p class="lead">This handbook is built for absolute beginners who want practical results—not academic theory. You will learn what AI is, which tools to use, how to write strong prompts, and how to apply AI to real work.</p>
+  <h2>Who this book is for</h2>
+  <p>Students, freelancers, entrepreneurs, marketers, creators, office workers, and anyone who wants to use AI confidently in daily work.</p>
+  <h2>What you will be able to do</h2>
+  <ul>
+    <li>Explain AI in plain language and choose the right tool for a task</li>
+    <li>Use ChatGPT, Claude, Gemini, Perplexity, and NotebookLM professionally</li>
+    <li>Write powerful prompts for writing, research, marketing, and analysis</li>
+    <li>Generate images, video, and audio with modern AI tools</li>
+    <li>Build simple automations and understand AI agents</li>
+    <li>Complete real projects you can reuse in business or freelancing</li>
+  </ul>
+  <h2>How to read it</h2>
+  <p>Read Parts 1–4 in order. After that, jump to the sections you need—images, video, automation, or projects. Every chapter ends with action steps. Do them. Skill comes from practice, not passive reading.</p>
+  <div class="callout tip"><span class="callout-label">Tip</span><p>Keep a notes doc titled <em>AI Playbook</em>. After each chapter, save your best prompts and workflows. By the end you will own a personal operating system for AI.</p></div>
+  <h2>Print &amp; PDF notes</h2>
+  <p>This file is sized for a <strong>160 × 220 mm</strong> handbook. Use your browser’s Print dialog → Save as PDF, enable backgrounds, and set margins to default (CSS already defines page size).</p>
+</section>
+
+<section class="toc-page" id="toc">
+  <h1>Contents</h1>
+  <ul class="toc">
+    <li class="toc-part">Part 1 — AI Fundamentals</li>
+    <li><span>1. What Is Artificial Intelligence?</span><span class="dots"></span></li>
+    <li><span>2. How Modern AI Works</span><span class="dots"></span></li>
+    <li class="toc-part">Part 2 — The AI Ecosystem</li>
+    <li><span>3. Understanding AI Tool Categories</span><span class="dots"></span></li>
+    <li class="toc-part">Part 3 — Essential AI Tools</li>
+    <li><span>4. Large Language Models</span><span class="dots"></span></li>
+    <li><span>5. ChatGPT Complete Guide</span><span class="dots"></span></li>
+    <li><span>6. Claude Complete Guide</span><span class="dots"></span></li>
+    <li><span>7. Gemini Complete Guide</span><span class="dots"></span></li>
+    <li><span>8. Perplexity Complete Guide</span><span class="dots"></span></li>
+    <li><span>9. NotebookLM Complete Guide</span><span class="dots"></span></li>
+    <li class="toc-part">Part 4 — Prompt Engineering</li>
+    <li><span>10. Prompt Engineering Foundations</span><span class="dots"></span></li>
+    <li><span>11. Prompt Frameworks</span><span class="dots"></span></li>
+    <li><span>12. Professional Prompt Library</span><span class="dots"></span></li>
+    <li class="toc-part">Part 5 — AI Image Generation</li>
+    <li><span>13. Introduction to AI Images</span><span class="dots"></span></li>
+    <li><span>14. Image Prompt Engineering</span><span class="dots"></span></li>
+    <li class="toc-part">Part 6 — AI Video Generation</li>
+    <li><span>15. Video AI Fundamentals</span><span class="dots"></span></li>
+    <li><span>16. Veo Guide</span><span class="dots"></span></li>
+    <li><span>17. Runway, Kling, Pika &amp; Sora</span><span class="dots"></span></li>
+    <li class="toc-part">Part 7 — AI Audio</li>
+    <li><span>18. Voice AI</span><span class="dots"></span></li>
+    <li><span>19. Music AI</span><span class="dots"></span></li>
+    <li class="toc-part">Part 8 — Productivity</li>
+    <li><span>20. Personal Productivity with AI</span><span class="dots"></span></li>
+    <li><span>21. Business Productivity</span><span class="dots"></span></li>
+    <li class="toc-part">Part 9 — Automation</li>
+    <li><span>22. Automation Fundamentals</span><span class="dots"></span></li>
+    <li><span>23. n8n Complete Guide</span><span class="dots"></span></li>
+    <li><span>24. Make Complete Guide</span><span class="dots"></span></li>
+    <li><span>25. Zapier Complete Guide</span><span class="dots"></span></li>
+    <li class="toc-part">Part 10 — AI Agents</li>
+    <li><span>26. Understanding AI Agents</span><span class="dots"></span></li>
+    <li><span>27. Building Agent Workflows</span><span class="dots"></span></li>
+    <li class="toc-part">Part 11 — Projects</li>
+    <li><span>28. 20 Complete AI Projects</span><span class="dots"></span></li>
+    <li class="toc-part">Part 12 — Future &amp; Roadmap</li>
+    <li><span>29. Future Trends</span><span class="dots"></span></li>
+    <li><span>30. AI Career Roadmap</span><span class="dots"></span></li>
+  </ul>
+</section>
+
+<section class="part-opener" id="part-1">
+  <div class="part-label">Part 1</div>
+  <h1>Understanding AI</h1>
+  <p>Start here. You will learn what artificial intelligence actually is, why it suddenly feels everywhere, and how modern systems produce useful answers from patterns in data.</p>
+</section>
+
+<section class="chapter" id="ch-1">
+  <div class="chapter-num">Chapter 1</div>
+  <h1 class="chapter-title">What Is Artificial Intelligence?</h1>
+  
+<p class="lead">Artificial Intelligence (AI) is software that performs tasks that normally require human intelligence: understanding language, recognizing images, making recommendations, or generating new content.</p>
+
+<h2>Definition</h2>
+<p>Think of AI as a very fast pattern-matching engine. It studies huge amounts of examples, learns statistical relationships, and then applies those patterns to new situations. It does not “think” like a person—but it can produce outputs that look intelligent when used well.</p>
+
+<div class="callout example"><span class="callout-label">Real-world example</span><p>When Netflix suggests a show, YouTube ranks the next video, or Google Maps predicts traffic, an AI model is comparing your behavior to patterns learned from millions of other users.</p></div>
+
+<h2>A short history (the useful version)</h2>
+<ul>
+  <li><strong>1950s–1980s:</strong> Rules and logic systems. Computers followed hand-written instructions.</li>
+  <li><strong>1990s–2010s:</strong> Machine learning. Systems learned from data (spam filters, recommendations).</li>
+  <li><strong>2012+:</strong> Deep learning. Neural networks made image and speech recognition practical.</li>
+  <li><strong>2017+:</strong> Transformers. A new architecture unlocked modern language models.</li>
+  <li><strong>2022–2026:</strong> Generative AI went mainstream—ChatGPT, image/video generators, agents, and workplace copilots.</li>
+</ul>
+
+<h2>Three types you must know</h2>
+<table>
+  <thead><tr><th>Type</th><th>Meaning</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Narrow AI</strong></td><td>Good at one job or a narrow set of jobs</td><td>Spam filter, face unlock, translation</td></tr>
+    <tr><td><strong>Generative AI</strong></td><td>Creates new text, images, audio, video, code</td><td>ChatGPT, Midjourney, Veo, Suno</td></tr>
+    <tr><td><strong>General AI (AGI)</strong></td><td>Human-level flexible intelligence across domains</td><td>Not achieved yet</td></tr>
+  </tbody>
+</table>
+<p>Everything you use today is Narrow AI—often generative. AGI is a research goal, not a product you can buy.</p>
+
+<h2>Why AI matters now</h2>
+<p>Three shifts happened at once: models got dramatically better, interfaces became chat-simple, and tools connected to everyday apps (Docs, email, browsers, design tools). That combination turned AI from a lab topic into a daily productivity layer.</p>
+
+<h3>Where you already use AI</h3>
+<table>
+  <thead><tr><th>Product</th><th>What AI does</th></tr></thead>
+  <tbody>
+    <tr><td>Netflix / YouTube / TikTok</td><td>Ranks content likely to keep you watching</td></tr>
+    <tr><td>Google Maps</td><td>Predicts routes, traffic, and arrival times</td></tr>
+    <tr><td>Amazon</td><td>Recommends products and detects fraud patterns</td></tr>
+    <tr><td>Banking apps</td><td>Flags unusual transactions</td></tr>
+    <tr><td>Healthcare tools</td><td>Assists imaging review, triage, documentation</td></tr>
+  </tbody>
+</table>
+
+<h2>Common myths</h2>
+<div class="callout mistake"><span class="callout-label">Myth → Reality</span>
+<ul>
+<li><strong>“AI is conscious.”</strong> No. It predicts likely next words or pixels.</li>
+<li><strong>“AI always tells the truth.”</strong> No. It can hallucinate confident wrong answers.</li>
+<li><strong>“AI will replace all jobs overnight.”</strong> Unlikely. It changes tasks first; people who use AI replace people who don’t.</li>
+<li><strong>“You need to code.”</strong> No. Chat interfaces are enough to start—and this book assumes zero coding.</li>
+</ul>
+</div>
+
+<h2>The near future (practical view)</h2>
+<p>Expect more multimodal tools (text + image + voice + video in one chat), more agents that take multi-step actions, and deeper workplace integration. Your advantage is not memorizing every product—it is learning transferable skills: prompting, verification, workflow design, and tool selection.</p>
+
+<div class="takeaway"><h3>Key Takeaways</h3><ul><li>AI is pattern recognition and generation at scale—not human consciousness.</li><li>Today’s tools are Narrow / Generative AI.</li><li>You already use AI daily; the new skill is directing it deliberately.</li><li>Always verify important facts; fluency ≠ accuracy.</li></ul></div>
+<div class="action-steps"><h3>Action Steps</h3><ol><li>List five apps you use daily and note where AI might already be helping.</li><li>Open ChatGPT, Claude, or Gemini and ask: “Explain AI to me like I’m 14, with three everyday examples.”</li><li>Create an AI Playbook document for prompts and notes.</li></ol></div>
+<div class="exercise"><h4>Exercise — Spot the AI</h4><p>Pick one shopping site and one social app. Write three specific AI decisions each product is making for you (recommendations, ranking, moderation, search).</p></div>
+
+</section>
+
+<section class="chapter" id="ch-2">
+  <div class="chapter-num">Chapter 2</div>
+  <h1 class="chapter-title">How Modern AI Works</h1>
+  
+<p class="lead">You do not need a computer science degree. You do need a mental model so AI stops feeling like magic—and so you know why prompts, context, and verification matter.</p>
+
+<h2>The five-building-block model</h2>
+<ol>
+  <li><strong>Data:</strong> Text, images, audio, code, and other examples the system learns from.</li>
+  <li><strong>Training:</strong> Adjusting millions/billions of internal knobs so predictions get better.</li>
+  <li><strong>Model:</strong> The trained brain that can respond to new inputs.</li>
+  <li><strong>Inference:</strong> Using the model to answer your prompt.</li>
+  <li><strong>Tools &amp; retrieval:</strong> Optional extras—web search, your files, calculators, apps.</li>
+</ol>
+
+<div class="callout note"><span class="callout-label">Analogy</span><p>Training is like studying for years. Inference is like taking an open exam in seconds. Retrieval is like being allowed to open a specific binder of your notes during the exam.</p></div>
+
+<h2>Neural networks &amp; deep learning</h2>
+<p>A neural network is a stack of simple math units (neurons) arranged in layers. “Deep” learning means many layers. Early layers catch simple patterns; later layers catch complex ones (edges → shapes → objects, or letters → words → ideas).</p>
+
+<h2>Transformers (why ChatGPT exists)</h2>
+<p>Transformers are the architecture behind modern large language models (LLMs). Their key trick is <strong>attention</strong>: the model learns which words in a passage matter for predicting the next word. That makes long-range context possible (“it” refers to which noun?) and scales extremely well.</p>
+
+<h2>Tokens, not words</h2>
+<p>Models read <strong>tokens</strong>—chunks of text that may be whole words or pieces (<code>ing</code>, <code>Chat</code>, <code>GPT</code>). Limits are measured in tokens. Rough rule: English ≈ 0.75 words per token (or ~100 tokens ≈ 75 words).</p>
+
+<h2>Context windows</h2>
+<p>The <strong>context window</strong> is how much text the model can consider at once (your prompt + conversation + uploaded material). Bigger windows help with long documents—but stuffing irrelevant text still hurts quality.</p>
+
+<table>
+  <thead><tr><th>Concept</th><th>Plain meaning</th><th>Why you care</th></tr></thead>
+  <tbody>
+    <tr><td>Parameters</td><td>Internal learned weights</td><td>Bigger ≠ always better; quality and training matter</td></tr>
+    <tr><td>Context window</td><td>Short-term working memory</td><td>Limits how much you can paste at once</td></tr>
+    <tr><td>Fine-tuning</td><td>Extra training for a specialty</td><td>Makes a model better at a narrow style/task</td></tr>
+    <tr><td>RAG / Retrieval</td><td>Fetch relevant docs, then answer</td><td>Grounds answers in your files or the web</td></tr>
+    <tr><td>Hallucination</td><td>Confident wrong output</td><td>Verify facts, citations, numbers, quotes</td></tr>
+  </tbody>
+</table>
+
+<h2>Fine-tuning vs. prompting vs. retrieval</h2>
+<ul>
+  <li><strong>Prompting:</strong> Guide the base model with instructions and examples. Fastest for beginners.</li>
+  <li><strong>Retrieval:</strong> Attach or search documents so answers cite your sources (NotebookLM, Perplexity, enterprise RAG).</li>
+  <li><strong>Fine-tuning:</strong> Retrain on specialized data. Powerful but usually overkill for individuals.</li>
+</ul>
+
+<div class="callout tip"><span class="callout-label">Practical implication</span><p>Most beginners get 80% of results from better prompts + better source material, not from switching models every week.</p></div>
+
+<div class="takeaway"><h3>Key Takeaways</h3><ul><li>Models predict patterns learned from data; they do not look up a single ‘truth database’ by default.</li><li>Tokens and context windows set hard limits on what fits in one go.</li><li>Retrieval and tools reduce hallucinations when accuracy matters.</li><li>Prompting is your primary control surface.</li></ul></div>
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Ask an AI: “Explain transformers using a kitchen analogy.”</li><li>Paste a 1-page article and ask for a summary—then ask which details it might have guessed.</li><li>In your AI Playbook, note: Token ≈ word piece; Context = working memory; Verify = non-negotiable.</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-2">
+  <div class="part-label">Part 2</div>
+  <h1>The AI Ecosystem</h1>
+  <p>AI is not one app. It is a landscape of tools. This part gives you a map so you can stop collecting random subscriptions and start choosing deliberately.</p>
+</section>
+
+<section class="chapter" id="ch-3">
+  <div class="chapter-num">Chapter 3</div>
+  <h1 class="chapter-title">Understanding AI Tool Categories</h1>
+  
+<p class="lead">When someone says “I use AI,” ask: which category? Text, search, image, video, audio, coding, productivity, automation, or agents each solve different jobs.</p>
+
+<h2>1. Text generation AI</h2>
+<p><strong>Job:</strong> Draft, rewrite, brainstorm, analyze, tutor, plan.</p>
+<p><strong>Examples:</strong> ChatGPT, Claude, Gemini, DeepSeek.</p>
+<p><strong>Best for:</strong> Writing and thinking work. <strong>Watch out for:</strong> factual errors without sources.</p>
+
+<h2>2. Search AI</h2>
+<p><strong>Job:</strong> Answer questions with live web context.</p>
+<p><strong>Examples:</strong> Perplexity, You.com.</p>
+<p><strong>Best for:</strong> Current events, product comparisons, quick research with links.</p>
+
+<h2>3. Research AI</h2>
+<p><strong>Job:</strong> Go deeper—multi-source synthesis, long-document understanding.</p>
+<p><strong>Examples:</strong> NotebookLM, Perplexity deep research modes, ChatGPT/Gemini research features.</p>
+<p><strong>Best for:</strong> Reports, literature-style overviews, studying your own materials.</p>
+
+<h2>4. Image generation AI</h2>
+<p><strong>Examples:</strong> Midjourney, Flux, DALL·E, Ideogram, Leonardo.</p>
+<p><strong>Best for:</strong> Concept art, ads, thumbnails, mockups. <strong>Weak at:</strong> perfect typography (except specialists like Ideogram), legal/likeness-sensitive work without care.</p>
+
+<h2>5. Video generation AI</h2>
+<p><strong>Examples:</strong> Google Veo, OpenAI Sora, Runway, Kling, Pika.</p>
+<p><strong>Best for:</strong> Short clips, storyboards, social drafts. Still costly/limited for long-form cinema.</p>
+
+<h2>6. Audio generation AI</h2>
+<p><strong>Voice:</strong> ElevenLabs, PlayHT. <strong>Music:</strong> Suno, Udio.</p>
+<p><strong>Best for:</strong> Voiceovers, podcasts drafts, placeholder scores. Check licensing before commercial use.</p>
+
+<h2>7. Coding AI</h2>
+<p><strong>Examples:</strong> Cursor, Windsurf, GitHub Copilot, Replit AI.</p>
+<p><strong>Best for:</strong> Building software faster. Beginners can use them to learn—but always test code.</p>
+
+<h2>8. Productivity AI</h2>
+<p><strong>Examples:</strong> Notion AI, Grammarly, Motion, Fireflies.</p>
+<p><strong>Best for:</strong> Meeting notes, grammar, scheduling, knowledge bases.</p>
+
+<h2>9. Automation AI</h2>
+<p><strong>Examples:</strong> Make, Zapier, n8n.</p>
+<p><strong>Best for:</strong> Connecting apps: “When X happens, do Y with AI in the middle.”</p>
+
+<h2>10. AI agents</h2>
+<p><strong>Examples:</strong> OpenAI agent experiences, AutoGPT-style systems, custom agentic workflows.</p>
+<p><strong>Best for:</strong> Multi-step goals with tools. <strong>Risk:</strong> errors compound—start supervised.</p>
+
+<h2>Comparison at a glance</h2>
+<table>
+  <thead><tr><th>Category</th><th>Primary output</th><th>Start with</th><th>Pay when</th></tr></thead>
+  <tbody>
+    <tr><td>Text LLM</td><td>Writing / reasoning</td><td>ChatGPT or Claude</td><td>Daily heavy use</td></tr>
+    <tr><td>Search AI</td><td>Cited answers</td><td>Perplexity</td><td>Research is your job</td></tr>
+    <tr><td>Docs research</td><td>Source-grounded notes</td><td>NotebookLM</td><td>Large private corpora</td></tr>
+    <tr><td>Images</td><td>Visuals</td><td>ChatGPT images or Flux</td><td>Brand/creative volume</td></tr>
+    <tr><td>Video</td><td>Clips</td><td>Runway or Veo access</td><td>Content team needs</td></tr>
+    <tr><td>Automation</td><td>Workflows</td><td>Zapier or Make</td><td>Repeatable processes</td></tr>
+  </tbody>
+</table>
+
+<div class="callout tip"><span class="callout-label">Starter stack (most people)</span><p><strong>ChatGPT or Claude</strong> (thinking/writing) + <strong>Perplexity</strong> (web research) + <strong>NotebookLM</strong> (your files) + one image tool. Add automation only after you repeat a task weekly.</p></div>
+
+<div class="takeaway"><h3>Key Takeaways</h3><ul><li>Match the tool category to the job—don’t force ChatGPT to do everything.</li><li>Search/research tools beat chatbots when citations and freshness matter.</li><li>Automation pays off on repetition; agents need supervision.</li><li>A small stack used deeply beats ten shallow subscriptions.</li></ul></div>
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Write your top 10 recurring work tasks.</li><li>Label each with a tool category from this chapter.</li><li>Pick one gap and install only that missing tool this week.</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-3">
+  <div class="part-label">Part 3</div>
+  <h1>Mastering Essential AI Tools</h1>
+  <p>These five tools cover most beginner-to-pro work: general LLMs, ChatGPT, Claude, Gemini, Perplexity, and NotebookLM. Learn them once; transfer the skills forever.</p>
+</section>
+
+<section class="chapter" id="ch-4">
+  <div class="chapter-num">Chapter 4</div>
+  <h1 class="chapter-title">Large Language Models</h1>
+  
+<p class="lead">A Large Language Model (LLM) is an AI trained on vast text to predict and generate language. Chatbots are interfaces; the LLM is the engine underneath.</p>
+
+<h2>What an LLM is good at</h2>
+<ul>
+  <li>Drafting and editing text in many tones</li>
+  <li>Brainstorming structures, options, and angles</li>
+  <li>Explaining concepts at different levels</li>
+  <li>Transforming formats (bullets → email → script)</li>
+  <li>Light reasoning and planning (with oversight)</li>
+</ul>
+
+<h2>Major model families (2026 landscape)</h2>
+<table>
+  <thead><tr><th>Family</th><th>Maker</th><th>Standing strength</th></tr></thead>
+  <tbody>
+    <tr><td><strong>GPT</strong></td><td>OpenAI</td><td>Generalist, tools, ecosystem, multimodal chat</td></tr>
+    <tr><td><strong>Claude</strong></td><td>Anthropic</td><td>Long context, careful writing, coding/analysis</td></tr>
+    <tr><td><strong>Gemini</strong></td><td>Google</td><td>Google Workspace + search ecosystem fit</td></tr>
+    <tr><td><strong>DeepSeek</strong></td><td>DeepSeek</td><td>Strong value / reasoning-oriented options</td></tr>
+    <tr><td><strong>Llama</strong></td><td>Meta</td><td>Open-weight ecosystem, local/self-host options</td></tr>
+    <tr><td><strong>Mistral</strong></td><td>Mistral</td><td>Efficient open/European-cloud oriented models</td></tr>
+  </tbody>
+</table>
+<p class="small muted">Model names and rankings change quickly. Judge by your tasks: writing quality, tool use, speed, price, privacy, and integrations.</p>
+
+<h2>Parameters, memory, reasoning, multimodality</h2>
+<ul>
+  <li><strong>Parameters:</strong> Capacity of the model. Useful signal, not a scoreboard.</li>
+  <li><strong>Chat memory:</strong> Product feature that stores preferences across chats (optional).</li>
+  <li><strong>Reasoning modes:</strong> Some products spend more compute to plan before answering—better for hard problems, slower/costlier.</li>
+  <li><strong>Multimodal:</strong> Accepts or produces more than text (images, audio, files).</li>
+</ul>
+
+<div class="callout warn"><span class="callout-label">Privacy note</span><p>Don’t paste secrets, passwords, unpublished financials, or personal data of others into consumer AI tools unless your plan and policy explicitly allow it.</p></div>
+
+
+<h2>Choosing and switching LLMs like a pro</h2>
+<p>Beginners often ask, "Which model is best?" A better question is, "Which model is best for this job, with this data, at this budget?" Treat LLMs like specialists on a bench. One may be stronger at careful writing, another at fast brainstorming, another at coding, another at live web research, and another at multimodal understanding.</p>
+<table>
+  <thead><tr><th>Need</th><th>Model habit to prefer</th><th>Switch when...</th></tr></thead>
+  <tbody>
+    <tr><td>Polished writing</td><td>Give voice samples and ask for revisions</td><td>The output sounds generic after two critique passes</td></tr>
+    <tr><td>Analysis</td><td>Ask for assumptions, tradeoffs, and uncertainty</td><td>It ignores constraints or overstates confidence</td></tr>
+    <tr><td>Long documents</td><td>Use large context or Projects-style knowledge</td><td>It forgets earlier sections or invents details</td></tr>
+    <tr><td>Fresh facts</td><td>Use search or research tools with citations</td><td>Answers need current prices, dates, laws, or news</td></tr>
+    <tr><td>Images, files, audio</td><td>Use multimodal input directly</td><td>You are describing a file that you could simply upload</td></tr>
+  </tbody>
+</table>
+<div class="callout tip"><span class="callout-label">Tip</span><p>Run important prompts in two models, then ask a third pass: "Compare these two answers. Where do they disagree? Which parts are best supported?" This is cheaper than being confidently wrong.</p></div>
+<h2>When to switch models</h2>
+<ul>
+  <li><strong>After a clear failure:</strong> If a model misunderstands the task twice, switch instead of endlessly rewording.</li>
+  <li><strong>When the modality changes:</strong> A text model may not be the best choice for screenshots, charts, invoices, or photos.</li>
+  <li><strong>When stakes increase:</strong> For legal, medical, financial, or public-facing work, use the model/tool with stronger grounding, citations, and review controls.</li>
+  <li><strong>When speed matters:</strong> Use smaller/faster models for extraction, tagging, rewriting, and drafts. Save premium models for judgment-heavy work.</li>
+</ul><div class="takeaway"><h3>Key Takeaways</h3><ul><li>LLM = language engine; chatbot = product wrapper with tools and UI.</li><li>Pick models by workflow fit, not hype cycles.</li><li>Use specialized modes (search, reasoning, long context) when the task needs them.</li></ul></div>
+
+</section>
+
+<section class="chapter" id="ch-5">
+  <div class="chapter-num">Chapter 5</div>
+  <h1 class="chapter-title">ChatGPT Complete Guide</h1>
+  
+<p class="lead">ChatGPT is many beginners’ first AI home base: conversation, drafting, analysis, images, voice, and custom tools in one place.</p>
+
+<h2>Getting started</h2>
+<ol>
+  <li>Create an account at the official ChatGPT site.</li>
+  <li>Start on the free tier to learn; upgrade if you hit limits or need advanced models/features.</li>
+  <li>Set custom instructions: who you are, how you want answers (length, tone, format).</li>
+</ol>
+
+<div class="placeholder">[Screenshot placeholder: ChatGPT home — new chat, model picker, sidebar]</div>
+
+<h2>Interface map</h2>
+<ul>
+  <li><strong>Sidebar:</strong> past chats, projects, GPTs</li>
+  <li><strong>Composer:</strong> type prompts; attach files/images when available</li>
+  <li><strong>Model picker:</strong> choose speed vs. capability</li>
+  <li><strong>Tools:</strong> search, image generation, canvas/document editing, voice—depending on plan</li>
+</ul>
+
+<h2>Features that matter</h2>
+<table>
+  <thead><tr><th>Feature</th><th>Use it for</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Projects</strong></td><td>Group chats + files for one client or course</td></tr>
+    <tr><td><strong>Memory</strong></td><td>Remember preferences (review/delete regularly)</td></tr>
+    <tr><td><strong>Canvas</strong></td><td>Side-by-side editing of long docs/code</td></tr>
+    <tr><td><strong>Search</strong></td><td>Fresher answers with web context</td></tr>
+    <tr><td><strong>Deep research</strong></td><td>Broader multi-step research reports</td></tr>
+    <tr><td><strong>Image generation</strong></td><td>Concepts, thumbnails, simple marketing visuals</td></tr>
+    <tr><td><strong>Voice mode</strong></td><td>Hands-free brainstorming and tutoring</td></tr>
+    <tr><td><strong>Custom GPTs</strong></td><td>Reusable specialists with instructions + knowledge</td></tr>
+  </tbody>
+</table>
+
+<h2>Professional workflow</h2>
+<div class="workflow"><strong>Client deliverable draft</strong><div class="flow"><span class="step">Brief in Project</span><span class="arrow">→</span><span class="step">Outline</span><span class="arrow">→</span><span class="step">Draft sections</span><span class="arrow">→</span><span class="step">Critique pass</span><span class="arrow">→</span><span class="step">Final format</span></div></div>
+
+<div class="callout example"><span class="callout-label">Strong starter prompt</span><div class="prompt">You are a senior marketing editor.
+Goal: Write a landing-page hero section for a budgeting app for freelancers.
+Audience: US freelancers, 25–40, overwhelmed by taxes.
+Tone: Clear, confident, no hype.
+Deliver: 1 headline, 1 subhead, 3 bullet benefits, 1 CTA.
+Constraints: Max 60 characters for headline; avoid buzzwords like "revolutionary."</div></div>
+
+<h2>50 practical ChatGPT examples</h2>
+<ol class="small">
+  <li>Rewrite an email to be shorter and kinder</li>
+  <li>Turn meeting notes into action items with owners</li>
+  <li>Create a one-week meal plan from ingredients you have</li>
+  <li>Explain a PDF contract in plain language (then verify legally)</li>
+  <li>Generate interview questions for a role</li>
+  <li>Draft a LinkedIn post from a bullet list</li>
+  <li>Build a study plan for an exam date</li>
+  <li>Compare two product options in a table</li>
+  <li>Create a negotiation script for a raise</li>
+  <li>Summarize a YouTube transcript into takeaways</li>
+  <li>Produce SEO title options + meta description</li>
+  <li>Design a customer survey (10 questions)</li>
+  <li>Role-play an angry customer call</li>
+  <li>Convert a blog post into a Twitter/X thread</li>
+  <li>Create a project timeline from a vague goal</li>
+  <li>Draft a product requirements outline</li>
+  <li>Generate test cases from a feature description</li>
+  <li>Simplify a technical paragraph for executives</li>
+  <li>Create flashcards from lecture notes</li>
+  <li>Brainstorm brand name candidates + domains angle</li>
+  <li>Write a podcast show notes template</li>
+  <li>Produce a swipe file of ad hooks</li>
+  <li>Analyze a resume against a job description</li>
+  <li>Create a content calendar for 30 days</li>
+  <li>Draft SOPs from a messy process description</li>
+  <li>Generate SQL-like logic in plain English for non-coders</li>
+  <li>Plan a workshop agenda with timings</li>
+  <li>Create objection-handling scripts for sales</li>
+  <li>Turn analytics notes into an executive summary</li>
+  <li>Build a personal weekly review checklist</li>
+  <li>Rewrite a About page in three brand voices</li>
+  <li>Extract FAQs from a help-center dump</li>
+  <li>Create a competitive battlecard from notes</li>
+  <li>Draft a webinar landing page outline</li>
+  <li>Generate onboarding emails for a SaaS trial</li>
+  <li>Turn a spreadsheet description into chart recommendations</li>
+  <li>Create a risk list for a product launch</li>
+  <li>Draft a partnership outreach message</li>
+  <li>Build a glossary for a technical topic</li>
+  <li>Write alt text for a set of marketing images</li>
+  <li>Create a parenting / life admin weekly plan</li>
+  <li>Produce a travel itinerary with constraints</li>
+  <li>Draft a performance self-review from bullet wins</li>
+  <li>Generate lesson warm-up activities for teachers</li>
+  <li>Create a donation appeal for a nonprofit</li>
+  <li>Rewrite jargon-heavy policy into plain language</li>
+  <li>Plan an A/B test hypothesis list</li>
+  <li>Draft community moderation decision notes</li>
+  <li>Create a swipe file of subject lines for email</li>
+  <li>Build a personal knowledge capture template</li>
+</ol>
+
+<div class="callout mistake"><span class="callout-label">Common mistakes</span><ul><li>One-shot vague prompts (“write a marketing plan”).</li><li>Accepting citations without clicking them.</li><li>Putting confidential data in chats.</li><li>Never iterating—great output is usually draft 2–4.</li></ul></div>
+
+<div class="takeaway"><h3>Key Takeaways</h3><ul><li>Custom instructions + Projects multiply consistency.</li><li>Use search/research modes for time-sensitive facts.</li><li>Custom GPTs encode repeatable expertise.</li><li>Iterate: outline → draft → critique → polish.</li></ul></div>
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Set custom instructions today (role, tone, format defaults).</li><li>Create one Project for your main work area and upload 2–3 reference files.</li><li>Save five prompts from this chapter into your AI Playbook.</li></ol></div>
+
+</section>
+
+<section class="chapter" id="ch-6">
+  <div class="chapter-num">Chapter 6</div>
+  <h1 class="chapter-title">Claude Complete Guide</h1>
+  
+<p class="lead">Claude (Anthropic) shines at long documents, careful analysis, thoughtful writing, and structured artifacts you can revise.</p>
+
+<h2>Strengths to exploit</h2>
+<ul>
+  <li><strong>Long context:</strong> Large reports, book chapters, codebases summaries</li>
+  <li><strong>Projects:</strong> Persistent instructions + knowledge for a workspace</li>
+  <li><strong>Artifacts:</strong> Standalone documents, code, or mini-apps in a dedicated panel</li>
+  <li><strong>Writing quality:</strong> Strong editorial sense when guided</li>
+</ul>
+
+<h2>Writing workflow</h2>
+<div class="workflow"><strong>Long-form article</strong><div class="flow"><span class="step">Paste brief + sources</span><span class="arrow">→</span><span class="step">Ask for outline</span><span class="arrow">→</span><span class="step">Approve outline</span><span class="arrow">→</span><span class="step">Draft by section</span><span class="arrow">→</span><span class="step">Edit for voice</span></div></div>
+<div class="prompt">Project instructions: You are my editorial partner for practical how-to content.
+Always: ask clarifying questions if the brief is ambiguous; prefer concrete examples; flag unsupported claims.
+Audience default: smart beginners.</div>
+
+<h2>Research workflow</h2>
+<ol>
+  <li>Upload PDFs or paste source notes.</li>
+  <li>Ask for a source map: themes, agreements, contradictions.</li>
+  <li>Request a brief with citations to your uploaded text (quotes + locations).</li>
+  <li>Generate the deliverable only after the brief is solid.</li>
+</ol>
+
+<div class="callout example"><span class="callout-label">Artifact use case</span><p>Ask Claude to produce a one-page competitive teardown as an artifact, then: “Tighten to 400 words and add a decision table.” Iterate in place instead of re-pasting everything.</p></div>
+
+<div class="callout tip"><span class="callout-label">When to choose Claude</span><p>Choose Claude when the input is long, the tone must feel human, or you need careful restructuring. Choose Search AI when you need live web citations first.</p></div>
+
+
+<h2>Claude Projects: practical setup</h2>
+<p>A Claude Project is most useful when it has a stable job. Instead of one giant "work" project, create focused spaces such as <em>Newsletter Editor</em>, <em>Client Proposal Assistant</em>, or <em>Support Policy Helper</em>. Add only the knowledge that should shape answers: voice guide, offer details, example work, policies, FAQs, and current constraints.</p>
+<ol>
+  <li><strong>Name the outcome:</strong> "Draft client-ready proposals" beats "Marketing help."</li>
+  <li><strong>Add project instructions:</strong> Role, audience, tone, forbidden claims, preferred format, and when to ask clarifying questions.</li>
+  <li><strong>Upload source material:</strong> Keep it curated. Remove outdated docs so the assistant does not blend old and new facts.</li>
+  <li><strong>Save winning prompts:</strong> Put your best repeat prompts in the Project notes or your AI Playbook.</li>
+</ol>
+<div class="callout example"><span class="callout-label">Artifacts examples</span><ul><li>A one-page sales proposal that you can edit in the side panel.</li><li>A simple landing page mockup in HTML.</li><li>A comparison table for vendor selection.</li><li>A checklist, rubric, or SOP your team can reuse.</li></ul></div>
+<h2>Eight practical Claude prompts</h2>
+<div class="prompt">Using the Project knowledge, draft a client proposal for [client]. Include problem, recommended plan, timeline, assumptions, and open questions. Do not invent pricing.</div>
+<div class="prompt">Turn this messy transcript into a clean SOP with owner, trigger, tools, steps, quality check, and escalation path.</div>
+<div class="prompt">Critique this draft against our voice guide. Return a table: issue, why it matters, suggested rewrite.</div>
+<div class="prompt">Create an Artifact: a one-page executive brief from these notes. Use headings, bullets, and a final recommendation.</div>
+<div class="prompt">Act as a skeptical customer. List the objections this landing page does not answer yet.</div>
+<div class="prompt">Summarize these sources into claims we can safely make, claims needing evidence, and claims to avoid.</div><div class="action-steps"><h3>Action Steps</h3><ol><li>Create a Claude Project with a one-paragraph house style.</li><li>Upload a 10+ page PDF and ask for a 1-page brief with quote-backed claims.</li><li>Produce one artifact (checklist or one-pager) for work this week.</li></ol></div>
+
+</section>
+
+<section class="chapter" id="ch-7">
+  <div class="chapter-num">Chapter 7</div>
+  <h1 class="chapter-title">Gemini Complete Guide</h1>
+  
+<p class="lead">Gemini is Google’s model family—most valuable when your work already lives in Gmail, Docs, Drive, and Workspace.</p>
+
+<h2>Why Gemini is different for beginners</h2>
+<p>Quality matters, but <strong>distribution</strong> matters more for daily habits. If AI appears beside the email you’re already writing, you will use it. Gemini’s edge is ecosystem gravity.</p>
+
+<h2>Practical Workspace patterns</h2>
+<table>
+  <thead><tr><th>App</th><th>High-value use</th></tr></thead>
+  <tbody>
+    <tr><td>Gmail</td><td>Draft replies, shorten threads, extract action items</td></tr>
+    <tr><td>Docs</td><td>Outline, rewrite, summarize comments</td></tr>
+    <tr><td>Drive</td><td>Find themes across files; ask questions over documents you can access</td></tr>
+    <tr><td>Sheets</td><td>Explain formulas, generate analysis steps, clean column plans</td></tr>
+    <tr><td>Meet / notes</td><td>Summaries and follow-ups (where available)</td></tr>
+  </tbody>
+</table>
+
+<div class="workflow"><strong>From messy inbox to plan</strong><div class="flow"><span class="step">Select thread</span><span class="arrow">→</span><span class="step">Summarize decisions</span><span class="arrow">→</span><span class="step">Draft reply</span><span class="arrow">→</span><span class="step">Create Docs action list</span><span class="arrow">→</span><span class="step">Schedule follow-ups</span></div></div>
+
+<div class="callout warn"><span class="callout-label">Grounding still required</span><p>Workspace AI can misread a thread. For commitments, money, or legal wording, read the final text yourself.</p></div>
+
+
+<h2>Gemini inside Workspace: everyday workflows</h2>
+<p>Gemini becomes valuable when it works where your files already live. The trick is to use it for bounded tasks: summarize a thread, draft a Doc section, find patterns across notes, or turn a Drive folder into a briefing. Keep sensitive data rules in mind, especially in shared workspaces.</p>
+<h3>Gmail workflow: thread to decision</h3>
+<ol>
+  <li>Open the thread and ask for the current decision, blockers, and people mentioned.</li>
+  <li>Ask Gemini to draft a reply with a specific tone and length.</li>
+  <li>Check names, dates, attachments, commitments, and quoted facts.</li>
+  <li>Send only after you personally approve the wording.</li>
+</ol>
+<h3>Docs workflow: rough notes to polished page</h3>
+<ol>
+  <li>Paste messy notes into a Doc.</li>
+  <li>Ask for an outline first, not a full draft.</li>
+  <li>Approve the structure, then ask for one section at a time.</li>
+  <li>Use comments or suggestions for edits instead of overwriting important text.</li>
+</ol>
+<h3>Drive workflow: folder to brief</h3>
+<ol>
+  <li>Collect the relevant Docs, Sheets, PDFs, and slides in one folder.</li>
+  <li>Ask for a source-aware summary: what is known, missing, and contradictory.</li>
+  <li>Ask for a deliverable such as an FAQ, project brief, or decision memo.</li>
+</ol>
+<div class="workflow"><strong>Workspace operating loop</strong><div class="flow"><span class="step">Find source</span><span class="arrow">&rarr;</span><span class="step">Ask narrow question</span><span class="arrow">&rarr;</span><span class="step">Draft</span><span class="arrow">&rarr;</span><span class="step">Verify</span><span class="arrow">&rarr;</span><span class="step">Share</span></div></div>
+<h2>Six Gemini prompts</h2>
+<div class="prompt">Summarize this Gmail thread into decisions, open questions, promised follow-ups, and risks. Quote the message date for each commitment.</div>
+<div class="prompt">Draft a 150-word reply that is friendly, clear, and action-oriented. Include two options for next steps.</div>
+<div class="prompt">Turn this Doc into an executive summary with: context, recommendation, tradeoffs, and next action.</div><div class="action-steps"><h3>Action Steps</h3><ol><li>Enable Gemini features available on your Google account/plan.</li><li>Pick one recurring email type and save a reply prompt template.</li><li>Run a Docs rewrite on a past report: clearer title, sharper exec summary, shorter paragraphs.</li></ol></div>
+
+</section>
+
+<section class="chapter" id="ch-8">
+  <div class="chapter-num">Chapter 8</div>
+  <h1 class="chapter-title">Perplexity Complete Guide</h1>
+  
+<p class="lead">Perplexity is an answer engine: question in, cited synthesis out. Use it when freshness and sources matter more than creative drafting.</p>
+
+<h2>Core habits</h2>
+<ul>
+  <li>Ask precise questions (“2025–2026”, “for freelancers in the EU”, “primary sources”).</li>
+  <li>Open citations—don’t trust the summary alone.</li>
+  <li>Use follow-ups to narrow: contradictions, costs, alternatives.</li>
+  <li>Switch to deeper research modes for broader reports when available.</li>
+</ul>
+
+<div class="prompt">What are the main differences between Zapier, Make, and n8n for a 5-person marketing team in 2026?
+Constraints: compare pricing model shape (not exact cents), learning curve, and best-fit use cases.
+Output: table + recommendation. Prefer recent sources and cite them.</div>
+
+<div class="callout tip"><span class="callout-label">Research sandwich</span><p>Perplexity for sources → Claude/ChatGPT for structuring the narrative → human for conclusions and voice.</p></div>
+
+<div class="callout mistake"><span class="callout-label">Common mistake</span><p>Using Perplexity like a creative writer for brand storytelling. It’s a researcher first. Draft final copy in an LLM with your brand voice.</p></div>
+
+
+<h2>Deep research workflow</h2>
+<p>Perplexity is strongest when you treat research as a pipeline, not a single answer. Start broad, narrow the question, inspect sources, then synthesize. Your goal is not to collect links; it is to reach a defensible conclusion with citations you would be comfortable showing a manager or client.</p>
+<ol>
+  <li><strong>Frame the research question:</strong> Include geography, date range, audience, and decision you need to make.</li>
+  <li><strong>Run a broad scan:</strong> Ask for the landscape, major viewpoints, and key terms you should know.</li>
+  <li><strong>Open the sources:</strong> Check publication date, author, original data, and whether the page actually supports the claim.</li>
+  <li><strong>Ask follow-ups:</strong> Request counterarguments, recent changes, and primary sources.</li>
+  <li><strong>Export a brief:</strong> Summary, evidence table, open questions, and recommendation.</li>
+</ol>
+<div class="callout tip"><span class="callout-label">Citation hygiene</span><p>Prefer primary sources, official docs, peer-reviewed papers, government datasets, company filings, and reputable reporting. Do not cite a page just because it was returned. Click it, scan it, and confirm the cited line supports your statement.</p></div>
+<h2>Six research prompts</h2>
+<div class="prompt">Research [topic] for a beginner business owner in [country]. Give the current landscape, important terms, top risks, and five sources worth reading.</div>
+<div class="prompt">Find recent data on [market]. Prefer primary sources. Return a table with claim, source, date, and confidence.</div>
+<div class="prompt">What are the strongest arguments for and against [decision]? Include citations for each side and note what evidence is missing.</div>
+<div class="prompt">Create a buyer's guide for [software category]. Compare pricing model, best-fit customer, limitations, and recent changes.</div>
+<div class="prompt">Build a timeline of major developments in [topic] over the last 24 months. Cite each milestone.</div>
+<div class="prompt">I need to brief my team on [issue]. Produce a one-page memo with recommendation, evidence, risks, and next questions.</div><div class="action-steps"><h3>Action Steps</h3><ol><li>Run three work questions you usually Google; save the best cited answer.</li><li>For one question, click every citation and rate trustworthiness.</li><li>Add a ‘Research’ section to your AI Playbook with source-check steps.</li></ol></div>
+
+</section>
+
+<section class="chapter" id="ch-9">
+  <div class="chapter-num">Chapter 9</div>
+  <h1 class="chapter-title">NotebookLM Complete Guide</h1>
+  
+<p class="lead">NotebookLM is Google’s source-grounded research assistant. You upload materials; it answers from those sources—ideal for studying, briefings, and knowledge bases.</p>
+
+<h2>Core loop</h2>
+<div class="workflow"><strong>NotebookLM loop</strong><div class="flow"><span class="step">Create notebook</span><span class="arrow">→</span><span class="step">Add sources</span><span class="arrow">→</span><span class="step">Ask grounded questions</span><span class="arrow">→</span><span class="step">Generate study guide / FAQ / briefing</span><span class="arrow">→</span><span class="step">Export insights to your docs</span></div></div>
+
+<h2>Source types that work well</h2>
+<ul>
+  <li>PDFs, docs, pasted notes, transcripts</li>
+  <li>Policy manuals, sales decks, course readings</li>
+  <li>Competitor pages saved as documents (respect copyright/ToS)</li>
+</ul>
+
+<h2>Business use cases</h2>
+<table>
+  <thead><tr><th>Role</th><th>Notebook idea</th></tr></thead>
+  <tbody>
+    <tr><td>Founder</td><td>Investor Q&amp;A notebook from pitch + financial narrative docs</td></tr>
+    <tr><td>Marketer</td><td>Brand voice + past campaigns → brief generator</td></tr>
+    <tr><td>Support lead</td><td>Help center + policies → answer drafts with citations</td></tr>
+    <tr><td>Student</td><td>Lecture PDFs → quizzes, timelines, podcast-style overviews</td></tr>
+    <tr><td>Consultant</td><td>Client discovery notes → structured proposal outline</td></tr>
+  </tbody>
+</table>
+
+<div class="callout example"><span class="callout-label">Podcast / audio overview</span><p>Where available, NotebookLM can generate an audio overview of your sources—useful for commuting revision. Treat it as a study aid, not a citable academic authority.</p></div>
+
+<div class="callout tip"><span class="callout-label">Quality rule</span><p>Garbage sources → garbage notebooks. Curate. Split sprawling topics into multiple notebooks.</p></div>
+
+
+<h2>NotebookLM business playbooks</h2>
+<p>NotebookLM is best when you want answers grounded in your own material. Think of each notebook as a mini knowledge base for one job: onboarding, policies, product research, sales enablement, grant writing, or course creation. The quality of the notebook depends less on the AI and more on the sources you choose.</p>
+<h3>Source curation rules</h3>
+<ul>
+  <li><strong>Use authoritative files:</strong> final policies, current product docs, approved messaging, transcripts, contracts you are allowed to analyze, and research PDFs.</li>
+  <li><strong>Remove stale material:</strong> If old pricing or policies remain, NotebookLM may blend them with current facts.</li>
+  <li><strong>Name sources clearly:</strong> "2026 Pricing FAQ" is better than "final_v3_reallyfinal.pdf."</li>
+  <li><strong>Ask source-specific questions:</strong> "According to the onboarding guide..." keeps answers grounded.</li>
+</ul>
+<div class="callout example"><span class="callout-label">Five detailed use cases</span><ol><li><strong>Support policy desk:</strong> Upload refund rules, warranty terms, escalation SOPs, and macros. Ask for draft replies with cited policy sections.</li><li><strong>Sales battlecard:</strong> Add competitor notes, product docs, objections, and case studies. Generate talk tracks and objection responses.</li><li><strong>Employee onboarding:</strong> Upload handbook, benefits guide, org chart, and role SOPs. Create a first-week FAQ and quiz.</li><li><strong>Course builder:</strong> Add lesson transcripts, readings, and worksheets. Generate study guides, flashcards, and module summaries.</li><li><strong>Research room:</strong> Add reports and interviews. Ask for themes, contradictions, evidence tables, and open questions.</li></ol></div>
+<h2>Study guide and podcast tips</h2>
+<p>The study guide is great for turning dense sources into a learning path. Use it, then ask follow-up questions about weak areas. Audio overviews are useful for first exposure, commute review, or stakeholder previews, but they should not replace reading the cited sections for high-stakes work.</p><div class="action-steps"><h3>Action Steps</h3><ol><li>Create one notebook with 3–5 high-quality sources for a live project.</li><li>Generate a FAQ and a one-page briefing.</li><li>Ask: “What do my sources not cover that I still need?”</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-4">
+  <div class="part-label">Part 4</div>
+  <h1>Prompt Engineering</h1>
+  <p>Prompting is the universal skill. Same model, different prompt—completely different results. This part turns vague chatting into professional direction.</p>
+</section>
+
+<section class="chapter" id="ch-10">
+  <div class="chapter-num">Chapter 10</div>
+  <h1 class="chapter-title">Prompt Engineering Foundations</h1>
+  
+<p class="lead">A prompt is the full instruction you give an AI: task, context, constraints, and desired format. Clear prompts produce clear work.</p>
+
+<h2>Why prompts matter</h2>
+<p>Models are general. Your prompt narrows the universe of possible answers. Professionals don’t “ask AI”—they brief it like a talented junior contractor.</p>
+
+<h2>Components of a strong prompt</h2>
+<ol>
+  <li><strong>Role:</strong> who the AI should act as</li>
+  <li><strong>Goal:</strong> what done looks like</li>
+  <li><strong>Audience:</strong> who will read/use the output</li>
+  <li><strong>Context:</strong> facts, product, constraints, examples</li>
+  <li><strong>Process:</strong> steps (outline first, then draft)</li>
+  <li><strong>Format:</strong> table, bullets, email, JSON, script</li>
+  <li><strong>Quality bar:</strong> tone, length, must-include / must-avoid</li>
+</ol>
+
+<div class="callout example"><span class="callout-label">Weak vs strong</span>
+<p><strong>Weak:</strong> “Write a business plan.”</p>
+<p><strong>Strong:</strong> “Act as an SMB consultant. Create a 1-page lean plan for a home organizing service in Austin targeting busy parents. Include problem, offer, pricing hypothesis, 3 channels, 90-day milestones. No fluff. Table for milestones.”</p>
+</div>
+
+<h2>Iteration pattern</h2>
+<div class="workflow"><strong>Pro iteration</strong><div class="flow"><span class="step">Brief</span><span class="arrow">→</span><span class="step">Outline</span><span class="arrow">→</span><span class="step">Draft</span><span class="arrow">→</span><span class="step">Critique</span><span class="arrow">→</span><span class="step">Tighten</span><span class="arrow">→</span><span class="step">Final</span></div></div>
+<p>Ask the model to critique its own draft against your checklist. Then apply fixes.</p>
+
+
+<h2>The five components of a strong prompt</h2>
+<p>A prompt is a brief. Good briefs reduce guessing. Most beginner prompts fail because they include a task but omit context, audience, constraints, source material, and output format.</p>
+<table>
+  <thead><tr><th>Component</th><th>What it answers</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Role</td><td>Who should the AI act like?</td><td>Act as a practical small-business CFO.</td></tr>
+    <tr><td>Task</td><td>What should it produce?</td><td>Create a cash-flow checklist.</td></tr>
+    <tr><td>Context</td><td>What background matters?</td><td>Audience: first-time agency owner.</td></tr>
+    <tr><td>Constraints</td><td>What boundaries apply?</td><td>No jargon; max 12 items; flag risks.</td></tr>
+    <tr><td>Format</td><td>How should output look?</td><td>Table with priority, action, and why.</td></tr>
+  </tbody>
+</table>
+<h2>Before and after</h2>
+<div class="callout mistake"><span class="callout-label">Before</span><p>"Write a marketing plan for my bakery."</p></div>
+<div class="callout example"><span class="callout-label">After</span><div class="prompt">Act as a local business marketing strategist. Create a 30-day marketing plan for a neighborhood sourdough bakery in Austin. Goal: increase weekday morning foot traffic. Budget: $500. Audience: office workers within 2 miles. Include daily actions, low-cost partnership ideas, email/social copy themes, and how to measure success. Table format.</div></div>
+<p>The second prompt gives the model something to optimize. It can now make tradeoffs instead of writing generic advice.</p>
+<h2>Temperature and style intuition</h2>
+<p>If a tool exposes temperature or creativity settings, think of it as a "variation dial." Low settings are better for extraction, summaries, policy replies, and structured outputs. Higher settings are useful for names, hooks, concepts, and brainstorming. If the tool does not expose temperature, you can still steer style with words such as "literal," "conservative," "playful," "unexpected," or "executive."</p><div class="takeaway"><h3>Key Takeaways</h3><ul><li>Prompts are briefs, not magic words.</li><li>Format instructions dramatically improve usability.</li><li>Iteration beats one giant mega-prompt for complex work.</li></ul></div>
+
+</section>
+
+<section class="chapter" id="ch-11">
+  <div class="chapter-num">Chapter 11</div>
+  <h1 class="chapter-title">Prompt Frameworks</h1>
+  
+<p class="lead">Frameworks are training wheels that become instincts. Memorize a few; remix freely.</p>
+
+<h2>RTF — Role, Task, Format</h2>
+<div class="prompt">Role: Career coach for career-switchers into UX.
+Task: Create a 30-day learning plan.
+Format: Week-by-week table with daily time estimates and deliverables.</div>
+
+<h2>CRISPE</h2>
+<p><strong>C</strong>apacity/Role · <strong>R</strong>equest · <strong>I</strong>nsight/Context · <strong>S</strong>tatement of goal · <strong>P</strong>ersonality/Tone · <strong>E</strong>xperiment/Evaluate</p>
+<div class="prompt">Capacity: Senior B2B SaaS copywriter.
+Request: Rewrite this homepage H1/H2.
+Insight: Users fear complex setup; we offer 2-day onboarding.
+Goal: Increase demo clicks.
+Personality: Plain-spoken, confident, specific.
+Evaluate: Give 3 variants and predict which converts best and why.</div>
+
+<h2>APE — Action, Purpose, Expectation</h2>
+<div class="prompt">Action: Summarize the transcript.
+Purpose: Prep me for a 10-minute exec update.
+Expectation: 5 bullets max, each with a decision needed.</div>
+
+<h2>Chain of Thought (ask for steps)</h2>
+<p>For logic, math, or tradeoffs: “Think step by step. List assumptions. Then conclude.”</p>
+
+<h2>Tree of Thoughts</h2>
+<p>Ask for 2–3 distinct approaches, evaluate each, then pick/merge a winner. Great for strategy and creative direction.</p>
+
+<h2>Few-shot prompting</h2>
+<p>Provide 2–3 examples of ideal input→output, then the new input. Best for consistent tone and structure.</p>
+
+<div class="callout tip"><span class="callout-label">Framework picker</span><p>RTF for speed · CRISPE for marketing · Few-shot for voice matching · Tree of Thoughts for strategy · CoT for analysis.</p></div>
+
+<div class="exercise"><h4>Exercise — Upgrade a prompt</h4><p>Take a vague prompt you used this month. Rewrite it with RTF and again with CRISPE. Compare outputs side by side.</p></div>
+
+</section>
+
+<section class="chapter" id="ch-12">
+  <div class="chapter-num">Chapter 12</div>
+  <h1 class="chapter-title">Professional Prompt Library</h1>
+  
+<p class="lead">Copy, adapt, reuse. Replace bracketed fields. Keep winners in your AI Playbook.</p>
+
+<h2>Marketing (12)</h2>
+<div class="prompt">Write 10 ad hooks for [product] targeting [audience]. Pain-focused, under 12 words each.</div>
+<div class="prompt">Create a customer persona for [offer] with goals, fears, objections, and waterhole channels.</div>
+<div class="prompt">Turn these features into benefits: [list]. Audience: [who]. Table format.</div>
+<div class="prompt">Draft a launch email sequence (3 emails) for [product]. Goal: [trial/demo].</div>
+<div class="prompt">Build a positioning statement: For [audience] who [problem], [brand] is [category] that [benefit]. Unlike [alt], we [difference].</div>
+<div class="prompt">Generate 15 YouTube titles for [topic]—curiosity + clarity, no clickbait lies.</div>
+<div class="prompt">Create a landing page outline with section goals and primary CTA.</div>
+<div class="prompt">Write 5 retargeting ads based on objection: [objection].</div>
+<div class="prompt">Produce a competitor teardown template, then fill it for [competitor] using provided notes.</div>
+<div class="prompt">Suggest a 30-day content calendar for [brand] across LinkedIn + email.</div>
+<div class="prompt">Rewrite this copy at an 8th-grade reading level without losing meaning: [paste].</div>
+<div class="prompt">Give me a SWOT from these notes: [paste]. Be blunt.</div>
+
+<h2>Sales (8)</h2>
+<div class="prompt">Create a discovery-call script for [service] with qualifying questions and disqualifiers.</div>
+<div class="prompt">Write objection responses for: price, timing, need to ask partner, already have vendor.</div>
+<div class="prompt">Summarize this call transcript into next steps, risks, and a follow-up email.</div>
+<div class="prompt">Draft a proposal one-pager from these notes: [paste].</div>
+<div class="prompt">Role-play as a skeptical buyer. Interview me about [offer].</div>
+<div class="prompt">Write a breakup email for stalled deals—polite, short, with an easy yes.</div>
+<div class="prompt">Create a CRM note template fields for [sales motion].</div>
+<div class="prompt">Map a 5-email nurture for cold leads interested in [topic].</div>
+
+<h2>Content &amp; social (10)</h2>
+<div class="prompt">Turn this outline into a 1,000-word blog post with examples and a checklist ending: [outline].</div>
+<div class="prompt">Create a carousel outline (8 slides) teaching [topic].</div>
+<div class="prompt">Repurpose this article into: LinkedIn post, X thread, newsletter blurb, short video script.</div>
+<div class="prompt">Write 20 scroll-stopping first lines about [theme].</div>
+<div class="prompt">Generate a content series plan: 6 parts, escalating difficulty.</div>
+<div class="prompt">Create a brand voice chart: words we use / words we avoid for [brand].</div>
+<div class="prompt">Draft community guidelines FAQ in friendly tone.</div>
+<div class="prompt">Write a podcast episode outline with timestamps goals for [topic].</div>
+<div class="prompt">Create thumbnail text options (3–4 words) for [video idea].</div>
+<div class="prompt">Give me a hook-body-CTA template pack for short video.</div>
+
+<h2>Business &amp; ops (10)</h2>
+<div class="prompt">Draft an SOP for [process] with owner, trigger, steps, QA check, tools.</div>
+<div class="prompt">Turn these messy notes into a decision log: [paste].</div>
+<div class="prompt">Create a hiring scorecard for [role].</div>
+<div class="prompt">Write a project kickoff agenda (45 min).</div>
+<div class="prompt">Build a risk register from this plan: [paste].</div>
+<div class="prompt">Draft a vendor evaluation rubric for [category].</div>
+<div class="prompt">Create a weekly KPI review template for a small team.</div>
+<div class="prompt">Write a customer apology email for [incident]—accountable, specific, no legalese fog.</div>
+<div class="prompt">Generate onboarding checklist for new contractors.</div>
+<div class="prompt">Summarize this policy into a 10-bullet employee cheat sheet: [paste].</div>
+
+<h2>Education &amp; research (8)</h2>
+<div class="prompt">Explain [concept] three ways: analogy, steps, common mistakes.</div>
+<div class="prompt">Create a quiz (10 questions) from these notes with an answer key: [paste].</div>
+<div class="prompt">Make a study schedule for [exam] on [date] with weak-area emphasis.</div>
+<div class="prompt">Compare theories A and B in a table with practical implications.</div>
+<div class="prompt">Extract definitions and key claims from this text; flag unsupported leaps.</div>
+<div class="prompt">Create a lesson plan for 60 minutes on [topic] for beginners.</div>
+<div class="prompt">Socratic tutor me on [topic]; ask one question at a time.</div>
+<div class="prompt">Produce an annotated bibliography style summary from these abstracts: [paste].</div>
+
+<h2>Programming / technical (for beginners) (8)</h2>
+<div class="prompt">Explain this error like I’m new, then give fix steps: [error].</div>
+<div class="prompt">Write pseudocode for [automation idea] before any real code.</div>
+<div class="prompt">Review this script for security/privacy issues: [paste].</div>
+<div class="prompt">Create a test plan for [feature].</div>
+<div class="prompt">Translate this requirement into user stories + acceptance criteria.</div>
+<div class="prompt">Suggest a simple architecture for [app idea] using no-code where possible.</div>
+<div class="prompt">Document this function in plain language: [paste].</div>
+<div class="prompt">Give a debugging checklist for [symptom].</div>
+
+<p class="small muted">That’s 56 ready prompts spanning the major work domains—extend each with your brand facts and examples (few-shot) for production quality.</p>
+
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Copy 15 prompts into your AI Playbook and fill brackets for your business.</li><li>Create one few-shot block with 3 samples of your best writing.</li><li>Run the same task with RTF and CRISPE; keep the better pattern.</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-5">
+  <div class="part-label">Part 5</div>
+  <h1>AI Image Generation</h1>
+  <p>Images are now a language. Learn how diffusion models work at a practical level, then learn the prompt grammar that art directors use.</p>
+</section>
+
+<section class="chapter" id="ch-13">
+  <div class="chapter-num">Chapter 13</div>
+  <h1 class="chapter-title">Introduction to AI Images</h1>
+  
+<p class="lead">Image models generate pictures from noise by gradually shaping random pixels toward your prompt. You steer with language—and increasingly with reference images.</p>
+
+<h2>Diffusion in plain English</h2>
+<p>Imagine reverse-blurring a messy TV signal until a clear photo appears—guided by your words. That’s the intuition behind diffusion models.</p>
+
+<h2>Prompt structure that works</h2>
+<ol>
+  <li><strong>Subject:</strong> who/what</li>
+  <li><strong>Action / pose:</strong> what’s happening</li>
+  <li><strong>Setting:</strong> where / time</li>
+  <li><strong>Style:</strong> photo, illustration, 3D, clay, editorial…</li>
+  <li><strong>Lighting &amp; camera:</strong> softbox, golden hour, 35mm, top-down…</li>
+  <li><strong>Quality cues:</strong> composition, texture, color grade</li>
+  <li><strong>Negatives:</strong> what to avoid (when the tool supports it)</li>
+</ol>
+
+<table>
+  <thead><tr><th>Tool</th><th>Best known for</th></tr></thead>
+  <tbody>
+    <tr><td>Midjourney</td><td>Aesthetic, artistic look</td></tr>
+    <tr><td>Flux</td><td>Strong realism / controllable generation</td></tr>
+    <tr><td>DALL·E (in ChatGPT)</td><td>Convenience + iterative chat edits</td></tr>
+    <tr><td>Ideogram</td><td>Text in images</td></tr>
+    <tr><td>Leonardo</td><td>Design workflows &amp; resources</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn"><span class="callout-label">Rights &amp; ethics</span><p>Avoid impersonating real private people, copying living artists’ names as a shortcut, and using generated marks that confuse brands. Check each tool’s commercial license.</p></div>
+
+</section>
+
+<section class="chapter" id="ch-14">
+  <div class="chapter-num">Chapter 14</div>
+  <h1 class="chapter-title">Image Prompt Engineering</h1>
+  
+<p class="lead">Camera language upgrades results faster than adjective spam. Direct the shot like a brief to a photographer.</p>
+
+<h2>Useful camera &amp; light vocabulary</h2>
+<ul>
+  <li><strong>Angles:</strong> eye-level, low angle, bird’s-eye, over-the-shoulder, Dutch angle</li>
+  <li><strong>Lenses:</strong> 24mm environment, 35mm documentary, 85mm portrait, macro</li>
+  <li><strong>Light:</strong> soft window light, hard noon sun, rim light, neon glow, overcast flat</li>
+  <li><strong>Film/grade:</strong> Kodak Portra vibe, teal-orange grade, matte documentary</li>
+</ul>
+
+<h2>Character consistency tips</h2>
+<ul>
+  <li>Lock a written character sheet (age, face shape, hair, wardrobe).</li>
+  <li>Use reference images / character features when the tool allows.</li>
+  <li>Change one variable per revision (pose OR scene OR style).</li>
+</ul>
+
+<h2>80 image prompt starters</h2>
+<p class="small">Copy and customize. Each line is a complete starter brief.</p>
+<ol class="small">
+  <li>Product photo of matte black water bottle on travertine, soft window light, 45° angle, subtle condensation, high-end catalog style</li>
+  <li>Overhead flat lay of freelancer desk: laptop, notebook, coffee, plant, natural daylight, neat composition</li>
+  <li>Founder portrait, 85mm, shallow depth of field, warm indoor ambient + soft key, confident smile, blurred office</li>
+  <li>Isometric 3D illustration of tiny bakery shopfront, pastel clay materials, soft shadows</li>
+  <li>Editorial photo of rainy Tokyo street at night, neon reflections, cinematic widescreen</li>
+  <li>Kids’ picture-book illustration of a friendly fox reading a map, watercolor textures, cream paper</li>
+  <li>UI mockup poster: fitness app dashboard on iPhone, soft gradient backdrop, clean modern marketing style</li>
+  <li>Food photography: rustic sourdough loaf torn open, crumb detail, side light, dark moody backdrop</li>
+  <li>Architecture exterior of small coastal cabin, dawn fog, 24mm, documentary realism</li>
+  <li>Infographic-style illustration of AI workflow nodes connected by lines, minimal vector, teal accents on off-white</li>
+  <li>Fashion lookbook shot, linen summer set, wind movement, golden hour beach path</li>
+  <li>Macro photo of mechanical watch gears, specular highlights, black background</li>
+  <li>Storyboard frame: courier handing package to customer, warm porch light, naturalistic</li>
+  <li>Surreal collage poster: floating library rooms above a calm sea, paper-cut style</li>
+  <li>Black-and-white street photo, decisive moment at crosswalk, high contrast</li>
+  <li>3D render of eco detergent bottle, studio softbox, soft reflection on floor, commercial packshot</li>
+  <li>Hand-drawn chalkboard menu style listing coffee drinks, charming imperfect lettering</li>
+  <li>Fantasy concept art: mossy temple gate, volumetric god rays, wide establishing shot</li>
+  <li>Medical explainer illustration of heart cross-section, clean textbook style, labeled areas blank</li>
+  <li>Cozy café interior, morning light through blinds, empty table near window, lifestyle magazine</li>
+  <li>Robot assistant gently watering plants in a home, friendly design, soft daylight, photoreal</li>
+  <li>Vintage travel poster of Lisbon tram, limited color palette, mid-century graphic style</li>
+  <li>YouTube thumbnail concept: shocked creator pointing at laptop chart, bold simple background, space for title text</li>
+  <li>Transparent glass perfume bottle with botanical shadows, bright high-key studio</li>
+  <li>Low-poly game art of mountain campsite at dusk</li>
+  <li>Documentary portrait of artisan potter at wheel, dusty workshop, available light</li>
+  <li>Abstract brand background: soft mesh gradients, grain, ample negative space for typography</li>
+  <li>Kids STEM kit unboxing hero shot, bright even light, colorful components arranged neatly</li>
+  <li>Cybersecurity concept: lock made of circuit traces, dark blue technical illustration</li>
+  <li>Wedding invitation floral border, elegant line art, generous blank center</li>
+  <li>Sports action still: amateur runner mid-stride, panning blur background, dawn road</li>
+  <li>Interior design viz: small apartment living room, Scandinavian oak + olive textiles, photoreal</li>
+  <li>Comic panel, 3-frame sequence of a barista learning an AI POS, clean ink, soft flat colors</li>
+  <li>Satellite-style map illustration of a fictional walkable town, pastel legend-ready</li>
+  <li>Luxury chocolate bar break reveal, shards and cocoa dust, dramatic side light</li>
+  <li>Classroom scene redesign: collaborative tables, plants, natural light, architectural sketch overlay</li>
+  <li>Podcast cover art: two hosts as bold vector portraits, limited palette, headphone motif</li>
+  <li>Before/after cleaning service photo style: split composition of same kitchen, realistic</li>
+  <li>Soft ceramic mug mockup floating on pastel backdrop for Shopify listing</li>
+  <li>Cinematic still: solitary lighthouse, stormy sea, anamorphic lens flares subtle, film still</li>
+  <li>Soft morning skincare shelfie, bathroom marble, gentle steam, lifestyle beauty ad</li>
+  <li>Exploded-view illustration of a mechanical pencil, technical blueprint aesthetic</li>
+  <li>Crowdfunding campaign hero: diverse makers around a workbench prototype, hopeful daylight</li>
+  <li>Minimal logo mockup on craft paper bag, brand identity presentation style</li>
+  <li>Night desk setup with dual monitors coding, practical RGB muted, cozy productivity mood</li>
+  <li>Farm-to-table vegetable crate, outdoor market, crisp daylight, editorial food story</li>
+  <li>App onboarding illustration set: three panels showing problem → tool → result, friendly flat design</li>
+  <li>Historical museum exhibit photo style of ancient pottery, soft spotlight, dark gallery</li>
+  <li>Electric bike on city street, motion blur background, lifestyle campaign, golden hour</li>
+  <li>Handwritten journal open on linen, pen beside, soft top-down light, calm productivity aesthetic</li>
+  <li>Paper craft diorama of a tiny office, miniature clay characters collaborating</li>
+  <li>Glossy magazine cover mockup with bold typography space, fashion-tech theme</li>
+  <li>Scientist and student collaborating at lab bench, hopeful documentary lighting</li>
+  <li>Reusable packaging design flat lay: box, tissue, sticker, thank-you card</li>
+  <li>Snowy cabin window view with steam mug foreground, cozy travel editorial</li>
+  <li>Isometric map of online course journey milestones, clean infographic</li>
+  <li>Vintage camera on wooden table, side window light, product lifestyle</li>
+  <li>Community garden volunteers planting seedlings, authentic candid photo style</li>
+  <li>Futuristic but grounded clinic reception, soft greens, human-centered design viz</li>
+  <li>Stack of color-coded notebooks, overhead, stationery brand catalog</li>
+  <li>Child building with blocks, shallow DOF, warm home interior, parenting brand</li>
+  <li>Open laptop showing analytics dashboard, coffee and plant, creator workspace</li>
+  <li>Hand-sewn leather wallet detail macro, artisan brand story</li>
+  <li>City coworking space wide shot, natural light, inclusive modern workplace</li>
+  <li>Illustrated recipe card layout with blank text areas, watercolor ingredients</li>
+  <li>Drone-style still of coastal boardwalk, late afternoon haze, travel brochure</li>
+  <li>Security professional reviewing wall of monitors, restrained cinematic teal grade</li>
+  <li>Elegant dining table setting for two, candlelight, restaurant marketing</li>
+  <li> Retro pixel-art scene of a tiny library interior</li>
+  <li>Medical wearable on wrist, clean white product studio, clinical trustworthy</li>
+  <li>Teachers’ lounge brainstorm wall with sticky notes, documentary candid</li>
+  <li>Sustainable fashion rack of linen garments, airy boutique interior</li>
+  <li>Board game night flat lay, colorful pieces, inviting social photo</li>
+  <li>Architect model of courtyard housing, soft studio light, design presentation</li>
+  <li>Close-up of violin bowing, concert hall bokeh, cultural arts poster</li>
+  <li>Emergency go-bag contents organized on tarp, practical preparedness guide visual</li>
+  <li>Soft clay character mascot waving, brand IP concept, studio softbox</li>
+  <li>Rainy bus window portrait, reflective mood, indie film still</li>
+  <li>Hydroponic indoor farm rows, clean tech-ag aesthetic, bright even light</li>
+  <li>Thank-you card mockup with botanical border and empty center for message</li>
+</ol>
+
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Build a one-page style card for your brand (palette, lighting, do/don’t).</li><li>Generate the same subject in three styles; pick a house style.</li><li>Save 10 winning prompts with the image filenames in your Playbook.</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-6">
+  <div class="part-label">Part 6</div>
+  <h1>AI Video Generation</h1>
+  <p>Video models turn prompts—or still images—into motion. Treat them as pre-visualization and short-form engines, not overnight Hollywood.</p>
+</section>
+
+<section class="chapter" id="ch-15">
+  <div class="chapter-num">Chapter 15</div>
+  <h1 class="chapter-title">Video AI Fundamentals</h1>
+  
+<p class="lead">Three input modes dominate: text-to-video, image-to-video, and video-to-video (restyle/extend). Pick based on control needs.</p>
+<table>
+  <thead><tr><th>Mode</th><th>You provide</th><th>Best when</th></tr></thead>
+  <tbody>
+    <tr><td>Text → video</td><td>Prompt only</td><td>Ideation, b-roll concepts</td></tr>
+    <tr><td>Image → video</td><td>Key still + motion brief</td><td>You need visual consistency</td></tr>
+    <tr><td>Video → video</td><td>Source clip</td><td>Style transfer, variations</td></tr>
+  </tbody>
+</table>
+<p>Plan shots short (2–8 seconds). Write prompts like shot lists: subject, camera move, lighting, lens, pacing.</p>
+<div class="callout tip"><span class="callout-label">Production tip</span><p>Generate multiple takes, pick the best seconds, and edit traditionally. Hybrid workflows beat one-shot perfect clips.</p></div>
+
+<h2>Think in shots, not scenes</h2>
+<p>Video AI works best when you ask for one clear shot at a time. A "scene" may include multiple camera angles, actions, and timing changes. A "shot" is simpler: one subject, one action, one camera move, one mood. If you need a 30-second ad, plan it as five or six short clips and edit them together.</p>
+<table>
+  <thead><tr><th>Shot type</th><th>What it does</th><th>Prompt cue</th></tr></thead>
+  <tbody>
+    <tr><td>Establishing</td><td>Shows place and context</td><td>wide shot of...</td></tr>
+    <tr><td>Medium</td><td>Shows person and action</td><td>medium shot, waist up...</td></tr>
+    <tr><td>Close-up</td><td>Shows detail or emotion</td><td>macro close-up of hands...</td></tr>
+    <tr><td>Over-the-shoulder</td><td>Shows a screen or conversation</td><td>over the shoulder, laptop visible...</td></tr>
+    <tr><td>Product hero</td><td>Makes an object feel premium</td><td>slow push-in, studio lighting...</td></tr>
+  </tbody>
+</table>
+<h2>Aspect ratios</h2>
+<ul>
+  <li><strong>16:9:</strong> YouTube, websites, presentations, horizontal ads.</li>
+  <li><strong>9:16:</strong> TikTok, Reels, Shorts, mobile-first stories.</li>
+  <li><strong>1:1:</strong> Feed posts, simple product loops, flexible social assets.</li>
+  <li><strong>4:5:</strong> Social feed ads where vertical space matters.</li>
+</ul>
+<div class="callout note"><span class="callout-label">Limitations</span><p>Video models still struggle with exact text, consistent faces across many shots, complex physics, precise product labels, and long cause-and-effect sequences. Generate short clips, then use normal editing tools for timing, captions, logos, and audio.</p></div>
+</section>
+
+<section class="chapter" id="ch-16">
+  <div class="chapter-num">Chapter 16</div>
+  <h1 class="chapter-title">Veo Guide</h1>
+  
+<p class="lead">Google Veo is a leading text/image-to-video model family. Prompt with cinematic language—camera, lens, motion, continuity.</p>
+
+<h2>Prompt pattern</h2>
+<div class="prompt">Shot type + subject + action + environment + camera movement + lighting + style + duration cue.
+Example: "Medium shot of a ceramicist shaping clay on a wheel, slow dolly-in, soft morning window light, shallow depth of field, naturalistic documentary, subtle hand motion, 5 seconds."</div>
+
+<h2>Camera moves that read clearly</h2>
+<ul>
+  <li>Static tripod · slow push-in · pull-out · pan · tilt · orbit · tracking sideways · handheld subtle</li>
+</ul>
+
+<h2>40 Veo-ready examples</h2>
+<ol class="small">
+  <li>Product hero: bottle rotates on seamless infinity curve, soft studio lights, macro label detail</li>
+  <li>Founder walks through bright studio, steadicam follow, candid confidence</li>
+  <li>Coffee pour macro, steam rising, slow motion, warm café bokeh</li>
+  <li>City dawn timelapse feel from rooftop, gentle pan across skyline</li>
+  <li>Hands unboxing eco sneakers, top-down, crisp e-commerce lighting</li>
+  <li>Teacher explains on whiteboard, locked-off camera, friendly classroom</li>
+  <li>Drone-like rise over coastal path (keep motion physically plausible)</li>
+  <li>Night market stalls, handheld wander, neon reflections on wet pavement</li>
+  <li>Yoga flow silhouette at sunrise, side profile, calm pace</li>
+  <li>Keyboard typing close-up for SaaS b-roll, shallow DOF</li>
+  <li>Pet running through park toward camera, joyful, sunny</li>
+  <li>Architect reviews blueprint on large table, overhead slow orbit</li>
+  <li>EV charging at modern station, dusk, cinematic teal shadows</li>
+  <li>Bread scoring and oven spring, rustic bakery documentary</li>
+  <li>UI screen recording style recreation: cursor clicks through clean dashboard (abstracted)</li>
+  <li>Rain on window with cozy room interior soft focus beyond</li>
+  <li>Warehouse picker with handheld scanner, authentic logistics feel</li>
+  <li>Kids STEM experiment volcano, playful, safe classroom energy</li>
+  <li>Tailor pins a suit jacket, intimate workshop lamp light</li>
+  <li>Farmers market vendor hands customer berries, warm sincerity</li>
+  <li>Abstract particles forming a logo morph (keep simple geometry)</li>
+  <li>Train window landscape sliding by, reflective mood</li>
+  <li>Lab scientist pipettes sample, clinical bright lighting</li>
+  <li>Street mural artist time-compressed painting strokes</li>
+  <li>Quiet library aisle push-in toward sunlit desk</li>
+  <li>Slow orbit around handmade ceramic bowl set, soft daylight studio</li>
+  <li>Runner ties shoes at dawn trailhead, handheld intimate framing</li>
+  <li>Chef plates pasta with tweezers, shallow DOF, restaurant kitchen glow</li>
+  <li>Child’s hands planting a seed in soil, gentle educational tone</li>
+  <li>Courier bike weaving carefully through quiet morning streets</li>
+  <li>Open laptop on airplane tray, clouds beyond window, travel work mood</li>
+  <li>Jewelry clasp close-up as necklace is fastened, luxury ad pacing</li>
+  <li>Community volunteers painting a fence, documentary sunny afternoon</li>
+  <li>Smart home thermostat interaction, clean modern interior, subtle push-in</li>
+  <li>Bookstore aisle browse, warm practical light, cozy commerce feel</li>
+  <li>Mechanic lowers EV hood, competent craftsmanship, natural garage light</li>
+  <li>Waves wash over rocky shore, static tripod, meditative brand b-roll</li>
+  <li>Makeup brush applies foundation, beauty macro, soft ring light</li>
+  <li>Team huddle around whiteboard then disperse to desks, office energy</li>
+  <li>Candle being lit in calm living room, slow and intimate evening mood</li>
+</ol>
+
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Storyboard a 15-second ad as 3 shots.</li><li>Generate each shot separately.</li><li>Edit together with captions in a normal editor.</li></ol></div>
+
+</section>
+
+<section class="chapter" id="ch-17">
+  <div class="chapter-num">Chapter 17</div>
+  <h1 class="chapter-title">Runway, Kling, Pika and Sora</h1>
+  
+<table>
+  <thead><tr><th>Tool</th><th>Strengths</th><th>Watch-outs</th><th>Use when</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Runway</strong></td><td>Creator suite, editing + gen tools</td><td>Credits; learning surface</td><td>Creative teams iterating clips</td></tr>
+    <tr><td><strong>Kling</strong></td><td>Strong motion / cinematic clips</td><td>Access &amp; policy vary</td><td>Ambitious motion shots</td></tr>
+    <tr><td><strong>Pika</strong></td><td>Fast social-style generation</td><td>Fine control limits</td><td>Quick ideation &amp; memes-to-motion</td></tr>
+    <tr><td><strong>Sora</strong></td><td>High-end OpenAI video generation</td><td>Availability/limits</td><td>Premium text/image-to-video needs</td></tr>
+    <tr><td><strong>Veo</strong></td><td>Google ecosystem video model</td><td>Access via Google products</td><td>Cinematic prompting + Google stack</td></tr>
+  </tbody>
+</table>
+<div class="callout tip"><span class="callout-label">Selection rule</span><p>Pick the tool you can actually access reliably, then master shot language. Prompt craft transfers; brand lock-in doesn’t have to.</p></div>
+
+</section>
+
+<section class="part-opener" id="part-7">
+  <div class="part-label">Part 7</div>
+  <h1>AI Audio Generation</h1>
+  <p>Voice and music tools finish the content stack: narration, podcasts, explainers, and placeholder scores.</p>
+</section>
+
+<section class="chapter" id="ch-18">
+  <div class="chapter-num">Chapter 18</div>
+  <h1 class="chapter-title">Voice AI</h1>
+  
+<p class="lead">Modern speech synthesis turns text into natural voiceovers. ElevenLabs and PlayHT are popular starting points.</p>
+<h2>Workflow</h2>
+<div class="workflow"><strong>Voiceover</strong><div class="flow"><span class="step">Write script</span><span class="arrow">→</span><span class="step">Mark pauses</span><span class="arrow">→</span><span class="step">Choose voice</span><span class="arrow">→</span><span class="step">Generate</span><span class="arrow">→</span><span class="step">Edit breaths/timing</span><span class="arrow">→</span><span class="step">Mix under video</span></div></div>
+<ul>
+  <li>Write for the ear: shorter sentences, phonetic clarity, pronounceability.</li>
+  <li>Add stage directions sparingly (“pause”, “warmer”).</li>
+  <li>Keep a voice bible: voice ID, speed, stability settings.</li>
+</ul>
+<div class="callout warn"><span class="callout-label">Consent &amp; cloning</span><p>Only clone voices you have rights and consent to use. Disclose synthetic voice when required by platform or law.</p></div>
+<div class="prompt">Script a 60-second product explainer for [product]. Friendly expert tone. Mark [PAUSE] where needed. Max 140 words.</div>
+
+</section>
+
+<section class="chapter" id="ch-19">
+  <div class="chapter-num">Chapter 19</div>
+  <h1 class="chapter-title">Music AI</h1>
+  
+<p class="lead">Suno and Udio generate songs from text prompts—useful for drafts, social beds, and creative exploration.</p>
+<div class="prompt">Upbeat indie-pop, 100 BPM, warm female vocals, song about learning AI without fear, clear chorus, radio-clean, no explicit content.</div>
+<ul>
+  <li>Specify genre, tempo, mood, instruments, vocal type, and structure cues.</li>
+  <li>Generate variants; treat outputs as drafts for licensing review.</li>
+  <li>For client work, confirm commercial terms before publishing.</li>
+</ul>
+<div class="callout tip"><span class="callout-label">Practical use</span><p>Use AI music for animatics and social tests; hire composers when brand identity and exclusivity matter.</p></div>
+
+</section>
+
+<section class="part-opener" id="part-8">
+  <div class="part-label">Part 8</div>
+  <h1>AI Productivity</h1>
+  <p>The highest ROI is often boring: email, meetings, notes, and follow-ups. Make AI your operations intern.</p>
+</section>
+
+<section class="chapter" id="ch-20">
+  <div class="chapter-num">Chapter 20</div>
+  <h1 class="chapter-title">Personal Productivity with AI</h1>
+  
+<h2>Meetings</h2>
+<p>Record/transcribe (with permission) → summarize decisions, owners, deadlines → draft follow-up email.</p>
+<div class="prompt">From this transcript, produce: (1) 5-bullet summary, (2) decisions, (3) action table with owner + due date, (4) open questions. Flag anything unclear.</div>
+
+<h2>Email</h2>
+<ul>
+  <li>Paste the thread; ask for intent + draft reply options (short / detailed).</li>
+  <li>Keep a tone pack: firm, warm, formal.</li>
+</ul>
+
+<h2>Research &amp; learning</h2>
+<div class="workflow"><strong>Learn a topic</strong><div class="flow"><span class="step">Perplexity scan</span><span class="arrow">→</span><span class="step">Save best sources</span><span class="arrow">→</span><span class="step">NotebookLM notebook</span><span class="arrow">→</span><span class="step">Teach-back to ChatGPT</span><span class="arrow">→</span><span class="step">1-page cheat sheet</span></div></div>
+
+<h2>Writing</h2>
+<p>Outline with AI, draft yourself or co-draft, then ask for a critique against a checklist (clarity, specificity, claims).</p>
+
+<div class="takeaway"><h3>Key Takeaways</h3><ul><li>Permission first on recordings.</li><li>Summaries are drafts until you confirm owners/dates.</li><li>Teach-back reveals what you didn’t learn.</li></ul></div>
+
+</section>
+
+<section class="chapter" id="ch-21">
+  <div class="chapter-num">Chapter 21</div>
+  <h1 class="chapter-title">Business Productivity</h1>
+  
+<table>
+  <thead><tr><th>Function</th><th>AI workflow</th></tr></thead>
+  <tbody>
+    <tr><td>Marketing</td><td>Brief → variants → critique → brand edit → schedule</td></tr>
+    <tr><td>Support</td><td>Policy notebook → draft reply → human send for edge cases</td></tr>
+    <tr><td>Sales</td><td>Call notes → CRM summary → personalized follow-up</td></tr>
+    <tr><td>HR</td><td>Scorecards, JD drafts, onboarding checklists (watch bias)</td></tr>
+    <tr><td>Operations</td><td>SOP drafting, incident timelines, vendor comparisons</td></tr>
+  </tbody>
+</table>
+<div class="callout mistake"><span class="callout-label">Business failure mode</span><p>Publishing unedited AI text that sounds generic—or worse, wrong—damages trust. AI accelerates drafts; humans own outcomes.</p></div>
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Pick one function above.</li><li>Document a 5-step AI workflow.</li><li>Run it for five real cases this week.</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-9">
+  <div class="part-label">Part 9</div>
+  <h1>AI Automation</h1>
+  <p>Automation connects apps so work happens without copy-paste. AI sits in the middle to classify, draft, or decide within guardrails.</p>
+</section>
+
+<section class="chapter" id="ch-22">
+  <div class="chapter-num">Chapter 22</div>
+  <h1 class="chapter-title">Automation Fundamentals</h1>
+  
+<p class="lead">Every automation is: <strong>Trigger → (optional filters) → Actions</strong>. AI actions transform messy text into structured fields.</p>
+<ul>
+  <li><strong>Trigger:</strong> new email, form submit, schedule, webhook</li>
+  <li><strong>Action:</strong> create task, send Slack, draft reply, update Sheet</li>
+  <li><strong>API:</strong> how apps talk; no-code tools hide most of this</li>
+</ul>
+<div class="callout tip"><span class="callout-label">Automation fitness test</span><p>Automate if you do it ≥3×/week, rules are clear, and mistakes are reversible or reviewed.</p></div>
+<div class="callout warn"><span class="callout-label">Guardrails</span><p>Start with drafts + human approval for anything external (customer email, social posts, payments).</p></div>
+
+<h2>Triggers, actions, and AI in the middle</h2>
+<p>An automation begins when a trigger happens: a form is submitted, an email is labeled, a row is added, a date arrives, or a webhook receives data. Actions do the work: create a task, send a message, update a CRM, draft an email, or write a file. AI is most useful in the middle, where messy human language must become structured decisions.</p>
+<table>
+  <thead><tr><th>AI-in-the-middle pattern</th><th>Example</th><th>Guardrail</th></tr></thead>
+  <tbody>
+    <tr><td>Classify</td><td>Tag support email as billing, bug, refund, or urgent.</td><td>Escalate if confidence is low.</td></tr>
+    <tr><td>Extract</td><td>Pull name, company, budget, and deadline from a form.</td><td>Validate required fields before writing.</td></tr>
+    <tr><td>Draft</td><td>Create a reply, proposal, or social post.</td><td>Save as draft for approval.</td></tr>
+    <tr><td>Summarize</td><td>Turn a call transcript into CRM notes.</td><td>Link back to transcript.</td></tr>
+    <tr><td>Route</td><td>Send leads to the right salesperson.</td><td>Log the reason for routing.</td></tr>
+  </tbody>
+</table>
+<h2>Failure modes to expect</h2>
+<ul>
+  <li>Bad trigger data: missing fields, duplicate records, or unexpected file types.</li>
+  <li>Overconfident AI: the model guesses instead of saying it does not know.</li>
+  <li>Silent breakage: an app permission expires and the workflow stops.</li>
+  <li>Runaway volume: a loop creates hundreds of tasks or messages.</li>
+  <li>No owner: everyone assumes the automation is being monitored.</li>
+</ul>
+<h2>Decision tree</h2>
+<div class="workflow"><strong>Should you automate?</strong><div class="flow"><span class="step">Repeated weekly?</span><span class="arrow">&rarr;</span><span class="step">Rules clear?</span><span class="arrow">&rarr;</span><span class="step">Mistakes reversible?</span><span class="arrow">&rarr;</span><span class="step">Human approval needed?</span><span class="arrow">&rarr;</span><span class="step">Build small test</span></div></div>
+</section>
+
+<section class="chapter" id="ch-23">
+  <div class="chapter-num">Chapter 23</div>
+  <h1 class="chapter-title">n8n Complete Guide</h1>
+  
+<p class="lead">n8n is a flexible workflow automation tool, popular for builders who want control (self-host or cloud).</p>
+<h2>Setup (conceptual)</h2>
+<ol>
+  <li>Choose cloud or self-hosted install.</li>
+  <li>Connect credentials (OpenAI/Anthropic, Gmail, Slack, Sheets…).</li>
+  <li>Build node-by-node; test with sample data.</li>
+</ol>
+<h2>10 workflow blueprints</h2>
+<ol class="small">
+  <li>Form → AI enrich lead → CRM row → Slack alert</li>
+  <li>Support email → AI classify urgency → route mailbox/ticket</li>
+  <li>RSS → AI summarize → newsletter draft Doc</li>
+  <li>New Drive file → transcript/summary → Notion page</li>
+  <li>Schedule: weekly metrics Sheet → AI narrative → email report</li>
+  <li>Typeform feedback → sentiment tag → dashboard Sheet</li>
+  <li>Twitter/X mention monitor → draft response queue</li>
+  <li>Inbound invoice PDF → extract fields → accounting Sheet (review)</li>
+  <li>Calendar end event → AI meeting notes template → task list</li>
+  <li>Webhook from store → AI product blurb → Shopify draft (approval)</li>
+</ol>
+<div class="workflow"><strong>n8n AI node pattern</strong><div class="flow"><span class="step">Trigger</span><span class="arrow">→</span><span class="step">Normalize text</span><span class="arrow">→</span><span class="step">LLM extract JSON</span><span class="arrow">→</span><span class="step">Validate fields</span><span class="arrow">→</span><span class="step">Write to app</span><span class="arrow">→</span><span class="step">Notify</span></div></div>
+
+</section>
+
+<section class="chapter" id="ch-24">
+  <div class="chapter-num">Chapter 24</div>
+  <h1 class="chapter-title">Make Complete Guide</h1>
+  
+<p class="lead">Make (formerly Integromat) uses visual scenarios and modules—strong for marketers and ops teams.</p>
+<h2>10 Make scenarios</h2>
+<ol class="small">
+  <li>Facebook Lead Ad → AI score → HubSpot + email nurture start</li>
+  <li>Google Form job application → AI screen vs scorecard → Sheets + recruiter ping</li>
+  <li>Instagram DM keyword → FAQ reply draft</li>
+  <li>Shopify order → personalized thank-you email draft</li>
+  <li>Intercom chat ended → summary to Notion QA log</li>
+  <li>YouTube upload → AI chapters + description draft → notify editor</li>
+  <li>Expense email receipt → extract → bookkeeping Sheet</li>
+  <li>Webinar signup → AI segment → tailored sequence</li>
+  <li>CSAT low score → create Zendesk ticket with context brief</li>
+  <li>Content calendar row status=ready → generate social variants pack</li>
+</ol>
+<div class="callout tip"><span class="callout-label">Make tip</span><p>Use routers and filters early. Keep AI modules deterministic with JSON schemas / strict formats.</p></div>
+
+</section>
+
+<section class="chapter" id="ch-25">
+  <div class="chapter-num">Chapter 25</div>
+  <h1 class="chapter-title">Zapier Complete Guide</h1>
+  
+<p class="lead">Zapier is the friendliest entry point: Zaps connect thousands of apps quickly.</p>
+<h2>10 Zaps to build</h2>
+<ol class="small">
+  <li>Gmail labeled “Speak” → AI draft reply → save to Drafts</li>
+  <li>New Calendar event → prep brief from linked Doc</li>
+  <li>Typeform → AI summary → Slack channel</li>
+  <li>RSS → AI hook options → Buffer draft</li>
+  <li>New CRM deal stage → generate kickoff checklist tasks</li>
+  <li>Zoom recording ready → transcript summary → email attendees</li>
+  <li>Airtable content idea → AI outline → Docs</li>
+  <li>Shopify new product → AI SEO title/meta suggestions</li>
+  <li>Help Scout tag “refund” → policy-aware draft (approval)</li>
+  <li>Daily schedule Zap → AI prioritize task list from Todoist</li>
+</ol>
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Build one Zap with a human approval step.</li><li>Log failures for a week; tighten filters.</li><li>Document the Zap in your Playbook.</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-10">
+  <div class="part-label">Part 10</div>
+  <h1>AI Agents</h1>
+  <p>Agents don’t just answer—they plan and use tools toward a goal. Powerful, but they need boundaries.</p>
+</section>
+
+<section class="chapter" id="ch-26">
+  <div class="chapter-num">Chapter 26</div>
+  <h1 class="chapter-title">Understanding AI Agents</h1>
+  
+<p class="lead">An AI agent is a system that can set subgoals, call tools (browse, code, email, databases), remember state, and iterate until a stop condition.</p>
+<h2>Architecture (beginner map)</h2>
+<ul>
+  <li><strong>Brain:</strong> LLM for planning and language</li>
+  <li><strong>Tools:</strong> actions it may take</li>
+  <li><strong>Memory:</strong> short-term thread + optional long-term store</li>
+  <li><strong>Planner:</strong> break goal → steps → revisit</li>
+  <li><strong>Guardrails:</strong> permissions, budgets, human approval</li>
+</ul>
+<div class="callout warn"><span class="callout-label">Reality check</span><p>Unsupervised agents can loop, spend money, or message customers incorrectly. Start read-only or draft-only.</p></div>
+
+<h2>Agent architecture by analogy</h2>
+<p>Imagine hiring an intern for a specific job. The LLM is the intern's reasoning and communication ability. Tools are what the intern is allowed to use: browser, email, calendar, database, spreadsheet, code runner, or CRM. Memory is the notebook they keep. Planning is the habit of breaking a goal into steps. Guardrails are the manager's rules: budget, permissions, review points, and when to stop.</p>
+<table>
+  <thead><tr><th>Agent part</th><th>Beginner analogy</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Goal</td><td>The assignment</td><td>Prepare a weekly competitor brief.</td></tr>
+    <tr><td>Tools</td><td>Allowed apps</td><td>Search web, read Drive folder, create Doc.</td></tr>
+    <tr><td>Memory</td><td>Working notes</td><td>Previous competitor list and style preferences.</td></tr>
+    <tr><td>Planner</td><td>To-do list</td><td>Find sources, extract claims, compare, draft.</td></tr>
+    <tr><td>Evaluator</td><td>Quality check</td><td>Are all claims cited? Is the brief under one page?</td></tr>
+  </tbody>
+</table>
+<h2>Tools, memory, and planning examples</h2>
+<ul>
+  <li><strong>Tool example:</strong> A support agent can read a policy notebook and draft replies, but cannot issue refunds without approval.</li>
+  <li><strong>Memory example:</strong> A personal planning agent remembers your preferred working hours and recurring goals, but not private data it does not need.</li>
+  <li><strong>Planning example:</strong> A research agent first lists questions, then searches, then writes a source table, then drafts a memo.</li>
+</ul>
+<div class="callout warn"><span class="callout-label">Risks</span><ul><li><strong>Compounding errors:</strong> One bad assumption can affect many later actions.</li><li><strong>Tool misuse:</strong> The agent may update the wrong record or message the wrong person.</li><li><strong>Runaway loops:</strong> Poor stop conditions can waste time, credits, or API calls.</li><li><strong>Data exposure:</strong> Broad permissions create bigger privacy risk.</li></ul></div>
+</section>
+
+<section class="chapter" id="ch-27">
+  <div class="chapter-num">Chapter 27</div>
+  <h1 class="chapter-title">Building Agent Workflows</h1>
+  
+<h2>Practical examples</h2>
+<ul>
+  <li><strong>Research agent:</strong> gather sources → outline → brief (human publishes)</li>
+  <li><strong>Support agent:</strong> retrieve policy → draft → escalate if confidence low</li>
+  <li><strong>Marketing agent:</strong> pull product facts → generate campaign pack → Slack approval</li>
+</ul>
+<div class="callout example"><span class="callout-label">Business pattern</span><p>Goal: “Prepare a weekly competitor brief.” Tools: web fetch, Drive write, email. Stop when a 1-page Doc exists. Human reviews every Friday.</p></div>
+<div class="workflow"><strong>Safe agent loop</strong><div class="flow"><span class="step">Define goal</span><span class="arrow">→</span><span class="step">Limit tools</span><span class="arrow">→</span><span class="step">Require approval gates</span><span class="arrow">→</span><span class="step">Log actions</span><span class="arrow">→</span><span class="step">Review weekly</span></div></div>
+
+<h2>Five agent workflow specs</h2>
+<h3>1. Marketing campaign assistant</h3>
+<p><strong>Goal:</strong> create a campaign draft pack from approved product facts. <strong>Tools:</strong> brand docs, product page, calendar, Doc creation. <strong>Output:</strong> audience, hooks, email draft, social variants, review checklist. <strong>Approval:</strong> marketer approves before publishing.</p>
+<h3>2. Support response assistant</h3>
+<p><strong>Goal:</strong> reduce first-response time. <strong>Tools:</strong> policy notebook, ticket system, macro library. <strong>Output:</strong> category, urgency, draft reply, cited policy. <strong>Escalate:</strong> angry customers, refunds, legal threats, safety issues, low confidence.</p>
+<h3>3. Research briefing agent</h3>
+<p><strong>Goal:</strong> prepare a weekly brief on a defined topic. <strong>Tools:</strong> web search, saved source list, Docs. <strong>Output:</strong> source table, key changes, risks, recommendation. <strong>Rule:</strong> no uncited factual claims.</p>
+<h3>4. Operations SOP agent</h3>
+<p><strong>Goal:</strong> turn transcripts and notes into standard operating procedures. <strong>Tools:</strong> transcript folder, SOP template, task manager. <strong>Output:</strong> SOP draft, checklist, missing questions. <strong>Approval:</strong> process owner signs off.</p>
+<h3>5. Personal weekly planning agent</h3>
+<p><strong>Goal:</strong> convert calendar, tasks, and goals into a realistic week plan. <strong>Tools:</strong> calendar read access, task list, notes. <strong>Output:</strong> top outcomes, schedule blocks, risks, prep list. <strong>Limit:</strong> read-only until trusted.</p><div class="action-steps"><h3>Action Steps</h3><ol><li>Write an agent spec: goal, tools, data access, success metric, kill switch.</li><li>Implement as a Make/n8n flow before full autonomy.</li></ol></div>
+
+</section>
+
+<section class="part-opener" id="part-11">
+  <div class="part-label">Part 11</div>
+  <h1>Real-World Projects</h1>
+  <p>Theory sticks when you ship. Twenty complete projects—steal the ones that match your goals.</p>
+</section>
+
+<section class="chapter" id="ch-28">
+  <div class="chapter-num">Chapter 28</div>
+  <h1 class="chapter-title">20 Complete AI Projects</h1>
+  <p class="lead">Each project lists objective, tools, setup, workflow, and results. Adapt freely.</p>
+
+<div class="project">
+  <h3>Project 1: AI Content Creation Studio</h3>
+  <p class="meta"><span class="badge">Objective</span> Publish 12 posts/month · <span class="badge">Tools</span> ChatGPT/Claude, Canva/Ideogram, Buffer</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Voice bible + calendar → batch drafts → image prompts → schedule</p>
+  <p><strong>Results:</strong> Consistent pipeline; 4+ hours saved weekly</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 2: Personal AI Research Desk</h3>
+  <p class="meta"><span class="badge">Objective</span> Brief any topic in 45 minutes · <span class="badge">Tools</span> Perplexity, NotebookLM, Claude</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Search → save sources → notebook → 1-page brief</p>
+  <p><strong>Results:</strong> Reusable research SOP</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 3: Freelance Proposal Engine</h3>
+  <p class="meta"><span class="badge">Objective</span> Faster, clearer proposals · <span class="badge">Tools</span> ChatGPT Projects, Notion</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Intake form → discovery summary → proposal draft → human price</p>
+  <p><strong>Results:</strong> Higher close rate via clarity</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 4: AI Customer Support Desk</h3>
+  <p class="meta"><span class="badge">Objective</span> Faster first responses · <span class="badge">Tools</span> NotebookLM, Zendesk/Help Scout, Zapier</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Policy notebook → draft replies → approval → macros</p>
+  <p><strong>Results:</strong> Lower first-response time</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 5: Social Media Manager System</h3>
+  <p class="meta"><span class="badge">Objective</span> Daily multi-platform presence · <span class="badge">Tools</span> Claude, Ideogram, scheduling tool</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Pillar content → atomize → visuals → schedule</p>
+  <p><strong>Results:</strong> One idea → many assets</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 6: YouTube / Shorts Factory</h3>
+  <p class="meta"><span class="badge">Objective</span> Weekly video output · <span class="badge">Tools</span> ChatGPT, Veo/Runway, ElevenLabs, CapCut</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Script → voice → b-roll gen → edit → SEO package</p>
+  <p><strong>Results:</strong> Faster packaging</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 7: AI Marketing Offer Lab</h3>
+  <p class="meta"><span class="badge">Objective</span> Test offers quickly · <span class="badge">Tools</span> ChatGPT, Perplexity, Sheets</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> ICP research → offer variants → landing copy → ad hooks</p>
+  <p><strong>Results:</strong> Structured experimentation</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 8: Course Creator Companion</h3>
+  <p class="meta"><span class="badge">Objective</span> Outline to lessons · <span class="badge">Tools</span> NotebookLM, Claude</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Source uploads → module map → lesson scripts → quizzes</p>
+  <p><strong>Results:</strong> Complete curriculum skeleton</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 9: Meeting OS</h3>
+  <p class="meta"><span class="badge">Objective</span> Zero lost action items · <span class="badge">Tools</span> Fireflies/Zoom, ChatGPT, Todoist</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Transcript → actions → tasks → follow-up mail</p>
+  <p><strong>Results:</strong> Accountability habit</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 10: Sales Call Coach</h3>
+  <p class="meta"><span class="badge">Objective</span> Improve discovery · <span class="badge">Tools</span> Claude, CRM</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Transcript critique vs scorecard → coaching notes</p>
+  <p><strong>Results:</strong> Rep skill growth</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 11: E-commerce Listing Booster</h3>
+  <p class="meta"><span class="badge">Objective</span> Better PDPs · <span class="badge">Tools</span> ChatGPT, Ideogram, Shopify</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Feature list → benefits copy → image set → SEO fields</p>
+  <p><strong>Results:</strong> Listing velocity</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 12: HR Onboarding Kit</h3>
+  <p class="meta"><span class="badge">Objective</span> Smoother new hires · <span class="badge">Tools</span> Gemini/Docs, Claude</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Role scorecard → 30-60-90 → FAQ notebook</p>
+  <p><strong>Results:</strong> Less repeated questions</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 13: Local Business Demo Package</h3>
+  <p class="meta"><span class="badge">Objective</span> Sell AI services to SMBs · <span class="badge">Tools</span> Make/Zapier, ChatGPT</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Lead form automation + review response drafts + weekly report</p>
+  <p><strong>Results:</strong> Productized freelance offer</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 14: Investor Update Assistant</h3>
+  <p class="meta"><span class="badge">Objective</span> Monthly updates in 30 min · <span class="badge">Tools</span> Sheets, Claude</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Metrics paste → narrative → risks → ask</p>
+  <p><strong>Results:</strong> Consistent investor comms</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 15: Podcast Production Pack</h3>
+  <p class="meta"><span class="badge">Objective</span> Episode → assets · <span class="badge">Tools</span> Claude, ElevenLabs, Suno (optional)</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Outline → script → show notes → audiograms prompts</p>
+  <p><strong>Results:</strong> Faster turnaround</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 16: Grant / RFP Drafter</h3>
+  <p class="meta"><span class="badge">Objective</span> Structured applications · <span class="badge">Tools</span> NotebookLM, Claude</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Requirements notebook → compliance matrix → draft answers</p>
+  <p><strong>Results:</strong> Fewer missed criteria</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 17: Personal Tutoring Bot</h3>
+  <p class="meta"><span class="badge">Objective</span> Exam prep · <span class="badge">Tools</span> ChatGPT, NotebookLM</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Notes notebook → daily drills → weak-topic focus</p>
+  <p><strong>Results:</strong> Measurable practice loop</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 18: Brand Design Sprint</h3>
+  <p class="meta"><span class="badge">Objective</span> Visual direction in a day · <span class="badge">Tools</span> Midjourney/Flux, Claude</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Mood prompts → select 3 directions → style card</p>
+  <p><strong>Results:</strong> Aligned creative brief</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 19: Ops SOP Library</h3>
+  <p class="meta"><span class="badge">Objective</span> Document tribal knowledge · <span class="badge">Tools</span> Claude, Notion</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Interview transcript → SOP → checklist → quiz</p>
+  <p><strong>Results:</strong> Trainable processes</p>
+</div>
+
+
+<div class="project">
+  <h3>Project 20: AI Automation Mini-Agency</h3>
+  <p class="meta"><span class="badge">Objective</span> Retainers from workflows · <span class="badge">Tools</span> Make or n8n, LLM API</p>
+  <p><strong>Setup:</strong> Create a Project/folder, paste a one-paragraph brief, and add brand or policy sources.</p>
+  <p><strong>Workflow:</strong> Audit client tasks → 3 Zaps/scenarios → dashboard</p>
+  <p><strong>Results:</strong> Recurring revenue offer</p>
+</div>
+
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Pick one project and complete it in 7 days.</li><li>Write a case study: before → after → hours saved.</li><li>Productize your winning project as a freelance offer or internal SOP.</li></ol></div>
+</section>
+
+<section class="part-opener" id="part-12">
+  <div class="part-label">Part 12</div>
+  <h1>The Future & Your Roadmap</h1>
+  <p>Tools will change. Your learning system shouldn’t. Finish with trends and a 12-month plan.</p>
+</section>
+
+<section class="chapter" id="ch-29">
+  <div class="chapter-num">Chapter 29</div>
+  <h1 class="chapter-title">Future Trends</h1>
+  
+<ul>
+  <li><strong>Agents:</strong> more tool-using assistants with workplace permissions</li>
+  <li><strong>Multimodal:</strong> seamless text ↔ image ↔ audio ↔ video in one thread</li>
+  <li><strong>Robotics:</strong> foundation models meeting physical hardware (slower, high impact)</li>
+  <li><strong>AGI debate:</strong> progress continues; timelines uncertain—skills still compound</li>
+  <li><strong>Careers:</strong> AI operators, automation specialists, AI product managers, domain experts who wield AI</li>
+</ul>
+<div class="callout note"><span class="callout-label">Timeless skills</span><p>Problem framing, prompting, verification, workflow design, domain expertise, and ethics will outlast any single app.</p></div>
+
+<h2>Trends that matter to beginners</h2>
+<p>The future of AI can sound abstract, but the practical implication is simple: more work will move from "open a blank page" to "brief, supervise, verify, and improve." Beginners should not try to predict every model release. Build durable habits that improve with any tool: clear instructions, good source material, thoughtful review, and workflow design.</p>
+<table>
+  <thead><tr><th>Trend</th><th>What it means in practice</th><th>Beginner move</th></tr></thead>
+  <tbody>
+    <tr><td>Multimodal tools</td><td>Text, images, audio, video, files, and screens work together.</td><td>Practice uploading real materials and asking specific questions.</td></tr>
+    <tr><td>Longer context</td><td>Models can work with bigger documents and project histories.</td><td>Learn source curation and document hygiene.</td></tr>
+    <tr><td>Agents</td><td>AI will take more multi-step actions with tools.</td><td>Study automation, permissions, logging, and approval gates.</td></tr>
+    <tr><td>On-device AI</td><td>Some AI runs locally on phones and computers.</td><td>Watch for privacy-friendly workflows and offline assistants.</td></tr>
+    <tr><td>Regulation and provenance</td><td>Disclosure, rights, and audit trails matter more.</td><td>Keep records of prompts, sources, licenses, and human review.</td></tr>
+  </tbody>
+</table>
+</section>
+
+<section class="chapter" id="ch-30">
+  <div class="chapter-num">Chapter 30</div>
+  <h1 class="chapter-title">AI Career Roadmap</h1>
+  
+<h2>Beginner (Months 1–3)</h2>
+<ul>
+  <li>Daily LLM practice; finish Parts 1–4 of this book</li>
+  <li>Build Playbook with 30 prompts</li>
+  <li>Ship 2 projects from Chapter 28</li>
+</ul>
+<h2>Intermediate (Months 4–8)</h2>
+<ul>
+  <li>Add image/video/audio for your niche</li>
+  <li>Build 5 automations with approval gates</li>
+  <li>Create a Custom GPT / Claude Project for your job</li>
+  <li>Publish case studies</li>
+</ul>
+<h2>Advanced (Months 9–12)</h2>
+<ul>
+  <li>Design agentic workflows with logging and evals</li>
+  <li>Specialize (support, marketing ops, research, education)</li>
+  <li>Teach or consult; productize a service</li>
+</ul>
+<h2>12-month learning plan (summary)</h2>
+<table>
+  <thead><tr><th>Quarter</th><th>Focus</th><th>Proof</th></tr></thead>
+  <tbody>
+    <tr><td>Q1</td><td>LLM fluency + prompting</td><td>Playbook + 2 projects</td></tr>
+    <tr><td>Q2</td><td>Multimodal content</td><td>Portfolio of assets</td></tr>
+    <tr><td>Q3</td><td>Automation</td><td>5 live workflows</td></tr>
+    <tr><td>Q4</td><td>Agents + specialization</td><td>Case study + offer</td></tr>
+  </tbody>
+</table>
+<div class="takeaway"><h3>Key Takeaways</h3><ul><li>Practice daily in real work, not only demos.</li><li>Proof beats certificates: projects, SOPs, metrics.</li><li>Specialize after you have general fluency.</li></ul></div>
+<div class="action-steps"><h3>Action Steps</h3><ol><li>Block 30 minutes daily for AI practice this week.</li><li>Choose your 12-month specialization hypothesis.</li><li>Schedule a monthly review of your AI Playbook.</li></ol></div>
+<p class="colophon">You reached the end of <em>The Complete Beginner’s Guide to Artificial Intelligence</em> (2026 Handbook Edition). The tools will evolve—your ability to brief, verify, and build workflows is the durable advantage. Now open your AI Playbook and ship Project #1.</p>
+
+</section>
+
+</article>
+</body>
+</html>
