@@ -399,12 +399,12 @@ def build():
     parts.append(chapter("3", "افتح الموقع", f"""
 <p class="lead">سنذهب إلى موقع <span class="en">ChatGPT</span>. اتبع الخطوات بهدوء.</p>
 {step(1, "افتح المتصفح", "مثل Chrome أو أي متصفح عندك. هذا البرنامج الذي تفتح به الإنترنت.")}
-{step(2, "اضغط خانة الكتابة فوق", "في أعلى الصفحة يوجد مكان للكتابة (شريط العنوان).")}
+{step(2, "اذهب إلى Google", 'في خانة الكتابة فوق اكتب: <strong class="en">google.com</strong> ثم Enter.')}
+{step(3, "ابحث عن ChatGPT", 'اكتب في Google: <strong class="en">chatgpt</strong> ثم اضغط على أول نتيجة موثوقة، أو اكتب مباشرة <strong class="en">chatgpt.com</strong>.')}
 {fig(img["open"], "اكتب chatgpt.com في الأعلى")}
-{step(3, "اكتب هذا", 'اكتب بالإنجليزية بالضبط: <strong class="en">chatgpt.com</strong> ثم اضغط Enter.')}
-{step(4, "انتظر الصفحة", "ستفتح صفحة ChatGPT. إذا لم تفتح، اطلب مساعدة شخص كبير.")}
-{safe("<p>لا تدخل إلى مواقع غريبة تشبه الاسم. الموقع الصحيح: <span class='en'>chatgpt.com</span></p>")}
-{try_it("<p>افتح المتصفح الآن واكتب <span class='en'>chatgpt.com</span>. هل ظهرت الصفحة؟ ضع علامة ✓</p>")}
+{step(4, "تأكد من الاسم", "يجب أن ترى chatgpt.com فوق. إذا كان الاسم غريباً… لا تدخل. اسأل شخصاً كبيراً.")}
+{safe("<p>لا تدخل إلى مواقع غريبة تشبه الاسم. الأفضل: <span class='en'>chatgpt.com</span></p>")}
+{try_it("<p>جرّب الآن مع شخص كبير: Google ← اكتب chatgpt ← افتح الموقع الصحيح.</p>")}
 """))
 
     parts.append(chapter("4", "اصنع حساباً", f"""

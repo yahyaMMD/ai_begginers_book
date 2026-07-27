@@ -1,33 +1,22 @@
-# الذكاء الاصطناعي — الدليل الشامل للمبتدئين
+# الذكاء الاصطناعي للأطفال — SCHOOLERX
 
-إصدار عربي (RTL) بتصميم SCHOOLERX — غلاف مطابق لهوية الكتاب.
+كتاب عربي بسيط جداً للأطفال (حوالي 8 سنوات).
 
 ## الملفات
 
-| الملف | الوصف |
-|------|--------|
-| `ai-beginners-handbook.html` | الكتاب الكامل — افتحه في المتصفح |
-| `ai-beginners-handbook.pdf` | تصدير PDF جاهز للطباعة |
-| `assets/cover.png` | صورة الغلاف |
-
-## المواصفات
-
-- الحجم: **160 × 220 مم**
-- اللغة: عربية أساساً مع أسماء أدوات إنجليزية
-- التصميم: بنفسجي / برتقالي مطابق للغلاف
-- من إعداد: **SCHOOLERX**
-
-## المعاينة محلياً
-
-```bash
-cd book && python3 -m http.server 8765
-# ثم افتح http://127.0.0.1:8765/ai-beginners-handbook.html
-```
-
-طباعة ← حفظ PDF ← فعّل خلفيات الرسومات.
+- `ai-beginners-handbook.html` — الكتاب
+- `ai-beginners-handbook.pdf` — PDF للطباعة (160×220 مم)
+- `assets/cover.png` — الغلاف
+- `assets/kids/` — صور تعليمية
 
 ## إعادة التوليد
 
 ```bash
-cd scripts && python3 generate_book_ar.py
+cd scripts && python3 generate_book_kids.py
+```
+
+## المعاينة
+
+```bash
+cd book && python3 -m http.server 8765 --bind 0.0.0.0
 ```
