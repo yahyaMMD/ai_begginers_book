@@ -1,7 +1,7 @@
-# AI Beginner's Handbook
+# الذكاء الاصطناعي — الدليل الشامل للمبتدئين
 
-Production-ready HTML/CSS book:
+كتاب HTML/CSS جاهز للطباعة (عربي RTL) من إعداد **SCHOOLERX**.
 
-**[The Complete Beginner's Guide to Artificial Intelligence](book/ai-beginners-handbook.html)**
+افتح: [`book/ai-beginners-handbook.html`](book/ai-beginners-handbook.html)
 
-See [`book/README.md`](book/README.md) for print/PDF instructions.
+التفاصيل: [`book/README.md`](book/README.md)
