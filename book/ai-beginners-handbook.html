@@ -4,1472 +4,697 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="author" content="SCHOOLERX"/>
-<title>الذكاء الاصطناعي — الدليل الشامل للمبتدئين | SCHOOLERX</title>
+<title>الذكاء الاصطناعي للأطفال | SCHOOLERX</title>
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans:wght@500;700&display=swap');
 
 :root {
-  --ink: #1A2744;
-  --navy: #1A2A40;
-  --purple: #5B2C8B;
-  --purple-deep: #3D1A6E;
-  --orange: #FF7A00;
-  --orange-hot: #FF4D00;
-  --gold: #FFB800;
-  --magenta: #E91E8C;
-  --cyan: #00B4D8;
-  --paper: #ffffff;
-  --bg-soft: #F5F5F7;
-  --rule: #E2E5EC;
-  --muted: #5A6478;
-  --font-ar: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
-  --font-en: 'IBM Plex Sans', sans-serif;
-  --font-mono: 'IBM Plex Mono', Consolas, monospace;
+  --ink: #2A2450;
+  --navy: #3D2A6E;
+  --purple: #6B3FA0;
+  --purple-soft: #F3ECFA;
+  --orange: #FF8A1F;
+  --orange-soft: #FFF3E6;
+  --gold: #FFC94D;
+  --pink: #FF5FA2;
+  --teal: #12B5C9;
+  --teal-soft: #E6F9FC;
+  --green: #22A06B;
+  --green-soft: #E8F8F0;
+  --paper: #FFFFFF;
+  --sky: #FFF9F2;
+  --rule: #E8E0F0;
+  --muted: #6A6288;
+  --font: 'Cairo', Tahoma, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  font-size: 10.5pt;
-  direction: rtl;
-}
-
+html { font-size: 12.5pt; direction: rtl; }
 body {
-  font-family: var(--font-ar);
+  font-family: var(--font);
   color: var(--ink);
-  background: #e8e9ef;
-  line-height: 1.72;
-  -webkit-font-smoothing: antialiased;
+  background: #efeaf7;
+  line-height: 1.7;
 }
 
-.en, .mono, code, .tool {
-  font-family: var(--font-en);
-  direction: ltr;
-  unicode-bidi: isolate;
-}
-
-code, .mono {
-  font-family: var(--font-mono);
-  font-size: 0.86em;
-  background: #f1f0f7;
-  padding: 0.05em 0.28em;
-  border-radius: 3px;
-}
+.en { font-family: 'IBM Plex Sans', sans-serif; direction: ltr; unicode-bidi: isolate; }
 
 @media screen {
-  body { padding: 20px 0 50px; }
+  body { padding: 18px 0 40px; }
   .book {
-    width: 160mm;
-    margin: 0 auto;
-    background: var(--paper);
-    box-shadow: 0 12px 40px rgba(26, 39, 68, 0.15);
+    width: 160mm; margin: 0 auto; background: var(--paper);
+    box-shadow: 0 14px 40px rgba(61,42,110,.18); border-radius: 4px;
   }
 }
 
 @page {
   size: 160mm 220mm;
-  margin: 13mm 15mm 15mm 15mm;
+  margin: 12mm 14mm 14mm 14mm;
   @bottom-center {
     content: counter(page);
     font-family: 'Cairo', sans-serif;
-    font-size: 8.5pt;
-    color: #7a8499;
+    font-size: 9pt; color: #9a90b5;
   }
 }
-
-@page :first {
-  margin: 0;
-  @bottom-center { content: none; }
-}
+@page :first { margin: 0; @bottom-center { content: none; } }
 
 @media print {
-  html, body { background: white; padding: 0; }
-  .book { box-shadow: none; width: auto; margin: 0; }
+  html, body { background: #fff; padding: 0; }
+  .book { box-shadow: none; width: auto; }
   .no-print { display: none !important; }
-  .part-opener, .cover, .toc-page, .front-matter { break-before: page; page-break-before: always; }
-  .chapter { break-before: auto; margin-top: 1.1em; padding-top: 0.55em; border-top: 1px solid var(--rule); }
-  #ch-1, #ch-3, #ch-4, #ch-10, #ch-13, #ch-15, #ch-18, #ch-20, #ch-22, #ch-26, #ch-28, #ch-29 {
-    break-before: page; page-break-before: always; border-top: none; margin-top: 0; padding-top: 0;
-  }
-  .cover { break-before: avoid; page-break-before: avoid; }
-  h1, h2, h3 { break-after: avoid; }
-  .callout, .prompt, .workflow, .takeaway, .action-steps, .exercise { break-inside: avoid; }
+  .cover, .toc-page, .front-matter { break-before: page; }
+  .part-opener { break-before: page; break-after: avoid; }
+  .chapter { break-before: auto; margin-top: 0.75em; padding-top: 0.4em; border-top: 2px dashed var(--rule); }
+  #ch-1, #ch-10, #ch-14, #ch-18, #ch-19 { break-before: page; border-top: none; margin-top: 0; padding-top: 0; }
+  .cover { break-before: avoid; }
+  h1.chapter-title, .lead { break-after: avoid; page-break-after: avoid; }
+  .fig { break-before: avoid; page-break-before: avoid; break-inside: avoid; }
+  .step, .try, .safe, .idea, .prompt, .project, .takeaway, .cards { break-inside: avoid; }
 }
 
 .screen-toolbar {
-  position: sticky; top: 0; z-index: 30;
-  background: linear-gradient(90deg, var(--purple-deep), var(--navy));
-  color: #fff;
-  font-family: var(--font-ar);
-  font-size: 13px;
-  padding: 10px 16px;
-  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  position: sticky; top: 0; z-index: 40;
+  background: linear-gradient(90deg, #3D2A6E, #6B3FA0);
+  color: #fff; font-size: 13px; padding: 10px 14px;
+  display: flex; justify-content: space-between; align-items: center;
 }
 .screen-toolbar button {
-  background: linear-gradient(90deg, var(--orange), var(--gold));
-  color: #1a1030; border: none; padding: 7px 14px; border-radius: 6px;
-  font-weight: 700; cursor: pointer; font-family: var(--font-ar); font-size: 12px;
+  background: linear-gradient(90deg, #FF8A1F, #FFC94D);
+  border: 0; border-radius: 999px; padding: 7px 14px;
+  font-family: var(--font); font-weight: 800; cursor: pointer; color: #2A1848;
 }
 
-/* Cover */
-.cover {
-  position: relative;
-  width: 100%;
-  height: 220mm;
-  overflow: hidden;
-  background: var(--bg-soft);
-  break-after: page;
-  page-break-after: always;
-}
-.cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
+.cover { height: 220mm; overflow: hidden; background: #f5f5f7; break-after: page; }
+.cover img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
-/* Typography */
-p { margin: 0 0 0.5em; orphans: 3; widows: 3; }
-.lead { font-size: 1.02rem; color: var(--muted); margin-bottom: 0.75em; font-weight: 500; }
+p { margin: 0 0 .55em; }
+.lead { font-size: 1.05rem; color: var(--muted); font-weight: 600; margin-bottom: .8em; }
 
 h1.chapter-title {
-  font-size: 1.35rem; font-weight: 800; color: var(--navy);
-  line-height: 1.25; margin: 0 0 0.35em; padding-bottom: 0.3em;
-  border-bottom: 3px solid transparent;
-  border-image: linear-gradient(270deg, var(--orange), var(--gold), var(--purple)) 1;
+  font-size: 1.45rem; font-weight: 800; color: var(--navy); line-height: 1.25;
+  margin: 0 0 .4em; padding-bottom: .28em;
+  border-bottom: 4px solid transparent;
+  border-image: linear-gradient(270deg, var(--orange), #FFC94D, var(--purple)) 1;
 }
-h2 {
-  font-size: 1.05rem; font-weight: 700; color: var(--purple);
-  margin: 0.9em 0 0.3em; line-height: 1.3;
-}
-h3 { font-size: 0.98rem; font-weight: 700; color: var(--navy); margin: 0.75em 0 0.25em; }
-h4 { font-size: 0.9rem; font-weight: 700; color: var(--muted); margin: 0.6em 0 0.2em; }
+h2 { font-size: 1.12rem; font-weight: 800; color: var(--purple); margin: .95em 0 .35em; }
+h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin: .75em 0 .3em; }
 
-ul, ol { margin: 0 0 0.7em 0; padding-inline-start: 1.2em; }
-li { margin-bottom: 0.22em; }
-li::marker { color: var(--orange); }
+ul, ol { margin: 0 0 .75em; padding-inline-start: 1.25em; }
+li { margin-bottom: .28em; }
+li::marker { color: var(--orange); font-weight: 800; }
 
-.chapter-num {
-  font-size: 0.72rem; letter-spacing: 0.04em; color: var(--orange);
-  font-weight: 700; margin-bottom: 0.2em;
-}
+.chapter-num { font-size: .78rem; font-weight: 800; color: var(--orange); margin-bottom: .15em; }
 
 .part-opener {
-  padding: 0.5em 0 0.8em;
+  padding: .7em .8em; border-radius: 16px; margin-bottom: .5em;
   background:
-    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(91,44,139,0.08), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 0% 100%, rgba(255,122,0,0.07), transparent 50%);
-  border-radius: 8px;
-  margin-bottom: 0.4em;
+    radial-gradient(circle at 100% 0%, rgba(255,138,31,.18), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(107,63,160,.14), transparent 50%),
+    var(--purple-soft);
 }
-.part-label {
-  font-size: 0.78rem; font-weight: 800; color: var(--purple);
-  margin-bottom: 0.35em;
-}
-.part-opener h1 {
-  font-size: 1.55rem; font-weight: 800; color: var(--navy);
-  margin-bottom: 0.35em; line-height: 1.2;
-}
-.part-opener p { color: var(--muted); max-width: 36em; }
+.part-label { font-weight: 800; color: var(--orange); margin-bottom: .25em; }
+.part-opener h1 { font-size: 1.5rem; color: var(--navy); font-weight: 800; margin-bottom: .25em; }
+.part-opener p { color: var(--muted); font-weight: 600; }
 
 .toc-page h1, .front-matter .chapter-title {
   font-size: 1.4rem; font-weight: 800; color: var(--navy);
-  margin-bottom: 0.8em; padding-bottom: 0.3em;
-  border-bottom: 3px solid var(--orange);
+  border-bottom: 4px solid var(--orange); padding-bottom: .3em; margin-bottom: .8em;
 }
-.toc { list-style: none; margin: 0; padding: 0; }
-.toc li {
-  display: flex; align-items: baseline; gap: 0.35em;
-  margin-bottom: 0.28em; font-size: 0.86rem;
+.toc { list-style: none; padding: 0; }
+.toc li { display: flex; gap: .35em; align-items: baseline; margin-bottom: .32em; font-size: .92rem; font-weight: 600; }
+.toc .toc-part { margin-top: .75em; font-weight: 800; color: var(--purple); font-size: .85rem; }
+.toc .dots { flex: 1; border-bottom: 2px dotted var(--rule); min-width: .6em; margin-bottom: .2em; }
+
+.bubble {
+  background: var(--purple-soft); border-radius: 18px 18px 4px 18px;
+  padding: .7em .85em; margin: .6em 0 .8em; font-weight: 600;
+  border: 2px solid #e0d0f2;
 }
-.toc .toc-part {
-  margin-top: 0.75em; margin-bottom: 0.3em;
-  font-weight: 800; font-size: 0.78rem; color: var(--purple);
-}
-.toc .dots {
-  flex: 1; border-bottom: 1px dotted var(--rule); margin: 0 0.15em 0.15em; min-width: 0.8em;
+.bubble.me {
+  background: var(--orange-soft); border-color: #ffd7a8;
+  border-radius: 18px 18px 18px 4px;
 }
 
-.callout {
-  border-radius: 8px; padding: 0.55em 0.75em; margin: 0.55em 0 0.7em;
-  font-size: 0.9rem; line-height: 1.5;
-  border-inline-start: 4px solid;
-  background: var(--bg-soft);
+.step {
+  display: grid; grid-template-columns: 36px 1fr; gap: .5em;
+  background: #fff; border: 2px solid var(--rule); border-radius: 14px;
+  padding: .48em .62em; margin: .38em 0 .48em;
+  box-shadow: 0 3px 0 rgba(107,63,160,.07);
 }
-.callout-label {
-  display: block; font-size: 0.68rem; font-weight: 800;
-  letter-spacing: 0.02em; margin-bottom: 0.2em;
+.step .num {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--orange), #FFC94D);
+  color: #2A1848; font-weight: 800; font-size: 1rem;
 }
-.tip { background: #FFF6EB; border-color: var(--orange); }
-.tip .callout-label { color: var(--orange-hot); }
-.note { background: #F4EEFA; border-color: var(--purple); }
-.note .callout-label { color: var(--purple); }
-.warn { background: #FDEBF4; border-color: var(--magenta); }
-.warn .callout-label { color: var(--magenta); }
-.example { background: #E8F8FC; border-color: var(--cyan); }
-.example .callout-label { color: #087990; }
-.mistake { background: #FFF0F0; border-color: #D32F2F; }
-.mistake .callout-label { color: #C62828; }
+.step .body strong { color: var(--navy); display: block; margin-bottom: .1em; }
 
-.takeaway {
-  background: linear-gradient(270deg, #F4EEFA, #fff);
-  border: 1px solid #d9c8ec; border-radius: 8px;
-  padding: 0.65em 0.8em; margin: 0.85em 0;
+.try {
+  background: var(--green-soft); border: 2px solid #9fe0c0; border-radius: 16px;
+  padding: .7em .85em; margin: .7em 0;
 }
-.takeaway h3 { margin-top: 0; color: var(--purple); font-size: 0.92rem; }
+.try .label { color: var(--green); font-weight: 800; font-size: .78rem; display: block; margin-bottom: .2em; }
 
-.action-steps {
-  background: var(--bg-soft); border: 1px solid var(--rule);
-  border-radius: 8px; padding: 0.65em 0.8em; margin: 0.7em 0 0.9em;
+.safe {
+  background: #FFE8F2; border: 2px solid #ffb6d5; border-radius: 16px;
+  padding: .7em .85em; margin: .7em 0;
 }
-.action-steps h3 { margin-top: 0; font-size: 0.92rem; color: var(--navy); }
+.safe .label { color: #c2185b; font-weight: 800; font-size: .78rem; display: block; margin-bottom: .2em; }
+
+.idea {
+  background: var(--teal-soft); border: 2px solid #9fe4ef; border-radius: 16px;
+  padding: .7em .85em; margin: .7em 0;
+}
+.idea .label { color: #0b7f8f; font-weight: 800; font-size: .78rem; display: block; margin-bottom: .2em; }
 
 .prompt {
-  font-family: var(--font-ar);
-  font-size: 0.78rem; line-height: 1.45;
-  background: var(--navy); color: #F0F4FA;
-  padding: 0.6em 0.75em; border-radius: 8px;
-  margin: 0.35em 0 0.6em;
-  border-inline-start: 4px solid var(--orange);
-  white-space: pre-wrap;
+  background: #2A2450; color: #fff8ee; border-radius: 14px;
+  padding: .7em .85em; margin: .5em 0 .75em;
+  border-inline-start: 6px solid var(--orange);
+  font-weight: 600; white-space: pre-wrap; line-height: 1.55;
 }
-.prompt .en { color: #FFE0A3; }
 
-table {
-  width: 100%; border-collapse: collapse; margin: 0.5em 0 0.85em;
-  font-size: 0.78rem; line-height: 1.4;
+.fig {
+  margin: .4em 0 .55em; text-align: center;
+  background: var(--sky); border-radius: 14px; padding: .35em;
+  border: 2px solid #ffe0b8;
 }
-th, td {
-  border: 1px solid var(--rule); padding: 0.38em 0.48em;
-  text-align: right; vertical-align: top;
+.fig img {
+  width: 100%; max-height: 36mm; object-fit: cover; object-position: center;
+  border-radius: 10px; display: block;
 }
-th {
-  background: linear-gradient(90deg, var(--purple-deep), var(--purple));
-  color: #fff; font-weight: 700;
-}
-tr:nth-child(even) td { background: #FAF8FC; }
+.fig .cap { font-size: .74rem; color: var(--muted); font-weight: 700; margin-top: .22em; }
 
-.workflow {
-  font-size: 0.82rem; background: #FAF8FC;
-  border: 1px solid #e0d4f0; border-radius: 8px;
-  padding: 0.55em 0.7em; margin: 0.5em 0 0.75em;
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: .55em; margin: .6em 0 .9em; }
+.card {
+  background: var(--purple-soft); border-radius: 14px; padding: .65em .7em;
+  border: 2px solid #e2d4f3;
 }
-.workflow .flow {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.25em; margin-top: 0.35em;
-}
-.workflow .step {
-  background: linear-gradient(90deg, #FFF1DE, #F4EEFA);
-  color: var(--navy); padding: 0.18em 0.45em; border-radius: 4px; font-weight: 600;
-}
-.workflow .arrow { color: var(--orange); font-weight: 700; }
-
-.exercise {
-  border: 1px dashed var(--orange); border-radius: 8px;
-  padding: 0.55em 0.75em; margin: 0.6em 0 0.85em; background: #FFFCFA;
-}
-.exercise h4 {
-  margin-top: 0; color: var(--orange-hot); font-size: 0.78rem;
-}
+.card h4 { margin: 0 0 .2em; color: var(--purple); font-size: .92rem; }
+.card p { margin: 0; font-size: .88rem; font-weight: 600; color: var(--muted); }
 
 .project {
-  border-inline-start: 4px solid var(--purple);
-  padding: 0.1em 0 0.1em 0.7em; margin: 0.55em 0 0.85em;
+  background: #fff; border-radius: 16px; padding: .7em .8em; margin: .55em 0 .75em;
+  border: 2px solid var(--rule); border-inline-start: 6px solid var(--orange);
 }
-.project h3 { margin-top: 0; }
-.project .meta { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.3em; }
+.project h3 { margin: 0 0 .25em; color: var(--navy); }
+.project .meta { font-size: .82rem; color: var(--muted); font-weight: 700; margin-bottom: .3em; }
 
-.badge {
-  display: inline-block; font-size: 0.68rem; font-weight: 800;
-  background: #F4EEFA; color: var(--purple);
-  padding: 0.12em 0.4em; border-radius: 4px; margin-inline-start: 0.2em;
+.takeaway {
+  background: linear-gradient(270deg, var(--purple-soft), #fff);
+  border: 2px solid #e0d0f2; border-radius: 16px; padding: .75em .85em; margin: .9em 0;
 }
+.takeaway h3 { margin: 0 0 .3em; color: var(--purple); font-size: 1rem; }
 
-.small { font-size: 0.86rem; }
-.muted { color: var(--muted); }
-.colophon { font-size: 0.88rem; color: var(--muted); margin-top: 1.4em; }
-
-.hero-band {
-  display: flex; gap: 0.4em; flex-wrap: wrap; margin: 0.6em 0 0.9em;
-}
-.hero-band span {
-  background: var(--bg-soft); border: 1px solid var(--rule);
-  border-radius: 999px; padding: 0.2em 0.65em;
-  font-size: 0.72rem; font-weight: 700; color: var(--purple);
+.hero-pills { display: flex; flex-wrap: wrap; gap: .35em; margin: .5em 0 .9em; }
+.hero-pills span {
+  background: var(--orange-soft); color: #9a4b00; border-radius: 999px;
+  padding: .18em .65em; font-size: .75rem; font-weight: 800; border: 1px solid #ffd7a8;
 }
 
+.big-emoji { font-size: 1.4rem; }
+.colophon { margin-top: 1.2em; color: var(--muted); font-weight: 600; font-size: .9rem; }
 </style>
 </head>
 <body>
 <div class="screen-toolbar no-print">
-  <span><strong>الذكاء الاصطناعي</strong> · دليل SCHOOLERX · معاينة الطباعة (160×220 مم)</span>
-  <button onclick="window.print()">طباعة / حفظ PDF</button>
+  <span><strong>كتاب الأطفال</strong> · SCHOOLERX</span>
+  <button onclick="window.print()">طباعة / PDF</button>
 </div>
 <article class="book">
-
 <section class="cover" id="cover">
-  <img src="assets/cover.png" alt="غلاف كتاب الذكاء الاصطناعي — الدليل الشامل للمبتدئين — SCHOOLERX"/>
+  <img src="assets/cover.png" alt="غلاف كتاب الذكاء الاصطناعي للأطفال — SCHOOLERX"/>
 </section>
 
-<section class="front-matter" id="how-to-use">
-  <div class="chapter-num">مقدمة</div>
-  <h1 class="chapter-title">كيف تستخدم هذا الكتاب؟</h1>
-  <p class="lead">هذا الدليل صُمم للمبتدئين تماماً. ستتعلم ما هو الذكاء الاصطناعي، وكيف تختار الأداة المناسبة، وكيف تكتب أوامر قوية، وكيف تطبق <span class="en">AI</span> في عملك اليومي — دون الحاجة لأي خلفية تقنية.</p>
-  <div class="hero-band">
-    <span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Perplexity</span>
-    <span>NotebookLM</span><span>Veo</span><span>n8n</span><span>Make</span><span>Zapier</span>
+<section class="front-matter" id="hello">
+  <div class="chapter-num">مرحباً</div>
+  <h1 class="chapter-title">هذا الكتاب لك أنت!</h1>
+  <p class="lead">أهلاً يا بطل! هذا الكتاب يعلّمك الذكاء الاصطناعي كأنك تلعب لعبة جديدة. كلمات سهلة. خطوات واضحة. صور تساعدك.</p>
+  <figure class="fig"><img src="assets/kids/kids-meet-ai.jpg" alt="أنت + صديق ذكي على الحاسوب"/><figcaption class="cap">أنت + صديق ذكي على الحاسوب</figcaption></figure>
+  <div class="hero-pills">
+    <span>للأطفال</span><span>سهل جداً</span><span>خطوة بخطوة</span><span>مع صور</span>
   </div>
-  <h2>لمن هذا الكتاب؟</h2>
-  <p>الطلاب، المستقلون، رواد الأعمال، أصحاب المشاريع، المسوّقون، صنّاع المحتوى، موظفو المكاتب، وكل من يريد استخدام الذكاء الاصطناعي بثقة.</p>
-  <h2>ماذا ستستطيع أن تفعل؟</h2>
+  <h2>ماذا ستتعلّم؟</h2>
   <ul>
-    <li>تشرح مفاهيم الذكاء الاصطناعي بلغة بسيطة وتختار الأداة المناسبة لكل مهمة</li>
-    <li>تستخدم ChatGPT و Claude و Gemini و Perplexity و NotebookLM باحتراف</li>
-    <li>تكتب أوامر (Prompts) قوية للكتابة والبحث والتسويق والتحليل</li>
-    <li>تولّد صوراً وفيديوهات وصوتيات بأدوات حديثة</li>
-    <li>تبني أتمتة بسيطة وتفهم وكلاء الذكاء الاصطناعي (Agents)</li>
-    <li>تنفّذ مشاريع عملية يمكنك بيعها أو استخدامها فوراً</li>
+    <li>ما هو الذكاء الاصطناعي؟</li>
+    <li>كيف تفتح ChatGPT وتسأل سؤالاً</li>
+    <li>أصدقاء آخرين مثل Claude و Gemini</li>
+    <li>كيف تتكلم مع الذكاء الاصطناعي بوضوح</li>
+    <li>كيف تطلب منه أن يرسم لك صورة</li>
+    <li>كيف تبقى آمناً على الإنترنت</li>
   </ul>
-  <div class="callout tip"><span class="callout-label">نصيحة SCHOOLERX</span><p>أنشئ ملفاً اسمه <strong>دفتر أوامر الذكاء الاصطناعي</strong>. بعد كل فصل احفظ أفضل الأوامر وسير العمل. في نهاية الكتاب ستمتلك نظام تشغيل شخصياً للذكاء الاصطناعي.</p></div>
-  <h2>ملاحظات الطباعة</h2>
-  <p>الملف مُحسَّن لحجم <strong>160 × 220 مم</strong>. من المتصفح: طباعة ← حفظ كـ PDF ← فعّل خلفيات الرسومات.</p>
-  <p class="muted small">من إعداد <strong class="en">SCHOOLERX</strong> · إصدار 2026</p>
+  <div class="safe"><span class="label">قاعدة أمان ❤️</span><p>إذا احتجت حساباً أو بريداً إلكترونياً… اطلب مساعدة شخص كبير تثق به (أب، أم، معلّم).</p></div>
 </section>
 
 <section class="toc-page" id="toc">
-  <h1>المحتويات</h1>
+  <h1>ماذا داخل الكتاب؟</h1>
   <ul class="toc">
-    <li class="toc-part">الجزء 1 — فهم الذكاء الاصطناعي</li>
-    <li><span>1. ما هو الذكاء الاصطناعي؟</span><span class="dots"></span></li>
-    <li><span>2. كيف يعمل الذكاء الاصطناعي الحديث؟</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 2 — منظومة الأدوات</li>
-    <li><span>3. فهم فئات أدوات الذكاء الاصطناعي</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 3 — الأدوات الأساسية</li>
-    <li><span>4. نماذج اللغة الكبيرة (LLM)</span><span class="dots"></span></li>
-    <li><span>5. دليل ChatGPT الشامل</span><span class="dots"></span></li>
-    <li><span>6. دليل Claude الشامل</span><span class="dots"></span></li>
-    <li><span>7. دليل Gemini الشامل</span><span class="dots"></span></li>
-    <li><span>8. دليل Perplexity الشامل</span><span class="dots"></span></li>
-    <li><span>9. دليل NotebookLM الشامل</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 4 — هندسة الأوامر</li>
-    <li><span>10. أساسيات هندسة الأوامر</span><span class="dots"></span></li>
-    <li><span>11. أُطر كتابة الأوامر</span><span class="dots"></span></li>
-    <li><span>12. مكتبة أوامر احترافية</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 5 — توليد الصور</li>
-    <li><span>13. مقدمة إلى صور الذكاء الاصطناعي</span><span class="dots"></span></li>
-    <li><span>14. هندسة أوامر الصور</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 6 — توليد الفيديو</li>
-    <li><span>15. أساسيات فيديو الذكاء الاصطناعي</span><span class="dots"></span></li>
-    <li><span>16. دليل Veo</span><span class="dots"></span></li>
-    <li><span>17. Runway و Kling و Pika و Sora</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 7 — الصوت</li>
-    <li><span>18. الذكاء الاصطناعي الصوتي</span><span class="dots"></span></li>
-    <li><span>19. موسيقى الذكاء الاصطناعي</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 8 — الإنتاجية</li>
-    <li><span>20. الإنتاجية الشخصية</span><span class="dots"></span></li>
-    <li><span>21. إنتاجية الأعمال</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 9 — الأتمتة</li>
-    <li><span>22. أساسيات الأتمتة</span><span class="dots"></span></li>
-    <li><span>23. دليل n8n</span><span class="dots"></span></li>
-    <li><span>24. دليل Make</span><span class="dots"></span></li>
-    <li><span>25. دليل Zapier</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 10 — الوكلاء</li>
-    <li><span>26. فهم وكلاء الذكاء الاصطناعي</span><span class="dots"></span></li>
-    <li><span>27. بناء سير عمل الوكلاء</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 11 — المشاريع</li>
-    <li><span>28. عشرون مشروعاً كاملاً</span><span class="dots"></span></li>
-    <li class="toc-part">الجزء 12 — المستقبل</li>
-    <li><span>29. توجهات المستقبل</span><span class="dots"></span></li>
-    <li><span>30. خارطة طريق مهنية</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 1 — ما هو الذكاء الاصطناعي؟</li>
+    <li><span>1. صديق ذكي على الحاسوب</span><span class="dots"></span></li>
+    <li><span>2. أين تراه كل يوم؟</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 2 — ابدأ مع ChatGPT</li>
+    <li><span>3. افتح الموقع</span><span class="dots"></span></li>
+    <li><span>4. اصنع حساباً</span><span class="dots"></span></li>
+    <li><span>5. اسأل أول سؤال</span><span class="dots"></span></li>
+    <li><span>6. أسئلة ممتعة للتجربة</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 3 — أصدقاء آخرون</li>
+    <li><span>7. تعرّف على Claude</span><span class="dots"></span></li>
+    <li><span>8. تعرّف على Gemini</span><span class="dots"></span></li>
+    <li><span>9. أي صديق نختار؟</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 4 — كيف نتكلم معه؟</li>
+    <li><span>10. اطلب بوضوح</span><span class="dots"></span></li>
+    <li><span>11. أعطِه دوراً</span><span class="dots"></span></li>
+    <li><span>12. أضف تفاصيل</span><span class="dots"></span></li>
+    <li><span>13. ألعاب تدريب</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 5 — الصور</li>
+    <li><span>14. اطلب صورة</span><span class="dots"></span></li>
+    <li><span>15. صف الصورة ببساطة</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 6 — مرح إضافي</li>
+    <li><span>16. صوت وموسيقى</span><span class="dots"></span></li>
+    <li><span>17. فيديو قصير</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 7 — مشاريع ممتعة</li>
+    <li><span>18. عشرة مشاريع للأطفال</span><span class="dots"></span></li>
+    <li class="toc-part">القسم 8 — كن بطلاً آمناً</li>
+    <li><span>19. قواعد الأمان</span><span class="dots"></span></li>
+    <li><span>20. ماذا بعد؟</span><span class="dots"></span></li>
   </ul>
 </section>
 
 <section class="part-opener" id="part-1">
-  <div class="part-label">الجزء 1</div>
-  <h1>فهم الذكاء الاصطناعي</h1>
-  <p>ابدأ من هنا. ستفهم ما هو الذكاء الاصطناعي فعلاً، ولماذا أصبح في كل مكان، وكيف تنتج الأنظمة الحديثة إجابات مفيدة من أنماط البيانات.</p>
+  <div class="part-label">القسم 1</div>
+  <h1>ما هو الذكاء الاصطناعي؟</h1>
+  <p>هيا نفهم الفكرة الكبيرة بكلمات صغيرة.</p>
 </section>
 
 <section class="chapter" id="ch-1">
-  <div class="chapter-num">الفصل 1</div>
-  <h1 class="chapter-title">ما هو الذكاء الاصطناعي؟</h1>
+  <div class="chapter-num">الدرس 1</div>
+  <h1 class="chapter-title">صديق ذكي على الحاسوب</h1>
   
-<p class="lead">الذكاء الاصطناعي (<span class="en">Artificial Intelligence — AI</span>) هو برمجيات تؤدي مهاماً كانت تتطلب ذكاءً بشرياً: فهم اللغة، التعرف على الصور، تقديم التوصيات، أو إنشاء محتوى جديد.</p>
-<h2>التعريف</h2>
-<p>فكّر في الذكاء الاصطناعي كمحرك سريع جداً لمطابقة الأنماط. يدرس كميات هائلة من الأمثلة، يتعلم علاقات إحصائية، ثم يطبقها على مواقف جديدة. هو لا «يفكر» كالإنسان — لكنه ينتج مخرجات تبدو ذكية عند توجيهه جيداً.</p>
-<div class="callout example"><span class="callout-label">مثال واقعي</span><p>عندما يقترح Netflix فيلماً، أو يرتّب YouTube الفيديو التالي، أو يتوقع Google Maps الزحام — فإن نموذج ذكاء اصطناعي يقارن سلوكك بأنماط تعلمها من ملايين المستخدمين.</p></div>
-<h2>تاريخ مختصر (النسخة المفيدة)</h2>
+<p class="lead">الذكاء الاصطناعي هو برنامج ذكي يساعد الناس. ليس إنساناً حقيقياً. وليس وحشاً. هو مثل صديق على الشاشة يحب الإجابة والرسم والشرح.</p>
+<figure class="fig"><img src="assets/kids/kids-meet-ai.jpg" alt="صديقك الذكي جاهز للمساعدة"/><figcaption class="cap">صديقك الذكي جاهز للمساعدة</figcaption></figure>
+<div class="bubble">أنت: مرحبا! اشرح لي الساعة بطريقة مضحكة.</div>
+<div class="bubble me">الذكاء الاصطناعي: حسناً! الساعة مثل دائرة بيتزا…</div>
+<h2>ببساطة شديدة</h2>
 <ul>
-  <li><strong>الخمسينات–الثمانينات:</strong> أنظمة قواعد ومنطق مكتوبة يدوياً.</li>
-  <li><strong>التسعينات–2010:</strong> تعلّم آلي من البيانات (فلاتر البريد، التوصيات).</li>
-  <li><strong>2012+:</strong> التعلّم العميق جعل التعرف على الصور والصوت عملياً.</li>
-  <li><strong>2017+:</strong> معماريات Transformers فتحت باب نماذج اللغة الحديثة.</li>
-  <li><strong>2022–2026:</strong> الذكاء الاصطناعي التوليدي أصبح يومياً — ChatGPT والصور والفيديو والوكلاء.</li>
+  <li>تكتب له سؤالاً</li>
+  <li>هو يقرأ سؤالك</li>
+  <li>ثم يكتب لك جواباً</li>
 </ul>
-<h2>ثلاثة أنواع يجب أن تعرفها</h2>
-<table>
-<thead><tr><th>النوع</th><th>المعنى</th><th>مثال</th></tr></thead>
-<tbody>
-<tr><td><strong>ذكاء ضيق</strong></td><td>ممتاز في مهمة محددة</td><td>فلتر سبام، فتح بالوجه</td></tr>
-<tr><td><strong>توليدي</strong></td><td>ينشئ نصاً/صوراً/صوتاً/فيديو</td><td>ChatGPT، Midjourney، Veo</td></tr>
-<tr><td><strong>عام (AGI)</strong></td><td>ذكاء مرن بمستوى بشري</td><td>غير موجود بعد كمنتج</td></tr>
-</tbody>
-</table>
-<h2>لماذا يهم الآن؟</h2>
-<p>تحسّنت النماذج، وأصبحت الواجهات بمحادثة بسيطة، واتصلت بالبريد والمستندات والمتصفح. النتيجة: طبقة إنتاجية يومية وليس موضوع مختبر فقط.</p>
-<h3>أين تستخدمه بالفعل؟</h3>
-<table>
-<thead><tr><th>المنتج</th><th>ماذا يفعل الذكاء الاصطناعي؟</th></tr></thead>
-<tbody>
-<tr><td>Netflix / YouTube / TikTok</td><td>يرتب المحتوى ليبقيك متابعاً</td></tr>
-<tr><td>Google Maps</td><td>يتوقع المسارات والازدحام</td></tr>
-<tr><td>Amazon</td><td>يوصي بالمنتجات ويكشف الاحتيال</td></tr>
-<tr><td>التطبيقات البنكية</td><td>يرصد عمليات غير معتادة</td></tr>
-<tr><td>الرعاية الصحية</td><td>يساعد في التصوير والتوثيق</td></tr>
-</tbody>
-</table>
-<div class="callout mistake"><span class="callout-label">خرافة ← حقيقة</span>
-<ul>
-<li><strong>«الذكاء الاصطناعي واعٍ.»</strong> لا. هو يتنبأ بالكلمات أو البكسلات التالية.</li>
-<li><strong>«دائماً يقول الحقيقة.»</strong> لا. قد يخترع إجابات بثقة (هلوسة).</li>
-<li><strong>«سيستبدل كل الوظائف فوراً.»</strong> يغيّر المهام أولاً؛ من يستخدمه يتفوق على من يتجاهله.</li>
-<li><strong>«تحتاج للبرمجة.»</strong> لا. واجهة المحادثة كافية للبداية.</li>
-</ul>
-</div>
-
-<h2>الذكاء الاصطناعي في عملك غداً صباحاً</h2>
-<p>لا تنتظر «الخطة الكاملة». اختر مهمة واحدة متكررة اليوم: تلخيص بريد، صياغة منشور، تحضير اجتماع، أو شرح مفهوم لعميل. نفّذها مع نموذج لغة، ثم احفظ الأمر الناجح.</p>
-<div class="callout tip"><span class="callout-label">قاعدة 10 دقائق</span><p>إذا وفّرت 10 دقائق يومياً بمهمة واحدة، فأنت أمام عشرات الساعات سنوياً — قبل حتى أن تصل للأتمتة.</p></div>
-<div class="takeaway"><h3>الخلاصة</h3><ul><li>الذكاء الاصطناعي مطابقة أنماط وتوليد على نطاق واسع — ليس وعياً بشرياً.</li><li>أدوات اليوم ذكاء ضيق / توليدي.</li><li>أنت تستخدمه يومياً؛ المهارة الجديدة هي توجيهه بوعي.</li><li>تحقق دائماً من الحقائق المهمة.</li></ul></div>
-<div class="action-steps"><h3>خطوات عملية</h3><ol><li>اكتب خمسة تطبيقات تستخدمها يومياً وحدد أين يساعد الذكاء الاصطناعي.</li><li>افتح ChatGPT أو Claude أو Gemini واسأل: «اشرح لي الذكاء الاصطناعي كأنني في الـ14 مع 3 أمثلة يومية.»</li><li>أنشئ دفتر أوامرك الشخصي.</li></ol></div>
-<div class="exercise"><h4>تمرين — اكتشف الذكاء الاصطناعي من حولك</h4><p>اختر موقعاً للتسوق وتطبيقاً اجتماعياً. اكتب ثلاثة قرارات ذكية يتخذها كل منتج لأجلك (توصيات، ترتيب، بحث).</p></div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>اسمه بالإنجليزية <span class='en'>AI</span>. وبالعربية: الذكاء الاصطناعي. معناها: ذكاء مصنوع على الحاسوب.</p></div>
+<div class="takeaway"><h3>ماذا تعلّمنا؟</h3><ul><li>الذكاء الاصطناعي برنامج مساعد.</li><li>نتكلم معه بالكتابة (وأحياناً بالصوت).</li><li>هو ليس بشرياً… لكنه مفيد جداً.</li></ul></div>
 
 </section>
 
 <section class="chapter" id="ch-2">
-  <div class="chapter-num">الفصل 2</div>
-  <h1 class="chapter-title">كيف يعمل الذكاء الاصطناعي الحديث؟</h1>
+  <div class="chapter-num">الدرس 2</div>
+  <h1 class="chapter-title">أين تراه كل يوم؟</h1>
   
-<p class="lead">لا تحتاج شهادة علوم حاسوب. تحتاج نموذجاً ذهنياً بسيطاً حتى يتوقف السحر ويبدأ التحكم.</p>
-<h2>خمسة أركان</h2>
-<ol>
-  <li><strong>البيانات:</strong> نصوص، صور، صوت، أمثلة يتعلم منها النظام.</li>
-  <li><strong>التدريب:</strong> ضبط ملايين/مليارات المعاملات الداخلية لتحسين التنبؤ.</li>
-  <li><strong>النموذج:</strong> «العقل» المدرَّب الذي يستجيب لمدخلات جديدة.</li>
-  <li><strong>الاستدلال:</strong> استخدام النموذج للإجابة على أمرك.</li>
-  <li><strong>الأدوات والاسترجاع:</strong> بحث ويب، ملفاتك، حاسبات، تطبيقات.</li>
-</ol>
-<div class="callout note"><span class="callout-label">تشبيه</span><p>التدريب كالدراسة لسنوات. الاستدلال كأداء امتحان مفتوح في ثوانٍ. الاسترجاع كأن يُسمح لك بفتح ملف ملاحظات محدد أثناء الامتحان.</p></div>
-<h2>الشبكات العصبية والتعلم العميق</h2>
-<p>طبقات من وحدات حسابية بسيطة. الطبقات الأولى تلتقط أنماطاً بسيطة، واللاحقة أنماطاً أعقد (حروف ← كلمات ← أفكار).</p>
-<h2>Transformers والرموز Context</h2>
-<p>معمارية Transformers خلف نماذج اللغة الكبيرة. حيلتها الأساسية هي <strong>الانتباه</strong>: معرفة أي كلمات مهمة للتنبؤ. النماذج تقرأ <strong>Tokens</strong> (قطع نص) وليس كلمات فقط. <strong>نافذة السياق</strong> هي حجم الذاكرة القصيرة لما يمكن أن يراه النموذج دفعة واحدة.</p>
-<table>
-<thead><tr><th>المفهوم</th><th>ببساطة</th><th>لماذا يهمك؟</th></tr></thead>
-<tbody>
-<tr><td>Parameters</td><td>أوزان داخلية متعلَّمة</td><td>الأكبر ليس دائماً الأفضل</td></tr>
-<tr><td>Context window</td><td>الذاكرة العاملة</td><td>تحدد كم يمكنك لصقه مرة واحدة</td></tr>
-<tr><td>Fine-tuning</td><td>تدريب إضافي لتخصص</td><td>يحسّن أسلوباً أو مهمة ضيقة</td></tr>
-<tr><td>RAG / استرجاع</td><td>جلب مصادر ثم الإجابة</td><td>يربط الإجابات بملفاتك أو الويب</td></tr>
-<tr><td>هلوسة</td><td>خطأ بثقة عالية</td><td>تحقق من الأرقام والاقتباسات</td></tr>
-</tbody>
-</table>
-<div class="callout tip"><span class="callout-label">تطبيق عملي</span><p>80٪ من نتائج المبتدئين تأتي من أوامر أفضل + مصادر أفضل — لا من تبديل النماذج كل أسبوع.</p></div>
-
-<h2>لماذا يهلوس النموذج؟</h2>
-<p>لأنه يُكافأ على الطلاقة لا على التحقق. عندما ينقصه سياق أو تطلب تفاصيل نادرة، يملأ الفراغ بما يبدو منطقياً. الحل: مصادر، قيود، وطلب «قل لا أعرف إن لم تكن متأكداً».</p>
-<div class="prompt">أجب فقط مما في النص المرفق. إن لم تجد المعلومة فقل صراحة: غير مذكور. لا تخمّن الأرقام أو الأسماء.</div>
-<div class="takeaway"><h3>الخلاصة</h3><ul><li>النماذج تتنبأ بأنماط؛ ليست قاعدة بيانات حقيقة واحدة افتراضياً.</li><li>الرموز ونوافذ السياق تضع حدوداً صلبة.</li><li>الاسترجاع والأدوات يقللان الهلوسة عند الحاجة للدقة.</li><li>الأمر (Prompt) هو سطح التحكم الأساسي لديك.</li></ul></div>
+<p class="lead">ربما تستخدمه الآن دون أن تعرف اسمه!</p>
+<div class="cards">
+  <div class="card"><h4>يوتيوب</h4><p>يقترح فيديوهات قد تحبها</p></div>
+  <div class="card"><h4>الألعاب</h4><p>شخصيات تتحرك بذكاء</p></div>
+  <div class="card"><h4>الخرائط</h4><p>تُظهر الطريق الأسرع</p></div>
+  <div class="card"><h4>الصور</h4><p>الهاتف يرتّب صور وجهك</p></div>
+</div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>بعض الأدوات ماهرة في شيء واحد (مثل تمييز الوجوه). وبعضها يقدر يكتب ويرسم ويشرح. لا تحتاج حفظ أسماء معقدة. فقط تذكّر: هناك أدوات كثيرة… ونحن سنتعلم أشهرها.</p></div>
+<div class="try"><span class="label">جرّب الآن ★</span><p>اسأل شخصاً كبيراً: «أين نرى الذكاء الاصطناعي في بيتنا؟» اكتبوا معاً 3 أشياء.</p></div>
 
 </section>
 
 <section class="part-opener" id="part-2">
-  <div class="part-label">الجزء 2</div>
-  <h1>منظومة أدوات الذكاء الاصطناعي</h1>
-  <p>الذكاء الاصطناعي ليس تطبيقاً واحداً. هذه خريطة تساعدك على الاختيار بدل جمع الاشتراكات عشوائياً.</p>
+  <div class="part-label">القسم 2</div>
+  <h1>ابدأ مع ChatGPT</h1>
+  <p>هيا نفتح أشهر صديق ذكي… خطوة خطوة.</p>
 </section>
 
 <section class="chapter" id="ch-3">
-  <div class="chapter-num">الفصل 3</div>
-  <h1 class="chapter-title">فهم فئات أدوات الذكاء الاصطناعي</h1>
+  <div class="chapter-num">الدرس 3</div>
+  <h1 class="chapter-title">افتح الموقع</h1>
   
-<p class="lead">عندما يقول أحدهم «أستخدم الذكاء الاصطناعي» اسأله: أي فئة؟ النص، البحث، الصور، الفيديو، الصوت، البرمجة، الإنتاجية، الأتمتة، أم الوكلاء؟</p>
-<table>
-<thead><tr><th>الفئة</th><th>أمثلة</th><th>أفضل استخدام</th></tr></thead>
-<tbody>
-<tr><td>توليد النص</td><td>ChatGPT، Claude، Gemini، DeepSeek</td><td>الكتابة والتفكير والتخطيط</td></tr>
-<tr><td>بحث ذكي</td><td>Perplexity، You.com</td><td>أسئلة حديثة مع مصادر</td></tr>
-<tr><td>بحث عميق / ملفات</td><td>NotebookLM، أوضاع Research</td><td>تقارير ودراسة مصادرك</td></tr>
-<tr><td>صور</td><td>Midjourney، Flux، DALL·E، Ideogram</td><td>إعلانات، ثمنيلز، مفاهيم</td></tr>
-<tr><td>فيديو</td><td>Veo، Sora، Runway، Kling، Pika</td><td>مقاطع قصيرة وستوري بورد</td></tr>
-<tr><td>صوت</td><td>ElevenLabs، Suno، Udio</td><td>تعليق صوتي وموسيقى مسودة</td></tr>
-<tr><td>برمجة</td><td>Cursor، Copilot، Replit AI</td><td>بناء برمجيات أسرع</td></tr>
-<tr><td>إنتاجية</td><td>Notion AI، Grammarly، Fireflies</td><td>اجتماعات وبريد وملاحظات</td></tr>
-<tr><td>أتمتة</td><td>Make، Zapier، n8n</td><td>ربط التطبيقات بسير عمل</td></tr>
-<tr><td>وكلاء</td><td>OpenAI Agents، Autogen workflows</td><td>أهداف متعددة الخطوات (بإشراف)</td></tr>
-</tbody>
-</table>
-<div class="callout tip"><span class="callout-label">حزمة البداية لمعظم الناس</span><p><strong>ChatGPT أو Claude</strong> (تفكير/كتابة) + <strong>Perplexity</strong> (بحث ويب) + <strong>NotebookLM</strong> (ملفاتك) + أداة صور واحدة. أضف الأتمتة فقط عندما تتكرر مهمة أسبوعياً.</p></div>
+<p class="lead">سنذهب إلى موقع <span class="en">ChatGPT</span>. اتبع الخطوات بهدوء.</p>
+<div class="step"><div class="num">1</div><div class="body"><strong>افتح المتصفح</strong><div>مثل Chrome أو أي متصفح عندك. هذا البرنامج الذي تفتح به الإنترنت.</div></div></div>
+<div class="step"><div class="num">2</div><div class="body"><strong>اضغط خانة الكتابة فوق</strong><div>في أعلى الصفحة يوجد مكان للكتابة (شريط العنوان).</div></div></div>
+<figure class="fig"><img src="assets/kids/kids-open-chatgpt.jpg" alt="اكتب chatgpt.com في الأعلى"/><figcaption class="cap">اكتب chatgpt.com في الأعلى</figcaption></figure>
+<div class="step"><div class="num">3</div><div class="body"><strong>اكتب هذا</strong><div>اكتب بالإنجليزية بالضبط: <strong class="en">chatgpt.com</strong> ثم اضغط Enter.</div></div></div>
+<div class="step"><div class="num">4</div><div class="body"><strong>انتظر الصفحة</strong><div>ستفتح صفحة ChatGPT. إذا لم تفتح، اطلب مساعدة شخص كبير.</div></div></div>
+<div class="safe"><span class="label">قاعدة أمان ❤️</span><p>لا تدخل إلى مواقع غريبة تشبه الاسم. الموقع الصحيح: <span class='en'>chatgpt.com</span></p></div>
+<div class="try"><span class="label">جرّب الآن ★</span><p>افتح المتصفح الآن واكتب <span class='en'>chatgpt.com</span>. هل ظهرت الصفحة؟ ضع علامة ✓</p></div>
 
-<h2>مصفوفة اختيار سريعة</h2>
-<table>
-<thead><tr><th>إذا كان هدفك...</th><th>ابدأ بـ</th></tr></thead>
-<tbody>
-<tr><td>كتابة أو تفكير</td><td>ChatGPT أو Claude</td></tr>
-<tr><td>حقائق حديثة مع روابط</td><td>Perplexity</td></tr>
-<tr><td>أسئلة على ملفاتك</td><td>NotebookLM</td></tr>
-<tr><td>صورة لحملة</td><td>ChatGPT Images أو Ideogram</td></tr>
-<tr><td>تكرار أسبوعي بين تطبيقات</td><td>Zapier أو Make</td></tr>
-</tbody>
-</table>
-<div class="action-steps"><h3>خطوات عملية</h3><ol><li>اكتب أهم 10 مهام متكررة في عملك.</li><li>صنّف كل مهمة ضمن فئة من هذا الفصل.</li><li>اختر فجوة واحدة وثبّت الأداة الناقصة هذا الأسبوع فقط.</li></ol></div>
-
-</section>
-
-<section class="part-opener" id="part-3">
-  <div class="part-label">الجزء 3</div>
-  <h1>الأدوات الأساسية</h1>
-  <p>خمس أدوات تغطي معظم العمل من مبتدئ إلى محترف. أتقنها مرة؛ وستنقل المهارة إلى أي أداة لاحقة.</p>
 </section>
 
 <section class="chapter" id="ch-4">
-  <div class="chapter-num">الفصل 4</div>
-  <h1 class="chapter-title">نماذج اللغة الكبيرة (LLM)</h1>
+  <div class="chapter-num">الدرس 4</div>
+  <h1 class="chapter-title">اصنع حساباً</h1>
   
-<p class="lead">نموذج اللغة الكبير هو محرك مدرَّب على نصوص هائلة للتنبؤ باللغة وتوليدها. الشات بوت واجهة؛ و<span class="en">LLM</span> هو المحرك.</p>
-<table>
-<thead><tr><th>العائلة</th><th>الشركة</th><th>نقطة القوة</th></tr></thead>
-<tbody>
-<tr><td><strong>GPT</strong></td><td>OpenAI</td><td>شامل، أدوات، منظومة واسعة</td></tr>
-<tr><td><strong>Claude</strong></td><td>Anthropic</td><td>سياق طويل وكتابة دقيقة</td></tr>
-<tr><td><strong>Gemini</strong></td><td>Google</td><td>اندماج مع Google Workspace</td></tr>
-<tr><td><strong>DeepSeek / Llama / Mistral</strong></td><td>متعددة</td><td>قيمة، أوزان مفتوحة، كفاءة</td></tr>
-</tbody>
-</table>
-<div class="callout warn"><span class="callout-label">خصوصية</span><p>لا تلصق أسراراً أو كلمات مرور أو بيانات مالية غير منشورة أو بيانات أشخاص آخرين في أدوات استهلاكية إلا إذا سمحت خطتك وسياستك بذلك.</p></div>
-<div class="takeaway"><h3>الخلاصة</h3><ul><li>LLM = محرك لغة؛ الشات = منتج بأدوات وواجهة.</li><li>اختر حسب سير عملك لا حسب الضجيج.</li><li>استخدم أوضاع البحث/التفكير عند الحاجة.</li></ul></div>
+<p class="lead">للحفظ والمتابعة تحتاج حساباً. افعل هذا مع شخص كبير.</p>
+<figure class="fig"><img src="assets/kids/kids-create-account.jpg" alt="إنشاء حساب مع مساعدة كبيرة"/><figcaption class="cap">إنشاء حساب مع مساعدة كبيرة</figcaption></figure>
+<div class="step"><div class="num">1</div><div class="body"><strong>ابحث عن زر التسجيل</strong><div>قد ترى كلمات مثل Sign up أو إنشاء حساب.</div></div></div>
+<div class="step"><div class="num">2</div><div class="body"><strong>استخدم بريداً بإذن</strong><div>الشخص الكبير يضع بريداً إلكترونياً خاصاً به أو مناسباً لك.</div></div></div>
+<div class="step"><div class="num">3</div><div class="body"><strong>كلمة السر سرّية</strong><div>لا تشارك كلمة السر مع أصدقاء الصف. فقط مع ولي أمرك إن احتجت.</div></div></div>
+<div class="step"><div class="num">4</div><div class="body"><strong>أكّد الحساب</strong><div>أحياناً تصل رسالة إلى البريد. الشخص الكبير يفتحها ويكمل.</div></div></div>
+<div class="safe"><span class="label">قاعدة أمان ❤️</span><p>لا تكتب اسم مدرستك الحقيقي، عنوان بيتك، أو رقم هاتف داخل المحادثة.</p></div>
 
 </section>
 
 <section class="chapter" id="ch-5">
-  <div class="chapter-num">الفصل 5</div>
-  <h1 class="chapter-title">دليل ChatGPT الشامل</h1>
+  <div class="chapter-num">الدرس 5</div>
+  <h1 class="chapter-title">اسأل أول سؤال</h1>
   
-<p class="lead">ChatGPT هو المنزل الأول لكثير من المبتدئين: محادثة، صياغة، تحليل، صور، صوت، وأدوات مخصصة.</p>
-<h2>البداية</h2>
-<ol>
-  <li>أنشئ حساباً من الموقع الرسمي.</li>
-  <li>ابدأ بالمجان لتتعلم؛ رقِّ خطتك عند الحاجة لحدود أعلى أو نماذج أقوى.</li>
-  <li>اضبط التعليمات المخصصة: من أنت؟ وكيف تريد الإجابات؟</li>
-</ol>
-<h2>ميزات مهمة</h2>
-<table>
-<thead><tr><th>الميزة</th><th>استخدمها لـ</th></tr></thead>
-<tbody>
-<tr><td>Projects</td><td>تجميع محادثات وملفات لمشروع واحد</td></tr>
-<tr><td>Memory</td><td>تذكر تفضيلاتك (راجعها دورياً)</td></tr>
-<tr><td>Canvas</td><td>تحرير مستندات طويلة جنباً إلى جنب</td></tr>
-<tr><td>Search / Deep Research</td><td>معلومات أحدث وتقارير أوسع</td></tr>
-<tr><td>Images / Voice / Custom GPTs</td><td>صور، صوت، متخصصون قابلون لإعادة الاستخدام</td></tr>
-</tbody>
-</table>
-<div class="workflow"><strong>تسليم للعميل</strong><div class="flow"><span class="step">موجز في Project</span><span class="arrow">←</span><span class="step">هيكل</span><span class="arrow">←</span><span class="step">مسودة</span><span class="arrow">←</span><span class="step">نقد</span><span class="arrow">←</span><span class="step">صيغة نهائية</span></div></div>
-<div class="prompt">أنت محرر تسويق أول.
-الهدف: كتابة قسم Hero لصفحة هبوط لتطبيق ميزانية للمستقلين.
-الجمهور: مستقلون 25–40 يشعرون بإرهاق الضرائب.
-النبرة: واضحة وواثقة بلا مبالغة.
-المطلوب: عنوان + عنوان فرعي + 3 فوائد + زر CTA.
-قيود: العنوان أقل من 60 حرفاً؛ تجنب كلمات مثل «ثوري».</div>
-<h2>30 مثالاً عملياً</h2>
-<ol class="small">
-<li>إعادة كتابة بريد ليصبح أقصر وألطف</li>
-<li>تحويل ملاحظات اجتماع إلى مهام بمالكين</li>
-<li>خطة دراسة لامتحان بتاريخ محدد</li>
-<li>مقارنة منتجين في جدول</li>
-<li>أسئلة مقابلة لوظيفة</li>
-<li>منشور LinkedIn من نقاط</li>
-<li>تلخيص عقد بلغة بسيطة (ثم مراجعة قانونية)</li>
-<li>تقويم محتوى لـ 30 يوماً</li>
-<li>سيناريو تفاوض لزيادة راتب</li>
-<li>بطاقات مراجعة من ملاحظات محاضرة</li>
-<li>عناوين SEO ووصف Meta</li>
-<li>استبيان عملاء من 10 أسئلة</li>
-<li>تمثيل دور عميل غاضب</li>
-<li>تحويل مقال إلى سلسلة تغريدات</li>
-<li>خط زمني لمشروع غامض</li>
-<li>مسودة متطلبات منتج</li>
-<li>تبسيط فقرة تقنية للمدراء</li>
-<li>أسماء علامة تجارية مقترحة</li>
-<li>ملاحظات بودكاست جاهزة</li>
-<li>ردود على اعتراضات المبيعات</li>
-<li>تحليل سيرة ذاتية مقابل وظيفة</li>
-<li>إجراءات تشغيلية من وصف فوضوي</li>
-<li>أجندة ورشة عمل بتوقيتات</li>
-<li>ملخص تنفيذي من ملاحظات تحليلات</li>
-<li>قائمة مراجعة أسبوعية شخصية</li>
-<li>إعادة كتابة صفحة «من نحن» بثلاث نبرات</li>
-<li>استخراج أسئلة شائعة من مركز مساعدة</li>
-<li>بطاقة منافسة من ملاحظات</li>
-<li>رسائل ترحيب لتجربة SaaS</li>
-<li>قالب التقاط معرفة شخصية</li>
-</ol>
-<div class="callout mistake"><span class="callout-label">أخطاء شائعة</span><ul><li>أمر غامض لمرة واحدة («اكتب خطة تسويق»).</li><li>تصديق مصادر دون فتحها.</li><li>وضع بيانات سرية في المحادثة.</li><li>عدم التكرار — الجودة غالباً في المسودة 2–4.</li></ul></div>
-
-<h2>إعداد احترافي خلال 15 دقيقة</h2>
-<ol>
-<li>اكتب في التعليمات المخصصة: دورك، جمهورك، نبرة كتابتك، وصيغك المفضلة (جداول، نقاط، خطوات).</li>
-<li>أنشئ Project لكل عميل أو مساق دراسي، وارفع ملفين إلى ثلاثة ملفات مرجعية فقط (لا عشرات الملفات العشوائية).</li>
-<li>احفظ أوامر متكررة كقوالب: موجز محتوى، رد بريد، تلخيص اجتماع، نقد مسودة.</li>
-</ol>
-<div class="callout tip"><span class="callout-label">نصيحة</span><p>اطلب دائماً مسودة ثم نقداً ذاتياً: «قيّم إجابتك مقابل قائمتي: وضوح، أمثلة، دقة، وإيجاز. ثم حسّن.»</p></div>
-<div class="prompt">راجع هذه المسودة كمحرر صارم. أعطني جدولاً: المشكلة / لماذا تهم / إعادة صياغة مقترحة. ثم أعط النسخة النهائية بعد الإصلاح.</div>
-<div class="action-steps"><h3>خطوات عملية</h3><ol><li>اضبط التعليمات المخصصة اليوم.</li><li>أنشئ Project لمجال عملك الرئيسي.</li><li>احفظ خمسة أوامر في دفترك.</li></ol></div>
+<p class="lead">الآن الجزء الممتع: اكتب سؤالاً واضغط إرسال.</p>
+<figure class="fig"><img src="assets/kids/kids-ask-ai.jpg" alt="اكتب سؤالك في الصندوق الأسفل"/><figcaption class="cap">اكتب سؤالك في الصندوق الأسفل</figcaption></figure>
+<div class="step"><div class="num">1</div><div class="body"><strong>ابحث عن صندوق الكتابة</strong><div>عادة في أسفل الصفحة.</div></div></div>
+<div class="step"><div class="num">2</div><div class="body"><strong>اكتب سؤالاً سهلاً</strong><div>مثلاً: «اشرح لي القمر كأنني طفل 8 سنوات.»</div></div></div>
+<div class="step"><div class="num">3</div><div class="body"><strong>اضغط إرسال</strong><div>زر السهم أو Enter.</div></div></div>
+<div class="step"><div class="num">4</div><div class="body"><strong>اقرأ الجواب</strong><div>إذا لم تفهم… اكتب: «اشرح أسهل.»</div></div></div>
+<div class="bubble">مثال سؤال جيد:<br/>علّمني جدول 7 بطريقة لعبة ممتعة.</div>
+<div class="try"><span class="label">جرّب الآن ★</span><p>اسأل الآن: «أعطني نكتة قصيرة عن القطط.» ثم اسأل: «أعطني نكتة أخرى.»</p></div>
+<div class="takeaway"><h3>ماذا تعلّمنا؟</h3><ul><li>نكتب في الصندوق السفلي.</li><li>إذا صعب الجواب نطلب شرحاً أسهل.</li><li>يمكن سؤال أكثر من مرة.</li></ul></div>
 
 </section>
 
 <section class="chapter" id="ch-6">
-  <div class="chapter-num">الفصل 6</div>
-  <h1 class="chapter-title">دليل Claude الشامل</h1>
+  <div class="chapter-num">الدرس 6</div>
+  <h1 class="chapter-title">أسئلة ممتعة للتجربة</h1>
   
-<p class="lead">يتفوق Claude في المستندات الطويلة، التحليل الحذر، الكتابة المتأنية، و<span class="en">Artifacts</span> القابلة للمراجعة.</p>
-<ul>
-<li><strong>سياق طويل:</strong> تقارير وفصول وملخصات كود</li>
-<li><strong>Projects:</strong> تعليمات ومعرفة ثابتة لمساحة عمل</li>
-<li><strong>Artifacts:</strong> مستند أو كود أو أداة صغيرة في لوحة جانبية</li>
-</ul>
-<div class="workflow"><strong>مقال طويل</strong><div class="flow"><span class="step">الصق الموجز والمصادر</span><span class="arrow">←</span><span class="step">اطلب هيكلاً</span><span class="arrow">←</span><span class="step">وافق عليه</span><span class="arrow">←</span><span class="step">اكتب قسماً بقسم</span><span class="arrow">←</span><span class="step">حرر للصوت</span></div></div>
-<div class="prompt">تعليمات المشروع: أنت شريكي التحريري لمحتوى عملي.
-دائماً: اسأل إن كان الموجز غامضاً؛ فضّل أمثلة ملموسة؛ أشر إلى الادعاءات غير المدعومة.
-الجمهور الافتراضي: مبتدئون أذكياء.</div>
-<div class="callout tip"><span class="callout-label">متى تختار Claude؟</span><p>عندما يكون المدخل طويلاً أو يجب أن يبدو النص بشرياً ودقيقاً. اختر بحثاً ذكياً أولاً إن احتجت مصادر ويب حية.</p></div>
-
-<h2>ثمانية أوامر قوية لـ Claude</h2>
-<div class="prompt">باستخدام معرفة المشروع، اكتب عرضاً للعميل [اسم]. تضمّن المشكلة والخطة والجدول الزمني والافتراضات والأسئلة المفتوحة. لا تخترع أسعاراً.</div>
-<div class="prompt">حوّل هذا النص الفوضوي إلى إجراء تشغيلي: المالك، المحفز، الأدوات، الخطوات، فحص الجودة، مسار التصعيد.</div>
-<div class="prompt">أنشئ Artifact: إحاطة تنفيذية من صفحة واحدة من هذه الملاحظات.</div>
-<div class="callout mistake"><span class="callout-label">أخطاء شائعة</span><ul><li>رفع كل الملفات «للاحتياط» بدل انتقائها.</li><li>طلب إجابة نهائية قبل فحص الفجوات.</li><li>اعتبار Artifact نهائياً دون مراجعة بشرية.</li></ul></div>
+<p class="lead">انسخ فكرة… وغيّرها كما تحب.</p>
+<div class="prompt">اشرح لي البرق كأنني في الصف الثاني.</div>
+<div class="prompt">اخترع قصة قصيرة عن روبوت يحب الآيس كريم.</div>
+<div class="prompt">أعطني 5 أفكار لرسم سهل بالألوان.</div>
+<div class="prompt">ساعدني أرتّب حقيبتي للمدرسة غداً في 4 خطوات.</div>
+<div class="prompt">حوّل هذه الجملة إلى لغز مضحك: الشمس تشرق صباحاً.</div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>إذا أجاب بشيء غريب أو خطأ… قل لشخص كبير. الذكاء الاصطناعي يخطئ أحياناً.</p></div>
 
 </section>
 
-<section class="chapter" id="ch-7">
-  <div class="chapter-num">الفصل 7</div>
-  <h1 class="chapter-title">دليل Gemini الشامل</h1>
-  
-<p class="lead">قيمة Gemini تظهر بقوة إن كان عملك يعيش في Gmail و Docs و Drive و Workspace.</p>
-<table>
-<thead><tr><th>التطبيق</th><th>استخدام عالي القيمة</th></tr></thead>
-<tbody>
-<tr><td>Gmail</td><td>مسودات ردود، اختصار خيوط، استخراج مهام</td></tr>
-<tr><td>Docs</td><td>هيكلة، إعادة كتابة، تلخيص تعليقات</td></tr>
-<tr><td>Drive</td><td>أسئلة عبر ملفاتك المتاحة</td></tr>
-<tr><td>Sheets</td><td>شرح صيغ وخطط تنظيف أعمدة</td></tr>
-</tbody>
-</table>
-<div class="workflow"><strong>من بريد فوضوي إلى خطة</strong><div class="flow"><span class="step">اختر الخيط</span><span class="arrow">←</span><span class="step">لخّص القرارات</span><span class="arrow">←</span><span class="step">صغ رداً</span><span class="arrow">←</span><span class="step">أنشئ قائمة مهام</span><span class="arrow">←</span><span class="step">جدول المتابعات</span></div></div>
-<div class="callout warn"><span class="callout-label">تحقق دائماً</span><p>قد يخطئ في قراءة خيط بريد. للالتزامات والمال والصياغة القانونية راجع النص بنفسك.</p></div>
+<section class="part-opener" id="part-3">
+  <div class="part-label">القسم 3</div>
+  <h1>أصدقاء آخرون</h1>
+  <p>ChatGPT ليس الوحيد. هناك أصدقاء أذكياء آخرون.</p>
+</section>
 
-<h2>سير عمل Gmail → Docs</h2>
-<ol>
-<li>اطلب ملخص الخيط: قرارات، عوائق، أشخاص، مواعيد.</li>
-<li>اطلب مسودة رد بنبرة محددة وطول محدد.</li>
-<li>تحقق من الأسماء والتواريخ والوعود قبل الإرسال.</li>
-<li>انقل نقاط العمل إلى Doc أو قائمة مهام.</li>
-</ol>
-<div class="prompt">لخّص خيط Gmail هذا إلى قرارات وأسئلة مفتوحة ومتابعات موعودة ومخاطر. اذكر تاريخ الرسالة لكل التزام.</div>
+<section class="chapter" id="ch-7">
+  <div class="chapter-num">الدرس 7</div>
+  <h1 class="chapter-title">تعرّف على Claude</h1>
+  
+<p class="lead"><span class="en">Claude</span> صديق ذكي آخر. كثير من الناس يحبونه للكتابة الطويلة والشرح الهادئ.</p>
+<figure class="fig"><img src="assets/kids/kids-three-friends.jpg" alt="ChatGPT و Claude و Gemini أصدقاء مساعدون"/><figcaption class="cap">ChatGPT و Claude و Gemini أصدقاء مساعدون</figcaption></figure>
+<h2>متى تجربه؟</h2>
+<ul>
+  <li>عندما تريد قصة أطول</li>
+  <li>عندما تريد تلخيص درس بهدوء</li>
+  <li>عندما تريد مساعدة في ترتيب أفكارك</li>
+</ul>
+<div class="step"><div class="num">1</div><div class="body"><strong>افتح موقعه مع شخص كبير</strong><div>ابحثوا معاً عن Claude AI من الشركة Anthropic.</div></div></div>
+<div class="step"><div class="num">2</div><div class="body"><strong>سجّل الدخول</strong><div>مثل أي موقع… بمساعدة كبيرة.</div></div></div>
+<div class="step"><div class="num">3</div><div class="body"><strong>اسأله بنفس أسلوب ChatGPT</strong><div>اكتب بوضوح واطلب شرحاً سهلاً.</div></div></div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>فكّر هكذا: ChatGPT صديق سريع وكثير المهارات. Claude صديق هادئ يحب الشرح الجميل.</p></div>
 
 </section>
 
 <section class="chapter" id="ch-8">
-  <div class="chapter-num">الفصل 8</div>
-  <h1 class="chapter-title">دليل Perplexity الشامل</h1>
+  <div class="chapter-num">الدرس 8</div>
+  <h1 class="chapter-title">تعرّف على Gemini</h1>
   
-<p class="lead">محرك إجابات: سؤال ← توليف مع استشهادات. استخدمه عندما تهم الحداثة والمصادر أكثر من الإبداع الأدبي.</p>
+<p class="lead"><span class="en">Gemini</span> من Google. مفيد إذا كنت تستخدم أدوات Google.</p>
 <ul>
-<li>اسأل بدقة (سنة، منطقة، جمهور، مصادر أولية).</li>
-<li>افتح الاستشهادات — لا تثق بالملخص وحده.</li>
-<li>ضيّق بالمتابعات: تناقضات، تكاليف، بدائل.</li>
+  <li>يساعد في الشرح والبحث</li>
+  <li>يرتبط أحياناً بخدمات Google</li>
+  <li>طريقة السؤال نفسها: اكتب بوضوح!</li>
 </ul>
-<div class="prompt">ما أبرز الفروقات بين Zapier و Make و n8n لفريق تسويق من 5 أشخاص في 2026؟
-القيود: قارن شكل التسعير ومنحنى التعلم وأفضل حالات الاستخدام.
-المخرجات: جدول + توصية. فضّل مصادر حديثة مع ذكرها.</div>
-<div class="callout tip"><span class="callout-label">ساندويتش البحث</span><p>Perplexity للمصادر → Claude/ChatGPT لصياغة السرد → أنت للاستنتاج والصوت.</p></div>
-
-<h2>نظافة الاستشهادات</h2>
-<ul>
-<li>افتح كل رابط مهم؛ قيّم: مصدر أولي أم رأي؟ حديث أم قديم؟</li>
-<li>اطلب المقارنة بصيغة جدول ثم انقل الصياغة النهائية إلى Claude/ChatGPT بنبرتك.</li>
-<li>للمواضيع الحساسة (مال، صحة، قانون) اعتبر Perplexity نقطة انطلاق لا حكماً نهائياً.</li>
-</ul>
+<div class="try"><span class="label">جرّب الآن ★</span><p>مع شخص كبير: افتحوا Gemini واسألوا: «علّمني دورة الماء في الطبيعة بكلمات أطفال.»</p></div>
 
 </section>
 
 <section class="chapter" id="ch-9">
-  <div class="chapter-num">الفصل 9</div>
-  <h1 class="chapter-title">دليل NotebookLM الشامل</h1>
+  <div class="chapter-num">الدرس 9</div>
+  <h1 class="chapter-title">أي صديق نختار؟</h1>
   
-<p class="lead">مساعد بحث مربوط بمصادرك. ترفع المواد فيجيب منها — مثالي للدراسة والإحاطات وقواعد المعرفة.</p>
-<div class="workflow"><strong>حلقة NotebookLM</strong><div class="flow"><span class="step">أنشئ دفترًا</span><span class="arrow">←</span><span class="step">أضف مصادر</span><span class="arrow">←</span><span class="step">اسأل أسئلة مربوطة</span><span class="arrow">←</span><span class="step">ولّد دليل دراسة / FAQ</span><span class="arrow">←</span><span class="step">صدّر إلى مستنداتك</span></div></div>
-<table>
-<thead><tr><th>الدور</th><th>فكرة دفتر</th></tr></thead>
-<tbody>
-<tr><td>مؤسس</td><td>أسئلة مستثمرين من العرض والسرد المالي</td></tr>
-<tr><td>مسوّق</td><td>صوت العلامة + حملات سابقة → مولّد موجزات</td></tr>
-<tr><td>دعم</td><td>مركز مساعدة + سياسات → مسودات بإسناد</td></tr>
-<tr><td>طالب</td><td>محاضرات PDF → اختبارات وملخصات صوتية</td></tr>
-</tbody>
-</table>
-<div class="callout tip"><span class="callout-label">قاعدة الجودة</span><p>مصادر رديئة = دفتر رديء. انتقِ المصادر. قسّم المواضيع المتشعبة على دفاتر متعددة.</p></div>
-
-<h2>سيناريوهات أعمال سريعة</h2>
-<ul>
-<li><strong>فريق مبيعات:</strong> دفتر عروض + اعتراضات شائعة → سكربتات مكالمة.</li>
-<li><strong>مؤثر/صانع محتوى:</strong> دفتر أفضل منشوراتك → مولّد أفكار بنفس الصوت.</li>
-<li><strong>استشاري:</strong> ملاحظات اكتشاف العميل → هيكل مقترح مشروع.</li>
-</ul>
-<div class="callout tip"><span class="callout-label">نصيحة</span><p>اسأل دائماً: «ما الذي لا تغطيه مصادري وما زلت أحتاجه؟»</p></div>
+<p class="lead">لا تحتاج حفظ جداول معقدة. استخدم هذه القاعدة الذهبية:</p>
+<div class="cards">
+  <div class="card"><h4>للسؤال العام</h4><p>ابدأ بـ ChatGPT</p></div>
+  <div class="card"><h4>للشرح الطويل</h4><p>جرّب Claude</p></div>
+  <div class="card"><h4>مع عالم Google</h4><p>جرّب Gemini</p></div>
+  <div class="card"><h4>مهم جداً</h4><p>اسأل شخصاً كبيراً دائماً</p></div>
+</div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>الأهم ليس اسم الأداة… الأهم أن تسأل سؤالاً واضحاً.</p></div>
 
 </section>
 
 <section class="part-opener" id="part-4">
-  <div class="part-label">الجزء 4</div>
-  <h1>هندسة الأوامر</h1>
-  <p>مهارة عالمية. نفس النموذج + أمر مختلف = نتيجة مختلفة تماماً. حوّل الدردشة العشوائية إلى توجيه احترافي.</p>
+  <div class="part-label">القسم 4</div>
+  <h1>كيف نتكلم معه؟</h1>
+  <p>السر ليس كلمات سحرية. السر أن تكون واضحاً ولطيفاً.</p>
 </section>
 
 <section class="chapter" id="ch-10">
-  <div class="chapter-num">الفصل 10</div>
-  <h1 class="chapter-title">أساسيات هندسة الأوامر</h1>
+  <div class="chapter-num">الدرس 10</div>
+  <h1 class="chapter-title">اطلب بوضوح</h1>
   
-<p class="lead">الأمر (Prompt) هو التعليمات الكاملة: المهمة، السياق، القيود، والصيغة المطلوبة.</p>
-<ol>
-<li><strong>الدور:</strong> من يتقمص الذكاء الاصطناعي؟</li>
-<li><strong>الهدف:</strong> ما شكل الإنجاز؟</li>
-<li><strong>الجمهور:</strong> من سيقرأ؟</li>
-<li><strong>السياق:</strong> حقائق وقيود وأمثلة</li>
-<li><strong>العملية:</strong> هيكل أولاً ثم مسودة</li>
-<li><strong>الصيغة:</strong> جدول، نقاط، بريد، سكربت</li>
-<li><strong>معيار الجودة:</strong> نبرة وطول وما يُمنع</li>
-</ol>
-<div class="callout example"><span class="callout-label">ضعيف مقابل قوي</span>
-<p><strong>ضعيف:</strong> «اكتب خطة عمل.»</p>
-<p><strong>قوي:</strong> «تصرف كمستشار للشركات الصغيرة. أنشئ خطة من صفحة واحدة لخدمة تنظيم منازل في الرياض تستهدف آباء مشغولين. تضمّن المشكلة والعرض وفرضية التسعير و3 قنوات ومعالم 90 يوماً. بلا حشو. جدول للمعالم.»</p>
-</div>
-<div class="workflow"><strong>تكرار المحترفين</strong><div class="flow"><span class="step">موجز</span><span class="arrow">←</span><span class="step">هيكل</span><span class="arrow">←</span><span class="step">مسودة</span><span class="arrow">←</span><span class="step">نقد</span><span class="arrow">←</span><span class="step">ضغط</span><span class="arrow">←</span><span class="step">نهائي</span></div></div>
+<p class="lead">إذا قلت «ساعدني» فقط… لن يعرف بماذا. إذا قلت طلبك بوضوح… يساعدك أفضل.</p>
+<figure class="fig"><img src="assets/kids/kids-how-to-ask.jpg" alt="4 خطوات للكلام الواضح"/><figcaption class="cap">4 خطوات للكلام الواضح</figcaption></figure>
+<h2>ضعيف</h2>
+<div class="prompt">ساعدني.</div>
+<h2>أفضل</h2>
+<div class="prompt">اشرح لي الحيوانات العاشبة في 5 جمل سهلة.</div>
+<div class="takeaway"><h3>ماذا تعلّمنا؟</h3><ul><li>وضّح ماذا تريد.</li><li>قل لمن الجواب (لطفل مثلي).</li><li>قل الشكل: نقاط أو قصة قصيرة.</li></ul></div>
 
 </section>
 
 <section class="chapter" id="ch-11">
-  <div class="chapter-num">الفصل 11</div>
-  <h1 class="chapter-title">أُطر كتابة الأوامر</h1>
+  <div class="chapter-num">الدرس 11</div>
+  <h1 class="chapter-title">أعطِه دوراً</h1>
   
-<h2>RTF — Role · Task · Format</h2>
-<div class="prompt">الدور: مدرب مهني للتحول إلى UX.
-المهمة: خطة تعلم 30 يوماً.
-الصيغة: جدول أسبوعي مع تقدير وقت يومي ومخرجات.</div>
-<h2>CRISPE</h2>
-<div class="prompt">القدرة: كاتب SaaS B2B أول.
-الطلب: أعد كتابة H1/H2 للصفحة الرئيسية.
-السياق: المستخدمون يخافون الإعداد المعقد؛ نقدم تجهيزاً خلال يومين.
-الهدف: زيادة طلبات العرض التجريبي.
-الشخصية: مباشرة وواثقة ومحددة.
-التقييم: 3 نسخ وتوقع الأفضل ولماذا.</div>
-<h2>APE و Chain of Thought و Few-shot</h2>
-<p><strong>APE:</strong> إجراء + غرض + توقع. <strong>CoT:</strong> «فكّر خطوة بخطوة.» <strong>Few-shot:</strong> أعطِ 2–3 أمثلة للنمط المطلوب ثم المدخل الجديد.</p>
-<div class="callout tip"><span class="callout-label">اختيار سريع</span><p>RTF للسرعة · CRISPE للتسويق · Few-shot لمطابقة الصوت · Tree of Thoughts للاستراتيجية.</p></div>
+<p class="lead">يمكنك أن تقول له: تظاهر أنك معلّم… أو قاصّ قصص… أو مدرب ألعاب.</p>
+<div class="prompt">أنت معلّم علوم لطيف للأطفال. اشرح لي لماذا السماء زرقاء بكلمات بسيطة جداً.</div>
+<div class="prompt">أنت قاصّ قصص مضحكة. اكتب قصة من 6 جمل عن تنين يخاف من الفقاعات.</div>
+<div class="prompt">أنت مدرّب كرة قدم للأطفال. أعطني تمارين منزلية آمنة لمدة 10 دقائق.</div>
+<div class="try"><span class="label">جرّب الآن ★</span><p>اختر دوراً واحداً وجرّبه الآن. هل صار الجواب أجمل؟</p></div>
 
 </section>
 
 <section class="chapter" id="ch-12">
-  <div class="chapter-num">الفصل 12</div>
-  <h1 class="chapter-title">مكتبة أوامر احترافية</h1>
+  <div class="chapter-num">الدرس 12</div>
+  <h1 class="chapter-title">أضف تفاصيل</h1>
   
-<p class="lead">انسخ وعدّل. استبدل الحقول بين قوسين. احفظ الفائزين في دفترك.</p>
-<h2>تسويق</h2>
-<div class="prompt">اكتب 10 خطافات إعلان لـ [منتج] تستهدف [جمهور]. ركّز على الألم، أقل من 12 كلمة.</div>
-<div class="prompt">ابنِ شخصية عميل لـ [عرض] مع أهداف ومخاوف واعتراضات وقنوات تواجد.</div>
-<div class="prompt">حوّل هذه الميزات إلى فوائد: [قائمة]. الجمهور: [من]. بصيغة جدول.</div>
-<div class="prompt">سلسلة إطلاق من 3 رسائل بريد لـ [منتج]. الهدف: [تجربة/عرض].</div>
-<div class="prompt">بيان تموضع: لـ [جمهور] الذين [مشكلة]، [علامة] هي [فئة] التي [فائدة]. بخلاف [بديل]، نحن [فرق].</div>
-<div class="prompt">15 عنوان يوتيوب عن [موضوع] — فضول + وضوح بلا كذب.</div>
-<h2>مبيعات ومحتوى</h2>
-<div class="prompt">سكربت مكالمة اكتشاف لـ [خدمة] مع أسئلة تأهيل واستبعاد.</div>
-<div class="prompt">ردود على اعتراضات: السعر، التوقيت، أحتاج موافقة شريك، لدينا مزود.</div>
-<div class="prompt">لخّص نص المكالمة إلى خطوات تالية ومخاطر وبريد متابعة.</div>
-<div class="prompt">حوّل هذا المخطط إلى مقال 1000 كلمة مع أمثلة وقائمة تحقق.</div>
-<div class="prompt">أعد توظيف المقال إلى: LinkedIn + سلسلة X + نشرة + سكربت قصير.</div>
-<div class="prompt">20 سطر افتتاحي يوقف التمرير عن [ثيمة].</div>
-<h2>أعمال وتعليم وبرمجة للمبتدئين</h2>
-<div class="prompt">اكتب إجراءً تشغيلياً لـ [عملية] مع المالك والمحفز والخطوات وفحص الجودة.</div>
-<div class="prompt">بطاقة توظيف لـ [دور] مع معايير تقييم.</div>
-<div class="prompt">اشرح [مفهوم] بثلاث طرق: تشبيه، خطوات، أخطاء شائعة.</div>
-<div class="prompt">اختبار من 10 أسئلة من هذه الملاحظات مع مفتاح إجابة: [الصق].</div>
-<div class="prompt">اشرح هذا الخطأ كأنني مبتدئ ثم أعطِ خطوات الإصلاح: [خطأ].</div>
-<div class="prompt">اكتب قصص مستخدم ومعايير قبول من هذا المتطلب.</div>
+<p class="lead">التفاصيل مثل المكونات في الكعكة. كلّما أوضحت أكثر… النتيجة ألذ.</p>
+<h2>أضف دائماً</h2>
+<ul>
+  <li>الموضوع</li>
+  <li>لمن؟ (عمري 8 سنوات)</li>
+  <li>الطول (قصير / 5 نقاط)</li>
+  <li>الأسلوب (مضحك / هادئ / كقصة)</li>
+</ul>
+<div class="prompt">الموضوع: الفضاء
+لمن: طفل عمره 8 سنوات
+الطول: فقرة قصيرة
+الأسلوب: ممتع مع مثال
+المطلوب: ما هو النجم؟</div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>بعد الجواب اكتب: «اجعله أقصر» أو «أضف مثالاً» أو «اجعله أسهل».</p></div>
 
-<h2>المزيد من أوامر الأعمال والتعليم</h2>
-<div class="prompt">حوّل هذه الملاحظات الفوضوية إلى سجل قرارات: القرار، السبب، المالك، التاريخ، المخاطر.</div>
-<div class="prompt">اكتب بريداً اعتذارياً لعميل عن [حادثة] — مسؤول ومحدد وبلا ضبابية قانونية.</div>
-<div class="prompt">أنشئ خطة درس 60 دقيقة عن [موضوع] للمبتدئين مع نشاط وتمارين.</div>
-<div class="prompt">كن معلماً سقراطياً عن [موضوع]؛ اسأل سؤالاً واحداً في كل مرة.</div>
-<div class="prompt">راجع هذا السكربت لمشاكل أمان/خصوصية: [الصق].</div>
-<div class="prompt">اقترح بنية بسيطة لـ [فكرة تطبيق] مع تفضيل حلول بدون كود حيث يمكن.</div>
-<div class="action-steps"><h3>خطوات عملية</h3><ol><li>انسخ 15 أمراً واملأها لعملك.</li><li>أنشئ كتلة Few-shot من 3 نماذج كتابتك الأفضل.</li><li>جرّب نفس المهمة بـ RTF و CRISPE واحتفظ بالأفضل.</li></ol></div>
+</section>
+
+<section class="chapter" id="ch-13">
+  <div class="chapter-num">الدرس 13</div>
+  <h1 class="chapter-title">ألعاب تدريب</h1>
+  
+<p class="lead">تدريب = لعب!</p>
+<div class="try"><span class="label">جرّب الآن ★</span><p><strong>لعبة 1:</strong> اطلب نفس السؤال بطريقتين: قصيرة وطويلة. أي جواب أحببت؟</p></div>
+<div class="try"><span class="label">جرّب الآن ★</span><p><strong>لعبة 2:</strong> أعطِه دور معلّم ثم دور مهرّج لنفس الموضوع. قارن.</p></div>
+<div class="try"><span class="label">جرّب الآن ★</span><p><strong>لعبة 3:</strong> اطلب قائمة 5 أفكار لهدية عيد ميلاد لصديق يحب الرسم.</p></div>
+<div class="prompt">أعطني 3 عناوين مضحكة لقصة عن قطة رائدة فضاء.</div>
 
 </section>
 
 <section class="part-opener" id="part-5">
-  <div class="part-label">الجزء 5</div>
-  <h1>توليد الصور</h1>
-  <p>الصور أصبحت لغة. تعلّم كيف تعمل نماذج الانتشار، ثم قواعد الأوامر التي يستخدمها المخرجون.</p>
-</section>
-
-<section class="chapter" id="ch-13">
-  <div class="chapter-num">الفصل 13</div>
-  <h1 class="chapter-title">مقدمة إلى صور الذكاء الاصطناعي</h1>
-  
-<p class="lead">تولّد نماذج الصور صوراً من ضوضاء بإرشاد كلماتك — وأحياناً صور مرجعية.</p>
-<ol>
-<li>الموضوع · 2) الحركة/الوضعية · 3) المكان · 4) الأسلوب · 5) الإضاءة والكاميرا · 6) إشارات الجودة · 7) ما يجب تجنبه</li>
-</ol>
-<table>
-<thead><tr><th>الأداة</th><th>تشتهر بـ</th></tr></thead>
-<tbody>
-<tr><td>Midjourney</td><td>جمالية فنية قوية</td></tr>
-<tr><td>Flux</td><td>واقعية وتحكم</td></tr>
-<tr><td>DALL·E داخل ChatGPT</td><td>سهولة وتعديل بالمحادثة</td></tr>
-<tr><td>Ideogram</td><td>نص داخل الصورة</td></tr>
-</tbody>
-</table>
-<div class="callout warn"><span class="callout-label">حقوق وأخلاقيات</span><p>تجنب انتحال أشخاص حقيقيين أو نسخ أسماء فنانين أحياء كاختصار. راجع رخصة الاستخدام التجاري لكل أداة.</p></div>
-
+  <div class="part-label">القسم 5</div>
+  <h1>اصنع صوراً</h1>
+  <p>يمكنك أن تطلب صورة… كما تطلب رسمة من صديق.</p>
 </section>
 
 <section class="chapter" id="ch-14">
-  <div class="chapter-num">الفصل 14</div>
-  <h1 class="chapter-title">هندسة أوامر الصور</h1>
+  <div class="chapter-num">الدرس 14</div>
+  <h1 class="chapter-title">اطلب صورة</h1>
   
-<p class="lead">لغة الكاميرا ترفع النتائج أسرع من حشو الصفات.</p>
-<ul>
-<li><strong>زوايا:</strong> مستوى العين، زاوية منخفضة، عين طائر، فوق الكتف</li>
-<li><strong>عدسات:</strong> 24mm بيئة، 35mm وثائقي، 85mm بورتريه، ماكرو</li>
-<li><strong>إضاءة:</strong> نافذة ناعمة، شمس قاسية، Rim light، ساعة ذهبية</li>
-</ul>
-<h2>40 أمراً جاهزاً (بالإنجليزية للأدوات)</h2>
-<ol class="small en">
-<li>Matte black water bottle on travertine, soft window light, catalog style</li>
-<li>Overhead freelancer desk flat lay, laptop notebook coffee plant</li>
-<li>Founder portrait 85mm shallow DOF warm indoor light</li>
-<li>Isometric clay bakery shopfront pastel soft shadows</li>
-<li>Rainy Tokyo street night neon reflections cinematic</li>
-<li>Watercolor kids book fox reading a map cream paper</li>
-<li>Fitness app iPhone mockup soft gradient backdrop</li>
-<li>Rustic sourdough crumb detail side light dark mood</li>
-<li>Coastal cabin dawn fog 24mm documentary</li>
-<li>Minimal vector AI workflow nodes teal on off-white</li>
-<li>Linen fashion lookbook golden hour beach path</li>
-<li>Macro watch gears specular highlights black bg</li>
-<li>Courier handing package warm porch light</li>
-<li>Paper-cut surreal floating library above sea</li>
-<li>B&amp;W street crosswalk decisive moment</li>
-<li>Eco detergent packshot softbox reflection</li>
-<li>Chalkboard coffee menu charming lettering</li>
-<li>Mossy temple gate volumetric rays establishing</li>
-<li>Textbook heart cross-section clean labels blank</li>
-<li>Cozy cafe morning blinds lifestyle magazine</li>
-<li>Friendly home robot watering plants photoreal</li>
-<li>Vintage Lisbon tram poster limited palette</li>
-<li>YouTube thumbnail shocked creator chart space for title</li>
-<li>Perfume bottle botanical shadows high-key</li>
-<li>Low-poly mountain campsite dusk</li>
-<li>Potter at wheel dusty workshop available light</li>
-<li>Soft mesh brand background grain negative space</li>
-<li>STEM kit unboxing bright even colorful</li>
-<li>Circuit-trace lock cybersecurity illustration</li>
-<li>Wedding floral border elegant blank center</li>
-<li>Runner mid-stride dawn road panning blur</li>
-<li>Scandi apartment living room photoreal viz</li>
-<li>3-panel comic barista learning AI POS</li>
-<li>Pastel walkable town map illustration</li>
-<li>Luxury chocolate break cocoa dust side light</li>
-<li>Podcast cover two vector hosts headphones</li>
-<li>Before/after kitchen cleaning split realistic</li>
-<li>Ceramic mug mockup pastel Shopify hero</li>
-<li>Stormy lighthouse film still subtle flares</li>
-<li>Soft morning skincare shelfie marble steam</li>
-</ol>
+<p class="lead">بعض الأدوات ترسم بالذكاء الاصطناعي. داخل ChatGPT يمكنك غالباً طلب صورة.</p>
+<figure class="fig"><img src="assets/kids/kids-make-picture.jpg" alt="اطلب صورة واضحة وممتعة"/><figcaption class="cap">اطلب صورة واضحة وممتعة</figcaption></figure>
+<div class="step"><div class="num">1</div><div class="body"><strong>افتح المحادثة</strong><div>في ChatGPT أو أداة الصور التي يسمح بها ولي أمرك.</div></div></div>
+<div class="step"><div class="num">2</div><div class="body"><strong>اكتب ماذا تريد أن ترى</strong><div>مثال: ديناصور لطيف يقرأ كتاباً.</div></div></div>
+<div class="step"><div class="num">3</div><div class="body"><strong>انتظر الصورة</strong><div>ثم قل: غيّر اللون إلى أزرق… أو اجعله يضحك.</div></div></div>
+<div class="safe"><span class="label">قاعدة أمان ❤️</span><p>لا تطلب صور أصدقائك الحقيقيين أو أشخاص غرباء. اطلب شخصيات خيالية لطيفة.</p></div>
 
-<div class="callout tip"><span class="callout-label">ثبات الشخصية</span><p>اكتب بطاقة شخصية ثابتة (العمر، ملامح الوجه، الشعر، اللباس). غيّر متغيراً واحداً فقط في كل إعادة توليد: الوضعية أو المكان أو الأسلوب.</p></div>
+</section>
+
+<section class="chapter" id="ch-15">
+  <div class="chapter-num">الدرس 15</div>
+  <h1 class="chapter-title">صف الصورة ببساطة</h1>
+  
+<p class="lead">لا تحتاج كلمات صعبة. قل 4 أشياء فقط:</p>
+<ol>
+  <li>من؟ (قطة / روبوت / طفل مستكشف)</li>
+  <li>ماذا يفعل؟</li>
+  <li>أين؟</li>
+  <li>ما الإحساس؟ (مرح / هادئ / مغامرة)</li>
+</ol>
+<div class="prompt">ارسم روبوتاً صغيراً يزرع وردة في حديقة، ألوان دافئة، شكل لطيف للأطفال.</div>
+<div class="prompt">ارسم قلعة سحابية فوق البحر، ألوان باستيل، بدون رعب.</div>
+<div class="prompt">ارسم حقيبة مدرسية تطير بين النجوم، أسلوب كرتوني سعيد.</div>
+<div class="try"><span class="label">جرّب الآن ★</span><p>اختر حيوانك المفضل واطلب له صورة وهو يلعب رياضتك المفضلة.</p></div>
 
 </section>
 
 <section class="part-opener" id="part-6">
-  <div class="part-label">الجزء 6</div>
-  <h1>توليد الفيديو</h1>
-  <p>النص أو الصورة يتحولان إلى حركة. اعتبرها محركات تصوّر ومحتوى قصير — لا هوليوود فورية.</p>
-</section>
-
-<section class="chapter" id="ch-15">
-  <div class="chapter-num">الفصل 15</div>
-  <h1 class="chapter-title">أساسيات فيديو الذكاء الاصطناعي</h1>
-  
-<table>
-<thead><tr><th>الوضع</th><th>ماذا تعطي؟</th><th>متى؟</th></tr></thead>
-<tbody>
-<tr><td>نص ← فيديو</td><td>أمر فقط</td><td>أفكار و B-roll</td></tr>
-<tr><td>صورة ← فيديو</td><td>لقطة ثابتة + حركة</td><td>ثبات بصري</td></tr>
-<tr><td>فيديو ← فيديو</td><td>مقطع مصدر</td><td>أسلوب وتنويعات</td></tr>
-</tbody>
-</table>
-<div class="callout tip"><span class="callout-label">إنتاج</span><p>ولّد لقطات قصيرة (2–8 ثوانٍ)، اختر الأفضل، ثم حرر تقليدياً. الهجين يتفوق على لقطة واحدة كاملة.</p></div>
-
+  <div class="part-label">القسم 6</div>
+  <h1>مرح إضافي</h1>
+  <p>الصوت والموسيقى والفيديو… فكرة سريعة فقط.</p>
 </section>
 
 <section class="chapter" id="ch-16">
-  <div class="chapter-num">الفصل 16</div>
-  <h1 class="chapter-title">دليل Veo</h1>
+  <div class="chapter-num">الدرس 16</div>
+  <h1 class="chapter-title">صوت وموسيقى</h1>
   
-<p class="lead">اكتب بلغة سينمائية: نوع اللقطة، الموضوع، الحركة، البيئة، حركة الكاميرا، الإضاءة، الأسلوب.</p>
-<div class="prompt">Medium shot of a ceramicist shaping clay on a wheel, slow dolly-in, soft morning window light, shallow depth of field, naturalistic documentary, 5 seconds.</div>
-<h2>25 مثالاً</h2>
-<ol class="small en">
-<li>Product bottle rotate infinity curve soft studio</li>
-<li>Founder walk-through studio steadicam</li>
-<li>Coffee pour macro steam slow-mo</li>
-<li>Rooftop dawn pan across skyline</li>
-<li>Top-down eco sneakers unboxing</li>
-<li>Teacher at whiteboard locked-off friendly</li>
-<li>Coastal path gentle rise plausible motion</li>
-<li>Night market handheld neon wet pavement</li>
-<li>Yoga silhouette sunrise calm pace</li>
-<li>Keyboard typing SaaS b-roll shallow DOF</li>
-<li>Pet running toward camera sunny park</li>
-<li>Architect blueprint table slow orbit</li>
-<li>EV charging dusk cinematic</li>
-<li>Bread scoring oven spring bakery doc</li>
-<li>Abstract clean dashboard cursor clicks</li>
-<li>Rain on window cozy interior soft focus</li>
-<li>Warehouse picker scanner authentic</li>
-<li>Kids STEM volcano playful safe</li>
-<li>Tailor pins jacket workshop lamp</li>
-<li>Farmers market berries warm sincerity</li>
-<li>Simple particles logo morph</li>
-<li>Train window landscape reflective</li>
-<li>Scientist pipette clinical bright</li>
-<li>Mural artist painting strokes</li>
-<li>Library aisle push-in sunlit desk</li>
-</ol>
-
-<div class="callout example"><span class="callout-label">قصة قصيرة من 3 لقطات</span><p>1) تأسيس المنتج · 2) استخدام بشري دافئ · 3) نتيجة واضحة مع شعار. ولّد كل لقطة على حدة ثم ادمجها في محرر عادي مع نص.</p></div>
+<p class="lead">بعض الأدوات تحول الكتابة إلى صوت… أو تصنع مقطوعة موسيقية قصيرة.</p>
+<ul>
+  <li>اكتب نصاً قصيراً ثم اطلب قراءته بصوت لطيف (مع شخص كبير).</li>
+  <li>للموسيقى: صف الإحساس مثل «موسيقى سعيدة لوقت الرسم».</li>
+</ul>
+<div class="prompt">موسيقى هادئة ومرحة لمدة قصيرة لوقت المطالعة، بدون كلام مخيف.</div>
+<div class="safe"><span class="label">قاعدة أمان ❤️</span><p>استمع دائماً بحضور شخص كبير للأدوات الجديدة.</p></div>
 
 </section>
 
 <section class="chapter" id="ch-17">
-  <div class="chapter-num">الفصل 17</div>
-  <h1 class="chapter-title">Runway و Kling و Pika و Sora</h1>
+  <div class="chapter-num">الدرس 17</div>
+  <h1 class="chapter-title">فيديو قصير</h1>
   
-<table>
-<thead><tr><th>الأداة</th><th>القوة</th><th>متى؟</th></tr></thead>
-<tbody>
-<tr><td>Runway</td><td>جناح إبداعي وتحرير</td><td>فرق محتوى تتكرر</td></tr>
-<tr><td>Kling</td><td>حركة سينمائية</td><td>لقطات طموحة</td></tr>
-<tr><td>Pika</td><td>سرعة لأسلوب سوشيال</td><td>أفكار سريعة</td></tr>
-<tr><td>Sora / Veo</td><td>جودة عالية حسب التوفر</td><td>احتياج فيديو مميز</td></tr>
-</tbody>
-</table>
-<div class="callout tip"><span class="callout-label">قاعدة الاختيار</span><p>اختر ما تستطيع الوصول إليه بثبات، ثم أتقن لغة اللقطة. الحرفة تنتقل بين الأدوات.</p></div>
+<p class="lead">هناك أدوات تصنع فيديو قصير من جملة. النتائج تتغير بسرعة… والأهم الفكرة.</p>
+<div class="step"><div class="num">1</div><div class="body"><strong>اكتب مشهداً قصيراً</strong><div>قطة تلعب بالخيط في غرفة مضيئة.</div></div></div>
+<div class="step"><div class="num">2</div><div class="body"><strong>اطلب مدة قصيرة</strong><div>ثوانٍ قليلة كافية.</div></div></div>
+<div class="step"><div class="num">3</div><div class="body"><strong>شاهد مع شخص كبير</strong><div>واختر المقطع الأجمل.</div></div></div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>لا تحتاج إخراج فيلم طويل. فكرة صغيرة = نجاح كبير.</p></div>
 
 </section>
 
 <section class="part-opener" id="part-7">
-  <div class="part-label">الجزء 7</div>
-  <h1>الصوت</h1>
-  <p>التعليق الصوتي والموسيقى يكمّلان حزمة المحتوى.</p>
+  <div class="part-label">القسم 7</div>
+  <h1>مشاريع ممتعة</h1>
+  <p>اختر مشروعاً… وأنهه اليوم!</p>
 </section>
 
 <section class="chapter" id="ch-18">
-  <div class="chapter-num">الفصل 18</div>
-  <h1 class="chapter-title">الذكاء الاصطناعي الصوتي</h1>
-  
-<div class="workflow"><strong>تعليق صوتي</strong><div class="flow"><span class="step">اكتب السكربت</span><span class="arrow">←</span><span class="step">علّم الوقفات</span><span class="arrow">←</span><span class="step">اختر صوتاً</span><span class="arrow">←</span><span class="step">ولّد</span><span class="arrow">←</span><span class="step">حرر</span><span class="arrow">←</span><span class="step">امزج تحت الفيديو</span></div></div>
-<div class="prompt">اكتب سكربت شرح منتج 60 ثانية لـ [منتج]. نبرة خبير ودود. ضع [PAUSE] عند الحاجة. بحد أقصى 140 كلمة.</div>
-<div class="callout warn"><span class="callout-label">موافقة</span><p>استنسخ الأصوات فقط بحقوق وموافقة. افصح عن الصوت الاصطناعي عند اللزوم.</p></div>
+  <div class="chapter-num">الدرس 18</div>
+  <h1 class="chapter-title">عشرة مشاريع للأطفال</h1>
+  <p class="lead">كل مشروع صغير… لكنه يعلمك مهارة كبيرة.</p>
 
-</section>
+<div class="project">
+  <h3>مشروع 1: كاتب القصص</h3>
+  <p class="meta">الهدف: اكتب قصة 10 جمل عن بطلك المفضل<br/>الأداة: <span class="en">ChatGPT أو Claude</span></p>
+  <p><strong>كيف؟</strong> دور قاصّ + تفاصيل البطل + طلب رسمة غلاف</p>
+</div>
 
-<section class="chapter" id="ch-19">
-  <div class="chapter-num">الفصل 19</div>
-  <h1 class="chapter-title">موسيقى الذكاء الاصطناعي</h1>
-  
-<p>Suno و Udio يولّدان أغاني من نص — مفيد للمسودات وخلفيات السوشيال.</p>
-<div class="prompt">Upbeat indie-pop, 100 BPM, warm female vocals, song about learning AI without fear, clear chorus, radio-clean.</div>
-<div class="callout tip"><span class="callout-label">استخدام عملي</span><p>استخدم موسيقى الذكاء الاصطناعي للاختبارات والأنيماتيك؛ استعن بملحنين عندما تهم الهوية الحصرية للعلامة.</p></div>
 
+<div class="project">
+  <h3>مشروع 2: معلّم الرياضيات اللطيف</h3>
+  <p class="meta">الهدف: افهم فكرة واحدة صعبة في حسابك<br/>الأداة: <span class="en">ChatGPT</span></p>
+  <p><strong>كيف؟</strong> اشرح كأنني 8 سنوات + مثال + تمرين صغير</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 3: بطاقة عيد ميلاد</h3>
+  <p class="meta">الهدف: نص جميل لبطاقة<br/>الأداة: <span class="en">ChatGPT + رسم</span></p>
+  <p><strong>كيف؟</strong> اكتب تهنئة قصيرة ثم اطلب صورة احتفال</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 4: مدرب المفردات</h3>
+  <p class="meta">الهدف: تعلّم 7 كلمات جديدة<br/>الأداة: <span class="en">ChatGPT</span></p>
+  <p><strong>كيف؟</strong> كلمة + معنى سهل + جملة + رسم ذهني</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 5: عالم الفضاء الصغير</h3>
+  <p class="meta">الهدف: ملصق معلومات عن كوكب<br/>الأداة: <span class="en">ChatGPT</span></p>
+  <p><strong>كيف؟</strong> 5 حقائق سهلة + صورة متخيلة للكوكب</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 6: نادي النكات النظيف</h3>
+  <p class="meta">الهدف: 5 نكات مناسبة للأطفال<br/>الأداة: <span class="en">ChatGPT</span></p>
+  <p><strong>كيف؟</strong> اطلب نكات لطيفة بدون إحراج</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 7: مخطط الحقيبة</h3>
+  <p class="meta">الهدف: قائمة صباح المدرسة<br/>الأداة: <span class="en">ChatGPT</span></p>
+  <p><strong>كيف؟</strong> خطوات صباحية قصيرة مع وقت</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 8: مسرحية دقائق</h3>
+  <p class="meta">الهدف: حوار بين شخصين لـ 1 دقيقة<br/>الأداة: <span class="en">Claude</span></p>
+  <p><strong>كيف؟</strong> مشهد مضحك قصير لتمثيله مع صديق</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 9: مجلة الصف</h3>
+  <p class="meta">الهدف: عنوان + فقرة خبر مدرسي خيالي<br/>الأداة: <span class="en">Gemini أو ChatGPT</span></p>
+  <p><strong>كيف؟</strong> اكتب خبر «روبوت زار مدرستنا»</p>
+</div>
+
+
+<div class="project">
+  <h3>مشروع 10: يوميات الامتنان</h3>
+  <p class="meta">الهدف: 3 أشياء جميلة حصلت اليوم<br/>الأداة: <span class="en">ChatGPT</span></p>
+  <p><strong>كيف؟</strong> حوّلها إلى فقرة يوميات لطيفة</p>
+</div>
+
+<div class="try"><span class="label">جرّب الآن ★</span><p>اختر مشروعاً واحداً الآن وأهه خلال 15 دقيقة.</p></div>
 </section>
 
 <section class="part-opener" id="part-8">
-  <div class="part-label">الجزء 8</div>
-  <h1>الإنتاجية</h1>
-  <p>أعلى عائد غالباً في البريد والاجتماعات والمتابعات. اجعل الذكاء الاصطناعي متدرب عملياتك.</p>
+  <div class="part-label">القسم 8</div>
+  <h1>كن بطلاً آمناً</h1>
+  <p>القوة الحقيقية = الذكاء + الأمان + اللطف.</p>
+</section>
+
+<section class="chapter" id="ch-19">
+  <div class="chapter-num">الدرس 19</div>
+  <h1 class="chapter-title">قواعد الأمان</h1>
+  
+<figure class="fig"><img src="assets/kids/kids-stay-safe.jpg" alt="ابقَ آمناً ولطيفاً على الإنترنت"/><figcaption class="cap">ابقَ آمناً ولطيفاً على الإنترنت</figcaption></figure>
+<ol>
+  <li>لا تشارك كلمة السر.</li>
+  <li>لا تكتب عنوان بيتك أو رقم هاتفك في المحادثة.</li>
+  <li>إذا ظهر شيء يخيفك… أغلق الصفحة وأخبر شخصاً كبيراً.</li>
+  <li>كن لطيفاً في كلامك. الكلمات الطيبة تصنع أجوبة أجمل.</li>
+  <li>لا تنسخ واجب المدرسة كاملاً بدون فهم. اطلب شرحاً لتتعلّم.</li>
+</ol>
+<div class="safe"><span class="label">قاعدة أمان ❤️</span><p>الذكاء الاصطناعي يخطئ أحياناً. لا تصدّق كل شيء بسرعة. اسأل معلّمك أو ولي أمرك.</p></div>
+<div class="takeaway"><h3>ماذا تعلّمنا؟</h3><ul><li>الأمان أولاً.</li><li>اطلب مساعدة كبيرة عند الحاجة.</li><li>تعلّم… لا تغش.</li></ul></div>
+
 </section>
 
 <section class="chapter" id="ch-20">
-  <div class="chapter-num">الفصل 20</div>
-  <h1 class="chapter-title">الإنتاجية الشخصية مع الذكاء الاصطناعي</h1>
+  <div class="chapter-num">الدرس 20</div>
+  <h1 class="chapter-title">ماذا بعد؟</h1>
   
-<div class="prompt">من هذا النص: (1) ملخص 5 نقاط (2) قرارات (3) جدول مهام بمالك وموعد (4) أسئلة مفتوحة. أشر لأي غموض.</div>
-<div class="workflow"><strong>تعلّم موضوعاً</strong><div class="flow"><span class="step">مسح Perplexity</span><span class="arrow">←</span><span class="step">حفظ أفضل المصادر</span><span class="arrow">←</span><span class="step">دفتر NotebookLM</span><span class="arrow">←</span><span class="step">علّم ChatGPT ما فهمت</span><span class="arrow">←</span><span class="step">ورقة غش بصفحة</span></div></div>
-
-<h2>نظام يومي بسيط</h2>
+<p class="lead">أحسنت! أنت الآن تعرف البداية.</p>
+<h2>خطتك للأسبوع القادم</h2>
 <ol>
-<li>صباحاً: الصق مهام اليوم واطلب ترتيباً حسب الأثر والجهد.</li>
-<li>بعد الاجتماع: ملخص + مهام خلال 5 دقائق.</li>
-<li>مساءً: مراجعة أسبوعية قصيرة — ما تم، ما علق، درس واحد.</li>
+  <li>كل يوم: سؤال واحد واضح لـ ChatGPT</li>
+  <li>يومين: تجربة دور مختلف (معلّم / قاصّ)</li>
+  <li>مرة: اصنع صورة واحدة لطيفة</li>
+  <li>مرة: أنهِ مشروعاً من درس 18</li>
 </ol>
-<div class="prompt">رتّب مهامي اليوم. أعطني: يجب اليوم / يمكن تأجيله / احذفه أو فوّضه. كن صارماً وواضحاً.</div>
-<div class="takeaway"><h3>الخلاصة</h3><ul><li>استأذن قبل التسجيل.</li><li>الملخص مسودة حتى تؤكد الملاك والمواعيد.</li><li>الشرح العكسي يكشف ما لم تتعلمه.</li></ul></div>
+<div class="bubble me">أنت صار عندك مفتاح سحري: السؤال الواضح.</div>
+<div class="idea"><span class="label">فكرة لطيفة</span><p>علّم صديقاً واحداً ما تعلمته. التعليم يثبت الفهم!</p></div>
+<p class="colophon">نهاية كتاب الأطفال<br/>من إعداد <strong class="en">SCHOOLERX</strong><br/>كبرت الآن خطوة… إلى لقاء في المغامرة التالية!</p>
 
 </section>
-
-<section class="chapter" id="ch-21">
-  <div class="chapter-num">الفصل 21</div>
-  <h1 class="chapter-title">إنتاجية الأعمال</h1>
-  
-<table>
-<thead><tr><th>الوظيفة</th><th>سير عمل بالذكاء الاصطناعي</th></tr></thead>
-<tbody>
-<tr><td>تسويق</td><td>موجز → نسخ → نقد → تحرير علامة → جدولة</td></tr>
-<tr><td>دعم</td><td>دفتر سياسات → مسودة → إرسال بشري للحالات الحدية</td></tr>
-<tr><td>مبيعات</td><td>ملاحظات مكالمة → ملخص CRM → متابعة مخصصة</td></tr>
-<tr><td>موارد بشرية</td><td>بطاقات أدوار وخطط 30-60-90 (راقب التحيز)</td></tr>
-<tr><td>عمليات</td><td>صياغة إجراءات وجداول حوادث</td></tr>
-</tbody>
-</table>
-<div class="callout mistake"><span class="callout-label">فشل شائع</span><p>نشر نص ذكاء اصطناعي دون تحرير يضر بالثقة. الذكاء الاصطناعي يسرّع المسودات؛ الإنسان يملك النتيجة.</p></div>
-
-<div class="prompt">اكتب موجز حملة لـ [منتج] يتضمن الجمهور، الوعد، الدليل، العرض، و3 زوايا إبداعية.</div>
-<div class="prompt">من سياسة الدعم هذه، صغ رداً على شكوى [نوع]. إن خرج الطلب عن السياسة وضّح حدود ما يمكن فعله.</div>
-<div class="callout tip"><span class="callout-label">نصيحة فرق</span><p>وحّدوا «صوت العلامة» في ملف واحد يُرفع لكل Project لتفادي نصوص عامة بلا شخصية.</p></div>
-
-</section>
-
-<section class="part-opener" id="part-9">
-  <div class="part-label">الجزء 9</div>
-  <h1>الأتمتة</h1>
-  <p>اربط التطبيقات ليتوقف النسخ واللصق. ضع الذكاء الاصطناعي في الوسط للتصنيف أو الصياغة ضمن حدود.</p>
-</section>
-
-<section class="chapter" id="ch-22">
-  <div class="chapter-num">الفصل 22</div>
-  <h1 class="chapter-title">أساسيات الأتمتة</h1>
-  
-<p class="lead">كل أتمتة: <strong>محفّز → (فلاتر) → إجراءات</strong>.</p>
-<div class="callout tip"><span class="callout-label">اختبار الصلاحية</span><p>أتمت إن تكررت المهمة ≥3 مرات/أسبوع، والقواعد واضحة، والأخطاء قابلة للمراجعة.</p></div>
-<div class="callout warn"><span class="callout-label">حواجز أمان</span><p>ابدأ بمسودات + موافقة بشرية لأي شيء خارجي (بريد عملاء، منشورات، مدفوعات).</p></div>
-
-</section>
-
-<section class="chapter" id="ch-23">
-  <div class="chapter-num">الفصل 23</div>
-  <h1 class="chapter-title">دليل n8n الشامل</h1>
-  
-<p>أداة مرنة للأتمتة (سحابة أو استضافة ذاتية).</p>
-<ol class="small">
-<li>نموذج → إثراء بالذكاء الاصطناعي → صف CRM → تنبيه Slack</li>
-<li>بريد دعم → تصنيف استعجال → توجيه</li>
-<li>RSS → تلخيص → مسودة نشرة</li>
-<li>ملف Drive جديد → ملخص → صفحة Notion</li>
-<li>أسبوعي: مقاييس Sheet → سرد → بريد تقرير</li>
-<li>تغذية راجعة → وسم مشاعر → لوحة</li>
-<li>إشارة على X → طابور ردود مسودة</li>
-<li>فاتورة PDF → استخراج حقول → Sheet (مراجعة)</li>
-<li>نهاية اجتماع تقويم → قالب ملاحظات → مهام</li>
-<li>Webhook متجر → وصف منتج → مسودة Shopify</li>
-</ol>
-
-<h2>ثلاثة سير عمل بالتفصيل</h2>
-<h3>1) تأهيل عميل محتمل</h3>
-<ol>
-<li>محفز: إرسال نموذج.</li>
-<li>طبيع النص وأرسله لنموذج يستخرج: الاسم، الحاجة، الميزانية التقديرية، الاستعجال.</li>
-<li>اكتب صفاً في CRM وأرسل تنبيه Slack إن كان الاستعجال عالياً.</li>
-</ol>
-<h3>2) تقرير أسبوعي</h3>
-<ol>
-<li>محفز: كل يوم أحد.</li>
-<li>اجلب صفوفاً من Sheet.</li>
-<li>اطلب سرداً قصيراً بالذكاء الاصطناعي مع 3 رؤى و3 مخاطر.</li>
-<li>أرسل البريد للفريق كمسودة أو مباشر حسب ثقتك.</li>
-</ol>
-
-</section>
-
-<section class="chapter" id="ch-24">
-  <div class="chapter-num">الفصل 24</div>
-  <h1 class="chapter-title">دليل Make الشامل</h1>
-  
-<p>سيناريوهات بصرية قوية للتسويق والعمليات.</p>
-<ol class="small">
-<li>Lead Ad → تقييم → HubSpot + تسلسل</li>
-<li>طلب وظيفة → فحص مقابل بطاقة → Sheets + تنبيه</li>
-<li>كلمة مفتاح في DM → مسودة FAQ</li>
-<li>طلب Shopify → شكر مخصص مسودة</li>
-<li>انتهاء محادثة → ملخص إلى Notion</li>
-<li>رفع يوتيوب → فصول + وصف → تنبيه محرر</li>
-<li>إيصال مصروف → استخراج → محاسبة</li>
-<li>تسجيل ويبينار → تقسيم → تسلسل مخصص</li>
-<li>CSAT منخفض → تذكرة مع ملخص سياق</li>
-<li>صف تقويم جاهز → حزمة منشورات</li>
-</ol>
-
-</section>
-
-<section class="chapter" id="ch-25">
-  <div class="chapter-num">الفصل 25</div>
-  <h1 class="chapter-title">دليل Zapier الشامل</h1>
-  
-<p>أسهل مدخل: آلاف التكاملات بسرعة.</p>
-<ol class="small">
-<li>Gmail بوسم → مسودة رد → Drafts</li>
-<li>حدث تقويم → موجز تحضير من Doc</li>
-<li>Typeform → ملخص → Slack</li>
-<li>RSS → خطافات → مسودة Buffer</li>
-<li>مرحلة صفقة CRM → قائمة kickoff</li>
-<li>تسجيل Zoom جاهز → ملخص للحضور</li>
-<li>فكرة Airtable → مخطط → Docs</li>
-<li>منتج Shopify → عناوين SEO مقترحة</li>
-<li>وسم استرداد → مسودة سياسة (موافقة)</li>
-<li>يومياً: ترتيب مهام Todoist بالذكاء الاصطناعي</li>
-</ol>
-<div class="action-steps"><h3>خطوات عملية</h3><ol><li>ابنِ Zap واحداً بخطوة موافقة بشرية.</li><li>راقب الأخطاء أسبوعاً.</li><li>وثّقه في دفترك.</li></ol></div>
-
-</section>
-
-<section class="part-opener" id="part-10">
-  <div class="part-label">الجزء 10</div>
-  <h1>وكلاء الذكاء الاصطناعي</h1>
-  <p>الوكيل لا يجيب فقط — يخطّط ويستخدم أدوات نحو هدف. قوي… ويحتاج حدوداً.</p>
-</section>
-
-<section class="chapter" id="ch-26">
-  <div class="chapter-num">الفصل 26</div>
-  <h1 class="chapter-title">فهم وكلاء الذكاء الاصطناعي</h1>
-  
-<ul>
-<li><strong>العقل:</strong> LLM للتخطيط واللغة</li>
-<li><strong>الأدوات:</strong> إجراءات مسموحة</li>
-<li><strong>الذاكرة:</strong> قصيرة وطويلة اختيارياً</li>
-<li><strong>المخطّط:</strong> هدف ← خطوات ← مراجعة</li>
-<li><strong>الحواجز:</strong> صلاحيات، ميزانية، موافقة بشرية</li>
-</ul>
-<div class="callout warn"><span class="callout-label">واقع</span><p>الوكلاء بلا إشراف قد يدخلون حلقات أو يراسلون عملاء خطأ. ابدأ للقراءة فقط أو المسودات فقط.</p></div>
-
-<div class="callout example"><span class="callout-label">تشبيه</span><p>الوكيل مثل موظف جديد ذكي: يحتاج وصفاً وظيفياً واضحاً، صلاحيات محدودة، ومراجعة في الأيام الأولى. لا تعطه مفاتيح الدفع في اليوم الأول.</p></div>
-<ul>
-<li>ابدأ بهدف واحد قابل للقياس.</li>
-<li>اسجل كل أداة يستخدمها.</li>
-<li>ضع حداً للتكرار (مثلاً 10 خطوات كحد أقصى).</li>
-</ul>
-
-</section>
-
-<section class="chapter" id="ch-27">
-  <div class="chapter-num">الفصل 27</div>
-  <h1 class="chapter-title">بناء سير عمل الوكلاء</h1>
-  
-<ul>
-<li><strong>بحث:</strong> مصادر → هيكل → إحاطة (إنسان ينشر)</li>
-<li><strong>دعم:</strong> استرجاع سياسة → مسودة → تصعيد إن انخفضت الثقة</li>
-<li><strong>تسويق:</strong> حقائق منتج → حزمة حملة → موافقة Slack</li>
-</ul>
-<div class="workflow"><strong>حلقة وكيل آمنة</strong><div class="flow"><span class="step">عرّف الهدف</span><span class="arrow">←</span><span class="step">حدّد الأدوات</span><span class="arrow">←</span><span class="step">بوابات موافقة</span><span class="arrow">←</span><span class="step">سجّل الأفعال</span><span class="arrow">←</span><span class="step">راجع أسبوعياً</span></div></div>
-
-</section>
-
-<section class="part-opener" id="part-11">
-  <div class="part-label">الجزء 11</div>
-  <h1>مشاريع عملية</h1>
-  <p>النظرية تثبت عندما تنشر. عشرون مشروعاً — اختر ما يناسب هدفك.</p>
-</section>
-
-<section class="chapter" id="ch-28">
-  <div class="chapter-num">الفصل 28</div>
-  <h1 class="chapter-title">عشرون مشروعاً كاملاً بالذكاء الاصطناعي</h1>
-  <p class="lead">كل مشروع: هدف، أدوات، إعداد، سير عمل، نتيجة. عدّل بحرية.</p>
-
-<div class="project">
-  <h3>مشروع 1: استوديو محتوى بالذكاء الاصطناعي</h3>
-  <p class="meta"><span class="badge">الهدف</span> 12 منشوراً/شهر · <span class="badge">أدوات</span> <span class="en">ChatGPT/Claude + Ideogram + جدولة</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> دليل صوت + تقويم → دفعات → صور → نشر</p>
-  <p><strong>النتيجة:</strong> توفير ساعات أسبوعياً</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 2: مكتب بحث شخصي</h3>
-  <p class="meta"><span class="badge">الهدف</span> إحاطة بأي موضوع خلال 45 دقيقة · <span class="badge">أدوات</span> <span class="en">Perplexity + NotebookLM + Claude</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> بحث → مصادر → دفتر → صفحة واحدة</p>
-  <p><strong>النتيجة:</strong> SOP بحث قابل لإعادة الاستخدام</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 3: محرك عروض المستقل</h3>
-  <p class="meta"><span class="badge">الهدف</span> عروض أوضح وأسرع · <span class="badge">أدوات</span> <span class="en">ChatGPT Projects + Notion</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> نموذج استقبال → ملخص → عرض → تسعير بشري</p>
-  <p><strong>النتيجة:</strong> رفع وضوح الإغلاق</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 4: مكتب دعم عملاء</h3>
-  <p class="meta"><span class="badge">الهدف</span> رد أول أسرع · <span class="badge">أدوات</span> <span class="en">NotebookLM + Helpdesk + Zapier</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> دفتر سياسات → مسودة → موافقة → قوالب</p>
-  <p><strong>النتيجة:</strong> خفض زمن الرد</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 5: نظام إدارة سوشيال</h3>
-  <p class="meta"><span class="badge">الهدف</span> حضور يومي متعدد المنصات · <span class="badge">أدوات</span> <span class="en">Claude + Ideogram + جدولة</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> عمود محتوى → تفتيت → بصريات → جدول</p>
-  <p><strong>النتيجة:</strong> فكرة واحدة ← أصول كثيرة</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 6: مصنع فيديو قصير</h3>
-  <p class="meta"><span class="badge">الهدف</span> مخرجات أسبوعية · <span class="badge">أدوات</span> <span class="en">ChatGPT + Veo/Runway + ElevenLabs</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> سكربت → صوت → B-roll → مونتاج → SEO</p>
-  <p><strong>النتيجة:</strong> تغليف أسرع</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 7: مختبر عروض تسويقية</h3>
-  <p class="meta"><span class="badge">الهدف</span> اختبار عروض بسرعة · <span class="badge">أدوات</span> <span class="en">ChatGPT + Perplexity + Sheets</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> ICP → عروض → نسخة هبوط → خطافات</p>
-  <p><strong>النتيجة:</strong> تجريب منظم</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 8: رفيق صانع الدورات</h3>
-  <p class="meta"><span class="badge">الهدف</span> من مخطط إلى دروس · <span class="badge">أدوات</span> <span class="en">NotebookLM + Claude</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> مصادر → وحدات → سكربتات → اختبارات</p>
-  <p><strong>النتيجة:</strong> هيكل منهج كامل</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 9: نظام اجتماعات</h3>
-  <p class="meta"><span class="badge">الهدف</span> صفر مهام ضائعة · <span class="badge">أدوات</span> <span class="en">Fireflies/Zoom + ChatGPT + Todoist</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> نص → مهام → متابعة</p>
-  <p><strong>النتيجة:</strong> عادة مساءلة</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 10: مدرب مكالمات مبيعات</h3>
-  <p class="meta"><span class="badge">الهدف</span> تحسين الاكتشاف · <span class="badge">أدوات</span> <span class="en">Claude + CRM</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> نقد النص مقابل بطاقة → ملاحظات تدريب</p>
-  <p><strong>النتيجة:</strong> نمو مهارة المندوب</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 11: محسّن قوائم تجارة</h3>
-  <p class="meta"><span class="badge">الهدف</span> صفحات منتج أفضل · <span class="badge">أدوات</span> <span class="en">ChatGPT + Ideogram + Shopify</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> ميزات → فوائد → صور → SEO</p>
-  <p><strong>النتيجة:</strong> سرعة إدراج</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 12: حقيبة تأهيل موظفين</h3>
-  <p class="meta"><span class="badge">الهدف</span> انضمام أسلس · <span class="badge">أدوات</span> <span class="en">Gemini/Docs + Claude</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> بطاقة دور → 30-60-90 → FAQ</p>
-  <p><strong>النتيجة:</strong> أسئلة أقل تكراراً</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 13: باقة عرض للأعمال المحلية</h3>
-  <p class="meta"><span class="badge">الهدف</span> بيع خدمات ذكاء اصطناعي · <span class="badge">أدوات</span> <span class="en">Make/Zapier + ChatGPT</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> أتمتة نماذج + ردود تقييمات + تقرير أسبوعي</p>
-  <p><strong>النتيجة:</strong> عرض مستقل منتجي</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 14: مساعد تحديث المستثمرين</h3>
-  <p class="meta"><span class="badge">الهدف</span> تحديث شهري بـ 30 دقيقة · <span class="badge">أدوات</span> <span class="en">Sheets + Claude</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> لصق مقاييس → سرد → مخاطر → طلب</p>
-  <p><strong>النتيجة:</strong> تواصل منتظم</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 15: حزمة إنتاج بودكاست</h3>
-  <p class="meta"><span class="badge">الهدف</span> من حلقة إلى أصول · <span class="badge">أدوات</span> <span class="en">Claude + ElevenLabs</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> مخطط → سكربت → ملاحظات → أوامر أغلفة</p>
-  <p><strong>النتيجة:</strong> دورة أسرع</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 16: صائغ منح / RFP</h3>
-  <p class="meta"><span class="badge">الهدف</span> طلبات منظمة · <span class="badge">أدوات</span> <span class="en">NotebookLM + Claude</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> دفتر متطلبات → مصفوفة امتثال → إجابات</p>
-  <p><strong>النتيجة:</strong> معايير أقل ضياعاً</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 17: مدرس خاص شخصي</h3>
-  <p class="meta"><span class="badge">الهدف</span> تحضير امتحان · <span class="badge">أدوات</span> <span class="en">ChatGPT + NotebookLM</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> دفتر ملاحظات → تدريبات يومية → نقاط ضعف</p>
-  <p><strong>النتيجة:</strong> حلقة ممارسة قابلة للقياس</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 18: سبرينت هوية بصرية</h3>
-  <p class="meta"><span class="badge">الهدف</span> اتجاه بصري في يوم · <span class="badge">أدوات</span> <span class="en">Midjourney/Flux + Claude</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> مزاج → 3 اتجاهات → بطاقة أسلوب</p>
-  <p><strong>النتيجة:</strong> موجز إبداعي متوافق</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 19: مكتبة إجراءات تشغيل</h3>
-  <p class="meta"><span class="badge">الهدف</span> توثيق المعرفة الضمنية · <span class="badge">أدوات</span> <span class="en">Claude + Notion</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> مقابلة → SOP → قائمة تحقق → اختبار</p>
-  <p><strong>النتيجة:</strong> عمليات قابلة للتدريب</p>
-</div>
-
-
-<div class="project">
-  <h3>مشروع 20: وكالة أتمتة مصغرة</h3>
-  <p class="meta"><span class="badge">الهدف</span> عقود من سير العمل · <span class="badge">أدوات</span> <span class="en">Make أو n8n + LLM</span></p>
-  <p><strong>الإعداد:</strong> أنشئ مجلداً/مشروعاً، الصق موجزاً من فقرة، وأضف مصادر العلامة أو السياسات.</p>
-  <p><strong>سير العمل:</strong> تدقيق مهام عميل → 3 أتمتات → لوحة</p>
-  <p><strong>النتيجة:</strong> إيراد متكرر</p>
-</div>
-
-
-<div class="callout tip"><span class="callout-label">كيف تختار مشروعك الأول؟</span><p>اختر مشروعاً يحل ألماً تعيشه أنت هذا الأسبوع. النجاح السريع يبني عادة أقوى من المشروع «الأضخم».</p></div>
-<div class="action-steps"><h3>خطوات عملية</h3><ol><li>اختر مشروعاً واحداً وأكمله خلال 7 أيام.</li><li>اكتب دراسة حالة: قبل → بعد → ساعات موفرة.</li><li>حوّل مشروعك الفائز إلى عرض خدمة أو إجراء داخلي.</li></ol></div>
-</section>
-
-<section class="part-opener" id="part-12">
-  <div class="part-label">الجزء 12</div>
-  <h1>المستقبل وخارطة الطريق</h1>
-  <p>الأدوات تتغير. نظام تعلّمك لا يجب أن يتغير. اختم بالتوجهات وخطة 12 شهراً.</p>
-</section>
-
-<section class="chapter" id="ch-29">
-  <div class="chapter-num">الفصل 29</div>
-  <h1 class="chapter-title">توجهات المستقبل</h1>
-  
-<ul>
-<li><strong>وكلاء:</strong> مساعدون يستخدمون أدوات بصلاحيات عمل</li>
-<li><strong>متعدد الوسائط:</strong> نص ↔ صورة ↔ صوت ↔ فيديو في خيط واحد</li>
-<li><strong>روبوتات:</strong> نماذج أساس تلتقي العتاد (أبطأ وأعمق أثراً)</li>
-<li><strong>وظائف:</strong> مشغّلو ذكاء اصطناعي، متخصصو أتمتة، مديرو منتجات AI، خبراء مجال يستخدمون AI</li>
-</ul>
-<div class="callout note"><span class="callout-label">مهارات خالدة</span><p>تأطير المشكلة، كتابة الأوامر، التحقق، تصميم سير العمل، خبرة المجال، والأخلاقيات — تبقى بعد زوال أي تطبيق.</p></div>
-
-<table>
-<thead><tr><th>التوجه</th><th>المعنى عملياً</th><th>ماذا تتدرب عليه؟</th></tr></thead>
-<tbody>
-<tr><td>متعدد الوسائط</td><td>ارفع لقطة شاشة أو ملفاً بدل الوصف الطويل</td><td>أسئلة محددة على ملفات حقيقية</td></tr>
-<tr><td>وكلاء</td><td>تنفيذ خطوات متعددة بأدوات</td><td>أتمتة + موافقات + سجلات</td></tr>
-<tr><td>تنظيم وحقوق</td><td>إفصاح وترخيص وتتبع مصادر</td><td>حفظ سجل أوامر ومراجعات</td></tr>
-</tbody>
-</table>
-
-</section>
-
-<section class="chapter" id="ch-30">
-  <div class="chapter-num">الفصل 30</div>
-  <h1 class="chapter-title">خارطة طريق مهنية لتعلّم الذكاء الاصطناعي</h1>
-  
-<h2>مبتدئ (الأشهر 1–3)</h2>
-<ul>
-<li>تمرين يومي على نماذج اللغة؛ أنهِ الأجزاء 1–4</li>
-<li>دفتر بـ 30 أمراً</li>
-<li>نفّذ مشروعين من الفصل 28</li>
-</ul>
-<h2>متوسط (4–8)</h2>
-<ul>
-<li>أضف صوراً/فيديو/صوتاً لتخصصك</li>
-<li>ابنِ 5 أتمتات ببوابات موافقة</li>
-<li>أنشئ Custom GPT أو Claude Project لوظيفتك</li>
-<li>انشر دراسات حالة</li>
-</ul>
-<h2>متقدم (9–12)</h2>
-<ul>
-<li>صمّم سير عمل وكلاء مع سجلات وتقييم</li>
-<li>تخصص (دعم، تسويق تشغيلي، بحث، تعليم)</li>
-<li>علّم أو استشر؛ حوّل خبرتك إلى عرض</li>
-</ul>
-<table>
-<thead><tr><th>الربع</th><th>التركيز</th><th>الإثبات</th></tr></thead>
-<tbody>
-<tr><td>Q1</td><td>طلاقة النماذج والأوامر</td><td>دفتر + مشروعان</td></tr>
-<tr><td>Q2</td><td>محتوى متعدد الوسائط</td><td>محفظة أصول</td></tr>
-<tr><td>Q3</td><td>أتمتة</td><td>5 سير عمل حية</td></tr>
-<tr><td>Q4</td><td>وكلاء + تخصص</td><td>دراسة حالة + عرض</td></tr>
-</tbody>
-</table>
-<div class="takeaway"><h3>الخلاصة</h3><ul><li>تمرّن يومياً على عمل حقيقي لا استعراضات فقط.</li><li>الإثبات يتفوق على الشهادات: مشاريع وإجراءات ومقاييس.</li><li>تخصص بعد أن تمتلك طلاقة عامة.</li></ul></div>
-<div class="action-steps"><h3>خطوات عملية</h3><ol><li>احجز 30 دقيقة يومياً هذا الأسبوع للتمرين.</li><li>اختر فرضية تخصص لـ 12 شهراً.</li><li>جدول مراجعة شهرية لدفتر أوامرك.</li></ol></div>
-<p class="colophon">وصلت إلى نهاية <em>الذكاء الاصطناعي — الدليل الشامل للمبتدئين</em>. الأدوات ستتغير — قدرتك على التوجيه والتحقق وبناء سير العمل هي ميزتك الدائمة.<br/>من إعداد <strong class="en">SCHOOLERX</strong> · 2026<br/>الآن افتح دفترك ونفّذ المشروع رقم 1.</p>
-
-</section>
-
-<section class="chapter" id="glossary">
-  <div class="chapter-num">ملحق</div>
-  <h1 class="chapter-title">مسرد سريع (عربي / English)</h1>
-  <table>
-    <thead><tr><th>المصطلح</th><th>المعنى للمبتدئ</th></tr></thead>
-    <tbody>
-      <tr><td><span class="en">Prompt</span> / أمر</td><td>التعليمات التي تعطيها للنموذج</td></tr>
-      <tr><td><span class="en">LLM</span></td><td>نموذج لغة كبير يولّد نصاً ويفهمه</td></tr>
-      <tr><td><span class="en">Token</span></td><td>قطعة نص يقرأها النموذج</td></tr>
-      <tr><td><span class="en">Context window</span></td><td>كمية النص التي يراها دفعة واحدة</td></tr>
-      <tr><td><span class="en">Hallucination</span> / هلوسة</td><td>إجابة خاطئة بثقة</td></tr>
-      <tr><td><span class="en">RAG</span></td><td>استرجاع مصادر ثم الإجابة منها</td></tr>
-      <tr><td><span class="en">Agent</span> / وكيل</td><td>نظام يخطّط ويستخدم أدوات نحو هدف</td></tr>
-      <tr><td><span class="en">Automation</span> / أتمتة</td><td>تشغيل خطوات بين تطبيقات تلقائياً</td></tr>
-      <tr><td><span class="en">Fine-tuning</span></td><td>تدريب إضافي لتخصص ضيق</td></tr>
-      <tr><td><span class="en">Multimodal</span></td><td>يفهم أو يولّد أكثر من نوع وسائط</td></tr>
-    </tbody>
-  </table>
-  <div class="callout note"><span class="callout-label">ملاحظة SCHOOLERX</span>
-  <p>لا تحفظ المصطلحات للحفظ الأكاديمي. احفظها لأنها تساعدك على اختيار الأداة الصحيحة وشرح احتياجك بوضوح.</p></div>
-</section>
-
-</article>
-</body>
-</html>
+</article></body></html>
